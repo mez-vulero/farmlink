@@ -1,0 +1,44 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-29 23:13:01.224742",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "year_in_ec",
+  "amount_of_organic_fertilizercompost_used_per_year_in_kg"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "year_in_ec",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Year in E.C"
+  },
+  {
+   "bold": 1,
+   "fieldname": "amount_of_organic_fertilizercompost_used_per_year_in_kg",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Amount of organic fertilizer/compost used per year in kg"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-29 23:15:30.795575",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Fertilizer Usage",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

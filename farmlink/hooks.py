@@ -26,7 +26,8 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/farmlink/css/farmlink.css"
-# app_include_js = "/assets/farmlink/js/farmlink.js"
+app_include_js = ["/assets/farmlink/js/read_scale.js", 
+                 "/assets/farmlink/pwa-register.js"]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/farmlink/css/farmlink.css"
@@ -51,7 +52,7 @@ app_license = "mit"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "farmlink/public/icons.svg"
+# app_include_icons = "farmlink/public/icons/farmlink_icon.svg"
 
 # Home Pages
 # ----------
@@ -96,16 +97,16 @@ app_license = "mit"
 # To set up dependencies/integrations with other apps
 # Name of the app being installed is passed as an argument
 
-# before_app_install = "farmlink.utils.before_app_install"
-# after_app_install = "farmlink.utils.after_app_install"
+# before_app_install = "farmlink.install.before_app_install"
+# after_app_install = "farmlink.install.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-# before_app_uninstall = "farmlink.utils.before_app_uninstall"
-# after_app_uninstall = "farmlink.utils.after_app_uninstall"
+# before_app_uninstall = "farmlink.install.before_app_uninstall"
+# after_app_uninstall = "farmlink.install.after_app_uninstall"
 
 # Desk Notifications
 # ------------------
@@ -137,16 +138,15 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Payment": {
+		"on_submit": "farmlink.farmlink.doctype.payment.payment.update_purchase_status_on_payment",
+		"on_cancel": "farmlink.farmlink.doctype.payment.payment.update_purchase_status_on_payment"
+	}
+}
 
 # Scheduled Tasks
-# ---------------
+# ----------
 
 # scheduler_events = {
 # 	"all": [
@@ -197,6 +197,7 @@ app_license = "mit"
 # Request Events
 # ----------------
 # before_request = ["farmlink.utils.before_request"]
+# after_request = ["farmlink.utils.before_request"]
 # after_request = ["farmlink.utils.after_request"]
 
 # Job Events
@@ -211,6 +212,7 @@ app_license = "mit"
 # 	{
 # 		"doctype": "{doctype_1}",
 # 		"filter_by": "{filter_by}",
+# 		"redact_fields": ["{field_1}", "{field_2}"],
 # 		"redact_fields": ["{field_1}", "{field_2}"],
 # 		"partial": 1,
 # 	},
@@ -241,4 +243,13 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+
+# API Methods
+# -----------
+# Add custom API methods that can be called from the desk
+
+# whitelist = [
+# 	"farmlink.utils.refresh_all_purchase_payment_statuses",
+# 	"farmlink.utils.force_update_purchase_payment_status"
+# ]
 

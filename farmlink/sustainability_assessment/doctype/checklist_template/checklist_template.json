@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:title",
+ "creation": "2025-09-01 14:58:16.885376",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "scheme_version",
+  "effective_from",
+  "column_break_kdte",
+  "status",
+  "checklist_type",
+  "effective_to",
+  "section_break_pbzv",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "scheme_version",
+   "fieldtype": "Link",
+   "label": "Scheme Version",
+   "options": "Scheme Version"
+  },
+  {
+   "fieldname": "checklist_type",
+   "fieldtype": "Link",
+   "label": "Checklist Type",
+   "options": "Checklist Type"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "unique": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nArchived"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Checklist Items",
+   "options": "Checklist Template Item"
+  },
+  {
+   "fetch_from": "scheme_version.effective_from",
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "label": "Effective From",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "scheme_version.effective_to",
+   "fieldname": "effective_to",
+   "fieldtype": "Date",
+   "label": "Effective To",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kdte",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_pbzv",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-01 15:42:56.677501",
+ "modified_by": "Administrator",
+ "module": "Sustainability Assessment",
+ "name": "Checklist Template",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

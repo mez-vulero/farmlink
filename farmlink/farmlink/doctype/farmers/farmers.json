@@ -1,0 +1,316 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-07-27 14:34:21.740704",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_details_section",
+  "naming_series",
+  "first_name",
+  "middle_name",
+  "last_name",
+  "gender",
+  "age",
+  "column_break_gckn",
+  "phone_number",
+  "secondary_phone",
+  "territory",
+  "kebele",
+  "family_details_section",
+  "number_of_family",
+  "column_break_hyia",
+  "no_family_members_that_attend_school",
+  "section_break_enqi",
+  "preferred_payment_method",
+  "column_break_alim",
+  "bank_name",
+  "bank_account_number",
+  "telebirr_phone_number",
+  "family_details_tab",
+  "farm_details_section",
+  "total_farmland_ownership_in_hectares",
+  "number_of_coffee_fields",
+  "number_of_shade_trees_on_all_coffee_farm_plot",
+  "specific_name_of_coffee_collection_center",
+  "column_break_eawc",
+  "land_size_allocated_for_coffee_in_hectares",
+  "coffee_trees_on_all_farm_plots",
+  "number_of_temporary_workers",
+  "frequent_field_agent_buyer",
+  "production_details_section",
+  "harvest_data",
+  "fertilizercompost_usage",
+  "documents_tab",
+  "attachments_section",
+  "farmers_photo",
+  "bank_book",
+  "land_ownership_certificate"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FRMR-.YY.-.####"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "column_break_gckn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "secondary_phone",
+   "fieldtype": "Data",
+   "label": "Secondary Phone"
+  },
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "section_break_enqi",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "preferred_payment_method",
+   "fieldtype": "Select",
+   "label": "Preferred Payment Method",
+   "options": "\nCash\nTelebirr\nBank"
+  },
+  {
+   "fieldname": "column_break_alim",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.preferred_payment_method == \"Bank\"",
+   "fieldname": "bank_name",
+   "fieldtype": "Link",
+   "label": "Bank Name",
+   "options": "Bank"
+  },
+  {
+   "depends_on": "eval:doc.preferred_payment_method == \"Bank\"",
+   "fieldname": "bank_account_number",
+   "fieldtype": "Data",
+   "label": "Bank Account Number"
+  },
+  {
+   "depends_on": "eval:doc.preferred_payment_method == \"Telebirr\"",
+   "fieldname": "telebirr_phone_number",
+   "fieldtype": "Data",
+   "label": "Telebirr Phone Number"
+  },
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "family_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Coffee Farm and Production"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "kebele",
+   "fieldtype": "Data",
+   "label": "Kebele"
+  },
+  {
+   "fieldname": "family_details_section",
+   "fieldtype": "Section Break",
+   "label": "Family Details"
+  },
+  {
+   "fieldname": "number_of_family",
+   "fieldtype": "Int",
+   "label": "Number of Family"
+  },
+  {
+   "fieldname": "column_break_hyia",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "no_family_members_that_attend_school",
+   "fieldtype": "Int",
+   "label": "No. Family Members That Attend School"
+  },
+  {
+   "fieldname": "total_farmland_ownership_in_hectares",
+   "fieldtype": "Float",
+   "label": "Total Farmland Ownership in Hectares"
+  },
+  {
+   "fieldname": "number_of_coffee_fields",
+   "fieldtype": "Int",
+   "label": "Number of coffee fields"
+  },
+  {
+   "fieldname": "number_of_shade_trees_on_all_coffee_farm_plot",
+   "fieldtype": "Int",
+   "label": "Number of shade trees on all coffee farm plot"
+  },
+  {
+   "fieldname": "specific_name_of_coffee_collection_center",
+   "fieldtype": "Link",
+   "label": "Specific name of coffee collection center",
+   "options": "Washing Station"
+  },
+  {
+   "fieldname": "column_break_eawc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "land_size_allocated_for_coffee_in_hectares",
+   "fieldtype": "Float",
+   "label": "Land size allocated for coffee in Hectares"
+  },
+  {
+   "fieldname": "coffee_trees_on_all_farm_plots",
+   "fieldtype": "Int",
+   "label": "Coffee trees on all farm plots"
+  },
+  {
+   "fieldname": "number_of_temporary_workers",
+   "fieldtype": "Int",
+   "label": "Number of Temporary Workers"
+  },
+  {
+   "fieldname": "documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Attachments"
+  },
+  {
+   "fieldname": "farmers_photo",
+   "fieldtype": "Attach Image",
+   "label": "Farmer's Photo"
+  },
+  {
+   "fieldname": "bank_book",
+   "fieldtype": "Attach",
+   "label": "Bank Book"
+  },
+  {
+   "fieldname": "land_ownership_certificate",
+   "fieldtype": "Attach",
+   "label": "Land Ownership Certificate"
+  },
+  {
+   "fieldname": "frequent_field_agent_buyer",
+   "fieldtype": "Link",
+   "label": "Frequent Field Agent Buyer",
+   "options": "User"
+  },
+  {
+   "fieldname": "farm_details_section",
+   "fieldtype": "Section Break",
+   "label": "Farm Details"
+  },
+  {
+   "fieldname": "production_details_section",
+   "fieldtype": "Section Break",
+   "label": "Production Details"
+  },
+  {
+   "fieldname": "harvest_data",
+   "fieldtype": "Table",
+   "label": "Harvest Data",
+   "options": "Harvest Data"
+  },
+  {
+   "fieldname": "fertilizercompost_usage",
+   "fieldtype": "Table",
+   "label": "Fertilizer/Compost Usage",
+   "options": "Fertilizer Usage"
+  }
+ ],
+ "grid_page_length": 50,
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Payment",
+   "link_fieldname": "paid_to"
+  },
+  {
+   "link_doctype": "Farms",
+   "link_fieldname": "farmer"
+  },
+  {
+   "link_doctype": "Purchases",
+   "link_fieldname": "farmer"
+  }
+ ],
+ "modified": "2025-08-31 14:28:29.594307",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Farmers",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "mezmure.dawit@vulero.et",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

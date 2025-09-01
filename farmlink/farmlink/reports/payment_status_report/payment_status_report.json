@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-10 19:00:00.000000",
+ "doctype": "Report",
+ "engine": "Query Report",
+ "field_order": [
+  "filters_section",
+  "territory",
+  "washing_station",
+  "payment_status",
+  "from_date",
+  "to_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "filters_section",
+   "fieldtype": "Section Break",
+   "label": "Filters"
+  },
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "washing_station",
+   "fieldtype": "Link",
+   "label": "Washing Station",
+   "options": "Washing Station"
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "\nUnpaid\nPartially Paid\nPaid"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  }
+ ],
+ "is_standard": "No",
+ "json": "{\"filters\":[{\"fieldname\":\"territory\",\"fieldtype\":\"Link\",\"label\":\"Territory\",\"options\":\"Territory\"},{\"fieldname\":\"washing_station\",\"fieldtype\":\"Link\",\"label\":\"Washing Station\",\"options\":\"Washing Station\"},{\"fieldname\":\"payment_status\",\"fieldtype\":\"Select\",\"label\":\"Payment Status\",\"options\":\"\\nUnpaid\\nPartially Paid\\nPaid\"},{\"fieldname\":\"from_date\",\"fieldtype\":\"Date\",\"label\":\"From Date\"},{\"fieldname\":\"to_date\",\"fieldtype\":\"Date\",\"label\":\"To Date\"}],\"columns\":[{\"fieldname\":\"purchase_name\",\"fieldtype\":\"Data\",\"label\":\"Purchase\",\"width\":\"120\"},{\"fieldname\":\"purchase_date\",\"fieldtype\":\"Date\",\"label\":\"Date\",\"width\":\"100\"},{\"fieldname\":\"farmer\",\"fieldtype\":\"Data\",\"label\":\"Farmer\",\"width\":\"150\"},{\"fieldname\":\"washing_station\",\"fieldtype\":\"Data\",\"label\":\"Washing Station\",\"width\":\"150\"},{\"fieldname\":\"grade\",\"fieldtype\":\"Data\",\"label\":\"Grade\",\"width\":\"80\"},{\"fieldname\":\"gross_weight\",\"fieldtype\":\"Float\",\"label\":\"Weight (kg)\",\"width\":\"100\"},{\"fieldname\":\"total_amount\",\"fieldtype\":\"Currency\",\"label\":\"Total Amount\",\"width\":\"120\"},{\"fieldname\":\"paid_amount\",\"fieldtype\":\"Currency\",\"label\":\"Paid Amount\",\"width\":\"120\"},{\"fieldname\":\"outstanding_amount\",\"fieldtype\":\"Currency\",\"label\":\"Outstanding\",\"width\":\"120\"},{\"fieldname\":\"payment_status\",\"fieldtype\":\"Data\",\"label\":\"Status\",\"width\":\"100\"}],\"sql\":\"SELECT \\n  p.name as purchase_name,\\n  p.purchase_date,\\n  p.farmer,\\n  p.washing_station,\\n  p.grade,\\n  p.gross_weight,\\n  p.total_amount,\\n  p.paid_amount,\\n  p.outstanding_amount,\\n  p.payment_status\\nFROM \\n  `tabPurchase` p\\nWHERE \\n  p.docstatus = 1\\n  AND (\\n    %(territory)s IS NULL \\n    OR p.territory = %(territory)s\\n  )\\n  AND (\\n    %(washing_station)s IS NULL \\n    OR p.washing_station = %(washing_station)s\\n  )\\n  AND (\\n    %(payment_status)s IS NULL \\n    OR p.payment_status = %(payment_status)s\\n  )\\n  AND (\\n    %(from_date)s IS NULL \\n    OR DATE(p.purchase_date) >= %(from_date)s\\n  )\\n  AND (\\n    %(to_date)s IS NULL \\n    OR DATE(p.purchase_date) <= %(to_date)s\\n  )\\nORDER BY \\n  p.purchase_date DESC, p.name DESC\"}",
+ "modified": "2025-08-10 19:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Payment Status Report",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "report_type": "Query Report",
+ "roles": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title": "Payment Status Report"
+} 

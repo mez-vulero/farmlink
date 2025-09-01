@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-29 22:27:37.270183",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "year_in_ec",
+  "harvested_coffee_in_kilograms"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "year_in_ec",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Year in E.C",
+   "options": "\n2015\n2016\n2017\n2018\n2019\n2020"
+  },
+  {
+   "bold": 1,
+   "fieldname": "harvested_coffee_in_kilograms",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Harvested Coffee in Kilograms"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-29 23:11:02.307964",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Harvest Data",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-07-27 21:07:34.924497",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "naming_series",
+  "territory",
+  "farmer",
+  "farm_center_point",
+  "column_break_ubwh",
+  "kebele",
+  "date_recorded",
+  "farm_polygon"
+ ],
+ "fields": [
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "farm_center_point",
+   "fieldtype": "Geolocation",
+   "label": "Farm Center Point"
+  },
+  {
+   "fieldname": "column_break_ubwh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "kebele",
+   "fieldtype": "Data",
+   "label": "Kebele"
+  },
+  {
+   "fieldname": "date_recorded",
+   "fieldtype": "Date",
+   "label": "Date Recorded"
+  },
+  {
+   "fieldname": "farm_polygon",
+   "fieldtype": "Geolocation",
+   "label": "Farm Polygon"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "LOT-.YY.-.####"
+  },
+  {
+   "fieldname": "farmer",
+   "fieldtype": "Link",
+   "label": "Farmer",
+   "options": "Farmers"
+  }
+ ],
+ "grid_page_length": 50,
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-31 14:29:36.065192",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Farms",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

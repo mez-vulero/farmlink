@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-08-31 13:12:24.858843",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basics_section",
+  "naming_series",
+  "purchaser",
+  "farmer",
+  "column_break_iquk",
+  "purchase_date",
+  "collection_center",
+  "purchase_details_section",
+  "coffee_grade",
+  "price_rate_of_the_day",
+  "weight_in_kg",
+  "read_scale_button",
+  "total_price",
+  "column_break_ylrz"
+ ],
+ "fields": [
+  {
+   "fieldname": "basics_section",
+   "fieldtype": "Section Break",
+   "label": "Basics"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "PUR-.YY.-.####"
+  },
+  {
+   "fieldname": "purchaser",
+   "fieldtype": "Link",
+   "label": "Purchaser",
+   "options": "User"
+  },
+  {
+   "fieldname": "farmer",
+   "fieldtype": "Link",
+   "label": "Farmer",
+   "options": "Farmers",
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_iquk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "purchase_date",
+   "fieldtype": "Datetime",
+   "label": "Purchase Date"
+  },
+  {
+   "fieldname": "collection_center",
+   "fieldtype": "Link",
+   "label": "Collection Center",
+   "options": "Washing Station"
+  },
+  {
+   "fieldname": "purchase_details_section",
+   "fieldtype": "Section Break",
+   "label": "Purchase Details"
+  },
+  {
+   "fieldname": "coffee_grade",
+   "fieldtype": "Select",
+   "label": "Coffee Grade",
+   "options": "\nG1\nG2\nG3\nG4\nG5"
+  },
+  {
+   "fieldname": "price_rate_of_the_day",
+   "fieldtype": "Currency",
+   "label": "Price rate of the day"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Currency",
+   "label": "Total Price"
+  },
+  {
+   "fieldname": "column_break_ylrz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "weight_in_kg",
+   "fieldtype": "Float",
+   "label": "Weight in KG"
+  },
+  {
+   "fieldname": "read_scale_button",
+   "fieldtype": "Button",
+   "label": "Read"
+  }
+ ],
+ "grid_page_length": 50,
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Payment",
+   "link_fieldname": "purchase_invoice"
+  }
+ ],
+ "modified": "2025-08-31 14:57:38.500540",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Purchases",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
