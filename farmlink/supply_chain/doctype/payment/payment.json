@@ -10,16 +10,19 @@
   "payment_details_section",
   "naming_series",
   "purchase_invoice",
+  "purchase_type",
+  "column_break_qhvs",
+  "payment_date",
+  "amended_from",
+  "section_break_ucoy",
+  "supplier",
   "farmer",
   "purchase_amount",
   "outstanding_amount",
-  "column_break_qhvs",
+  "column_break_avia",
   "payment_amount",
-  "payment_date",
   "mode_of_payment",
-  "transaction_number",
-  "notes",
-  "amended_from"
+  "transaction_number"
  ],
  "fields": [
   {
@@ -30,8 +33,9 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
-   "options": "PAY-.YY.-MM.-DD.-.####"
+   "options": "PAY-.YY.-.MM.-.DD.-.####"
   },
   {
    "fieldname": "purchase_invoice",
@@ -42,6 +46,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.purchase_type=='Direct' || doc.purchase_type=='Farmer Supplier'",
    "fetch_from": "purchase_invoice.farmer",
    "fieldname": "farmer",
    "fieldtype": "Link",
@@ -50,7 +55,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "purchase_invoice.total_amount",
+   "fetch_from": "purchase_invoice.total_price",
    "fieldname": "purchase_amount",
    "fieldtype": "Currency",
    "label": "Purchase Amount",
@@ -69,7 +74,7 @@
   },
   {
    "fieldname": "payment_amount",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Payment Amount",
    "reqd": 1
@@ -96,11 +101,6 @@
    "label": "Transaction Number"
   },
   {
-   "fieldname": "notes",
-   "fieldtype": "Text",
-   "label": "Notes"
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -109,14 +109,36 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "section_break_ucoy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_avia",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "purchase_invoice.purchase_type",
+   "fieldname": "purchase_type",
+   "fieldtype": "Data",
+   "label": "Purchase Type",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.purchase_type=='Bulk Supplier' || doc.purchase_type=='Farmer Supplier'",
+   "fetch_from": "purchase_invoice.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "label": "Supplier",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
- "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-31 14:22:39.876101",
+ "modified": "2025-09-22 03:05:57.875403",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Payment",
@@ -132,6 +154,43 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Collector",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Finance Officer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
    "share": 1,
    "write": 1
   }

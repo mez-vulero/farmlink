@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-09-02 06:12:31.541261",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "detials_section",
+  "naming_series",
+  "status",
+  "checklist_template",
+  "column_break_cbkt",
+  "inspection_for",
+  "farmer",
+  "farm",
+  "washing_station",
+  "section_break_zhis",
+  "items",
+  "more_info_tab",
+  "checklist_type",
+  "inspection_done_by",
+  "inspection_start_date",
+  "inspection_end_date",
+  "column_break_bhbd",
+  "scheme_version",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "detials_section",
+   "fieldtype": "Section Break",
+   "label": "Detials"
+  },
+  {
+   "fieldname": "checklist_template",
+   "fieldtype": "Link",
+   "label": "Checklist Template",
+   "options": "Checklist Template"
+  },
+  {
+   "fieldname": "inspection_for",
+   "fieldtype": "Select",
+   "label": "Inspection for",
+   "options": "\nFarmer\nFarm\nWashing Station"
+  },
+  {
+   "depends_on": "eval:doc.inspection_for=='Farmer';",
+   "fieldname": "farmer",
+   "fieldtype": "Link",
+   "label": "Farmer",
+   "options": "Farmers"
+  },
+  {
+   "depends_on": "eval:doc.inspection_for=='Farm';",
+   "fieldname": "farm",
+   "fieldtype": "Link",
+   "label": "Farm",
+   "options": "Farms"
+  },
+  {
+   "depends_on": "eval:doc.inspection_for=='Washing Station';",
+   "fieldname": "washing_station",
+   "fieldtype": "Link",
+   "label": "Washing Station",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "inspection_start_date",
+   "fieldtype": "Date",
+   "label": "Inspection Start Date"
+  },
+  {
+   "fieldname": "inspection_end_date",
+   "fieldtype": "Date",
+   "label": "Inspection End Date"
+  },
+  {
+   "fieldname": "inspection_done_by",
+   "fieldtype": "Link",
+   "label": "Inspection Done By",
+   "options": "User"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nSubmitted"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "INSP-.YYYY.-.####"
+  },
+  {
+   "fetch_from": "checklist_template.scheme_version",
+   "fieldname": "scheme_version",
+   "fieldtype": "Data",
+   "label": "Scheme Version",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "checklist_template.checklist_type",
+   "fieldname": "checklist_type",
+   "fieldtype": "Data",
+   "label": "Checklist Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_cbkt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_zhis",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "more_info_tab",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "column_break_bhbd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Internal Inspection Item",
+   "options": "Internal Inspection Item"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-22 03:09:30.519407",
+ "modified_by": "Administrator",
+ "module": "Sustainability Assessment",
+ "name": "Internal Inspection",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

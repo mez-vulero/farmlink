@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"aI_aNesm8n\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sustainability Assessment</span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"aI_aNesm8n\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sustainability Assessment</span>\",\"col\":12}},{\"id\":\"qWaOMh3W9Y\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"5Wpvo-_LR0\",\"type\":\"card\",\"data\":{\"card_name\":\"Executions\",\"col\":4}}]",
  "creation": "2025-08-29 23:38:09.456801",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,8 +12,67 @@
  "indicator_color": "green",
  "is_hidden": 0,
  "label": "Sustainability Assessment",
- "links": [],
- "modified": "2025-08-29 23:39:48.703456",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certification Scheme",
+   "link_count": 0,
+   "link_to": "Certification Schemes",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scheme Version",
+   "link_count": 0,
+   "link_to": "Scheme Version",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Checklist Template",
+   "link_count": 0,
+   "link_to": "Checklist Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Executions",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internal Inspection",
+   "link_count": 0,
+   "link_to": "Internal Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-09-09 11:00:40.533314",
  "modified_by": "Administrator",
  "module": "Sustainability Assessment",
  "name": "Sustainability Assessment",

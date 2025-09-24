@@ -1,0 +1,114 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-09-16 11:24:17.694557",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "posting_time",
+  "center",
+  "batch_ref",
+  "status",
+  "coffee_form",
+  "qty_kg",
+  "reference_doctype",
+  "reference_name",
+  "remarks",
+  "is_cancelled"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CSL-.YY.-.#####"
+  },
+  {
+   "default": "Now",
+   "fieldname": "posting_time",
+   "fieldtype": "Datetime",
+   "label": "Posting Time"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Primary Arrival\nIn Processing\nDispatched to Main\nDispatched to Secondary\nSecondary Arrival\nMain Arrival"
+  },
+  {
+   "fieldname": "coffee_form",
+   "fieldtype": "Select",
+   "label": "Coffee Form",
+   "options": "Cherry\nParchment\nDried Cherry\nGreen Bean"
+  },
+  {
+   "fieldname": "qty_kg",
+   "fieldtype": "Float",
+   "label": "Quantity in KG"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "Reference Doctype",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Name",
+   "options": "reference_doctype"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cancelled",
+   "fieldtype": "Check",
+   "label": "Is Cancelled"
+  },
+  {
+   "fieldname": "center",
+   "fieldtype": "Link",
+   "label": "Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "batch_ref",
+   "fieldtype": "Link",
+   "label": "PP Batch ID",
+   "options": "Primary Processing"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-22 10:17:33.582944",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Coffee Stock Ledger",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

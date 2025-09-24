@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-22 11:00:59.315140",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_9hzj",
+  "status",
+  "coffee_type",
+  "processing_center",
+  "processed_warehouse",
+  "final_output_weight_kg",
+  "amended_from",
+  "column_break_bzzn",
+  "log_time",
+  "weight_in_kg"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_9hzj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Secondary Processing",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "processing_center",
+   "fieldtype": "Link",
+   "label": "Processing Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not Started\nProcessing\nCompleted"
+  },
+  {
+   "fieldname": "weight_in_kg",
+   "fieldtype": "Float",
+   "label": "Weight in KG"
+  },
+  {
+   "depends_on": "eval:doc.status=='Completed'",
+   "fieldname": "final_output_weight_kg",
+   "fieldtype": "Float",
+   "label": "Final Output Weight KG"
+  },
+  {
+   "fieldname": "column_break_bzzn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "log_time",
+   "fieldtype": "Datetime",
+   "label": "Log Time"
+  },
+  {
+   "fieldname": "processed_warehouse",
+   "fieldtype": "Link",
+   "label": "Processed Warehouse",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "coffee_type",
+   "fieldtype": "Select",
+   "label": "Coffee Type",
+   "options": "Parchment\nDried Cherry"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-09-24 06:46:34.324087",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Secondary Processing",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Red",
+   "title": "Not Started"
+  },
+  {
+   "color": "Yellow",
+   "title": "Processing"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  }
+ ]
+}

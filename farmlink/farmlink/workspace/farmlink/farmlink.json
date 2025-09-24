@@ -1,6 +1,23 @@
 {
- "charts": [],
- "content": "[{\"id\":\"pw1uWFdmMi\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">FarmLink</span>\",\"col\":12}},{\"id\":\"KgpUlQqUld\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "Daily Purchase",
+   "label": "Daily Purchase in Volume"
+  },
+  {
+   "chart_name": "Famers by Gender",
+   "label": "Farmers by Gender"
+  },
+  {
+   "chart_name": "Purchase Volume by Cherry Grade",
+   "label": "Purchase Volume by Cherry Grade"
+  },
+  {
+   "chart_name": "Farmer by Territory",
+   "label": "Farmer by Territory"
+  }
+ ],
+ "content": "[{\"id\":\"pw1uWFdmMi\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Master Data Summary</span>\",\"col\":12}},{\"id\":\"jvJWSj0sKk\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farmers\",\"col\":3}},{\"id\":\"dI1huH2JPm\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farms\",\"col\":3}},{\"id\":\"UdmET3K89U\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farm Area in Ha\",\"col\":3}},{\"id\":\"G7hAHvhldB\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Collection Centers\",\"col\":3}},{\"id\":\"WlyZZgu1Ok\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmer by Territory\",\"col\":6}},{\"id\":\"lon7MrUC__\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmers by Gender\",\"col\":6}},{\"id\":\"5jLUsYMMvj\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zOcb-XuF-0\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transaction Summary</b></span>\",\"col\":12}},{\"id\":\"ZQB7Y8uaA4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (KG)\",\"col\":3}},{\"id\":\"Qm8QnSL4k2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"KANUAEu1FY\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"o9RAzycASI\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"SQ1qSH5TIY\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Daily Purchase in Volume\",\"col\":6}},{\"id\":\"7Fv0h7iyuI\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":6}},{\"id\":\"ADVuAVFu6G\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"A2k7J-6kmy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Centers\",\"col\":3}},{\"id\":\"z73MRbYwF4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Territory\",\"col\":3}},{\"id\":\"tfscFSdqln\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Suppliers\",\"col\":3}},{\"id\":\"-wHSC2FUfN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Personnel\",\"col\":3}}]",
  "creation": "2025-08-06 15:55:40.760912",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,98 +29,92 @@
  "indicator_color": "yellow",
  "is_hidden": 0,
  "label": "FarmLink",
- "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Transactions",
-   "link_count": 2,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Purchases",
-   "link_count": 0,
-   "link_to": "Purchases",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payments",
-   "link_count": 0,
-   "link_to": "Payment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Master",
-   "link_count": 4,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Farmers",
-   "link_count": 0,
-   "link_to": "Farmers",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Farms",
-   "link_count": 0,
-   "link_to": "Farms",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Washing Station",
-   "link_count": 0,
-   "link_to": "Washing Station",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Suppliers",
-   "link_count": 0,
-   "link_to": "Supplier",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  }
- ],
- "modified": "2025-08-31 18:41:27.631913",
+ "links": [],
+ "modified": "2025-09-22 06:28:18.359229",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "FarmLink",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Total Farm Area in Ha",
+   "number_card_name": "Total Farm Area in Ha"
+  },
+  {
+   "label": "Active Collection Centers",
+   "number_card_name": "Active Collection Centers"
+  },
+  {
+   "label": "Purchases (KG)",
+   "number_card_name": "Purchases Last 30 Days"
+  },
+  {
+   "label": "Purchases (ETB)",
+   "number_card_name": "Purchases (ETB)"
+  },
+  {
+   "label": "Average Price Rate (7 Days)",
+   "number_card_name": "Average Price Rate (7 Days)"
+  },
+  {
+   "label": "Total Farmers",
+   "number_card_name": "Total Farmer"
+  },
+  {
+   "label": "Total Farms",
+   "number_card_name": "Total Farms"
+  },
+  {
+   "label": "Total Payments Made",
+   "number_card_name": "Total Payments Made"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "",
- "roles": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Farmlink Manager"
+  }
+ ],
  "sequence_id": 1.0,
- "shortcuts": [],
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Centers",
+   "link_to": "Centers",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "label": "Suppliers",
+   "link_to": "Supplier",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Territory",
+   "link_to": "Territory",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "List",
+   "label": "Personnel",
+   "link_to": "Personnel",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
  "title": "FarmLink"
 }

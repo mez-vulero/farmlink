@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-09-08 20:24:21.701560",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "user_id",
+  "full_name",
+  "phone_number",
+  "column_break_nxda",
+  "site_assigned",
+  "collection_center",
+  "designation"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "HR-.YY.-."
+  },
+  {
+   "fieldname": "user_id",
+   "fieldtype": "Link",
+   "label": "User ID",
+   "options": "User"
+  },
+  {
+   "fetch_from": "user_id.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "user_id.mobile_no",
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_nxda",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site_assigned",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Site Assigned",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "collection_center",
+   "fieldtype": "Link",
+   "label": "Collection Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Designation",
+   "options": "\nCollector\nSupplier\nDispatcher\nArrival Clerk\nExport Clerk\nArea Manager"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-22 03:09:31.621342",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Personnel",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name"
+}

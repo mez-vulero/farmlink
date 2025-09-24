@@ -1,0 +1,224 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-09-24 06:34:00.410980",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "dispatched_by",
+  "dispatched_from",
+  "territory",
+  "column_break_woss",
+  "status",
+  "dispatched_on",
+  "destination",
+  "destination_territory",
+  "section_break_pjav",
+  "plate_number",
+  "coffee_type",
+  "weight_in_kg",
+  "column_break_gagz",
+  "drivers_name",
+  "moisture_",
+  "number_of_bags",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "PPD-.YY.-.####"
+  },
+  {
+   "default": "__user",
+   "fieldname": "dispatched_by",
+   "fieldtype": "Link",
+   "label": "Dispatched By",
+   "options": "User"
+  },
+  {
+   "fieldname": "dispatched_from",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Dispatched From",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "column_break_woss",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nLoading\nDispatched"
+  },
+  {
+   "fieldname": "dispatched_on",
+   "fieldtype": "Datetime",
+   "label": "Dispatched On"
+  },
+  {
+   "fieldname": "section_break_pjav",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "plate_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plate Number"
+  },
+  {
+   "fieldname": "weight_in_kg",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight in KG"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Primary Dispatch",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "dispatched_from.territory",
+   "fieldname": "territory",
+   "fieldtype": "Data",
+   "label": "Dispatched Territory",
+   "read_only": 1
+  },
+  {
+   "fieldname": "number_of_bags",
+   "fieldtype": "Int",
+   "label": "Number of Bags"
+  },
+  {
+   "fieldname": "drivers_name",
+   "fieldtype": "Data",
+   "label": "Driver's Name"
+  },
+  {
+   "fieldname": "column_break_gagz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "moisture_",
+   "fieldtype": "Float",
+   "label": "Moisture (%)"
+  },
+  {
+   "fieldname": "destination",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Destination",
+   "options": "Centers"
+  },
+  {
+   "fetch_from": "destination.territory",
+   "fieldname": "destination_territory",
+   "fieldtype": "Link",
+   "label": "Destination Territory",
+   "options": "Territory",
+   "read_only": 1
+  },
+  {
+   "fieldname": "coffee_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Dispatch Type",
+   "options": "\nParchment\nDried Cherry\nGreen Bean"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Primary Dispatch",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Secondary Arrival Log",
+   "link_fieldname": "dispatch_log"
+  }
+ ],
+ "modified": "2025-09-24 06:41:25.487275",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Primary Dispatch",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Dispatch Clerk",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Arrival Clerk",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Finance Officer",
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

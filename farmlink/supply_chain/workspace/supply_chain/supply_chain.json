@@ -1,6 +1,11 @@
 {
- "charts": [],
- "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"llPqf7WLVE\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"3bjTuRGKcA\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "Purchase Volume by Cherry Grade",
+   "label": "Purchase Volume by Cherry Grade"
+  }
+ ],
+ "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"giXqX5-N3A\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"Y184U_nq02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"lGiyGi3DeK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"88dvtFuOcl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":12}},{\"id\":\"cGCFQO09s-\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"GBd6BF6ghl\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"1NN6mkGpuW\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
  "creation": "2025-08-29 23:36:30.518606",
  "custom_blocks": [],
  "docstatus": 0,
@@ -17,7 +22,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Master",
-   "link_count": 5,
+   "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -35,9 +40,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Farms",
+   "label": "Supplier",
    "link_count": 0,
-   "link_to": "Farms",
+   "link_to": "Supplier",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -47,17 +52,7 @@
    "is_query_report": 0,
    "label": "Washing Station",
    "link_count": 0,
-   "link_to": "Washing Station",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Supplier",
-   "link_count": 0,
-   "link_to": "Supplier",
+   "link_to": "Centers",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -100,13 +95,95 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Logs",
+   "link_count": 6,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Primary Arrival Log",
+   "link_count": 0,
+   "link_to": "Primary Arrival Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Primary Processing",
+   "link_count": 0,
+   "link_to": "Primary Processing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Primary Dispatch",
+   "link_count": 0,
+   "link_to": "Primary Dispatch",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Secondary Arrival Log",
+   "link_count": 0,
+   "link_to": "Secondary Arrival Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Secondary Processing",
+   "link_count": 0,
+   "link_to": "Secondary Processing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coffee Stock Ledger",
+   "link_count": 0,
+   "link_to": "Coffee Stock Ledger",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-08-31 13:49:08.730478",
+ "modified": "2025-09-22 11:14:28.015426",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Supply Chain",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Average Price Rate (7 Days)",
+   "number_card_name": "Average Price Rate (7 Days)"
+  },
+  {
+   "label": "Purchases (ETB)",
+   "number_card_name": "Purchases (ETB)"
+  },
+  {
+   "label": "Total Payments Made",
+   "number_card_name": "Total Payments Made"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "FarmLink",
  "public": 1,

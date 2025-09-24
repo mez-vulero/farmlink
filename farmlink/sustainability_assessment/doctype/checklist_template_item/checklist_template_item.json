@@ -1,24 +1,79 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-09-01 15:00:55.850827",
+ "creation": "2025-09-02 06:06:47.919757",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "section_break_a5hd"
+  "section",
+  "subsection",
+  "requirement_code",
+  "requirement_text",
+  "guidance",
+  "item_kind",
+  "severity",
+  "evidence_mode"
  ],
  "fields": [
   {
-   "fieldname": "section_break_a5hd",
-   "fieldtype": "Section Break"
+   "fieldname": "section",
+   "fieldtype": "Data",
+   "label": "Section"
+  },
+  {
+   "fieldname": "subsection",
+   "fieldtype": "Data",
+   "label": "Sub-section"
+  },
+  {
+   "fieldname": "requirement_code",
+   "fieldtype": "Data",
+   "label": "Requirement Code"
+  },
+  {
+   "bold": 1,
+   "fieldname": "requirement_text",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Requirement Text"
+  },
+  {
+   "fieldname": "guidance",
+   "fieldtype": "Small Text",
+   "label": "Guidance"
+  },
+  {
+   "fieldname": "item_kind",
+   "fieldtype": "Select",
+   "label": "Item Kind",
+   "options": "\nIndicator\nDocument\nProcedure\nOther"
+  },
+  {
+   "bold": 1,
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Severity",
+   "options": "\nCritical\nMajor\nMinor\nInfo\nCore Criterion\nMandatory Smart Meter Base Level\nImprovement Criterion\nEuropean Union Deforestation Regulation Requirements"
+  },
+  {
+   "bold": 1,
+   "fieldname": "evidence_mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Evidence Mode",
+   "options": "\nAlways\nOn Yes\nOn No\nOn Partial\nNever"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-09-01 15:00:55.850827",
+ "modified": "2025-09-04 22:57:54.690027",
  "modified_by": "Administrator",
  "module": "Sustainability Assessment",
  "name": "Checklist Template Item",

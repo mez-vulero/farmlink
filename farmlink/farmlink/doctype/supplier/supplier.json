@@ -1,17 +1,25 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2025-08-11 12:57:45.171722",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "details_section",
   "naming_series",
   "first_name",
   "middle_name",
+  "phone_number",
+  "column_break_ictr",
   "last_name",
+  "full_name",
   "territory",
-  "phone_number"
+  "section_break_yjou",
+  "bank_name",
+  "column_break_ekqb",
+  "bank_account_number"
  ],
  "fields": [
   {
@@ -32,25 +40,84 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Territory",
    "options": "Territory"
   },
   {
    "fieldname": "phone_number",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Phone Number"
   },
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "ID",
    "options": "SUP-.YY.-.###"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "column_break_ictr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_yjou",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Link",
+   "label": "Bank Name",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "bank_account_number",
+   "fieldtype": "Data",
+   "label": "Bank Account Number"
+  },
+  {
+   "fieldname": "column_break_ekqb",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-08-11 13:00:08.505766",
+ "links": [
+  {
+   "group": "Purchases",
+   "link_doctype": "Bulk Supplier Purchase",
+   "link_fieldname": "supplier"
+  },
+  {
+   "group": "Purchases",
+   "link_doctype": "Purchases",
+   "link_fieldname": "purchaser",
+   "table_fieldname": "Farmer Purchses"
+  },
+  {
+   "group": "Purchases",
+   "link_doctype": "Bulk Purchase Payments",
+   "link_fieldname": "supplier"
+  },
+  {
+   "group": "Associated Famers",
+   "link_doctype": "Farmers",
+   "link_fieldname": "associated_supplier"
+  }
+ ],
+ "modified": "2025-09-16 06:32:56.889588",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "Supplier",
@@ -71,7 +138,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "full_name"
 }

@@ -11,6 +11,7 @@
   "basic_details_tab",
   "basic_details_section",
   "naming_series",
+  "full_name",
   "first_name",
   "middle_name",
   "last_name",
@@ -41,7 +42,7 @@
   "land_size_allocated_for_coffee_in_hectares",
   "coffee_trees_on_all_farm_plots",
   "number_of_temporary_workers",
-  "frequent_field_agent_buyer",
+  "associated_supplier",
   "production_details_section",
   "harvest_data",
   "fertilizercompost_usage",
@@ -61,7 +62,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
-   "options": "FRMR-.YY.-.####"
+   "options": "FRMR-.YY.-.####\nSNDN-CRO-\nSNDN-CR-\nSNDN-CO-"
   },
   {
    "fieldname": "first_name",
@@ -85,6 +86,7 @@
   {
    "fieldname": "phone_number",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Phone Number"
   },
   {
@@ -95,6 +97,7 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Territory",
    "options": "Territory"
   },
@@ -180,6 +183,7 @@
   {
    "fieldname": "total_farmland_ownership_in_hectares",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Total Farmland Ownership in Hectares"
   },
   {
@@ -196,7 +200,7 @@
    "fieldname": "specific_name_of_coffee_collection_center",
    "fieldtype": "Link",
    "label": "Specific name of coffee collection center",
-   "options": "Washing Station"
+   "options": "Centers"
   },
   {
    "fieldname": "column_break_eawc",
@@ -243,12 +247,6 @@
    "label": "Land Ownership Certificate"
   },
   {
-   "fieldname": "frequent_field_agent_buyer",
-   "fieldtype": "Link",
-   "label": "Frequent Field Agent Buyer",
-   "options": "User"
-  },
-  {
    "fieldname": "farm_details_section",
    "fieldtype": "Section Break",
    "label": "Farm Details"
@@ -269,16 +267,23 @@
    "fieldtype": "Table",
    "label": "Fertilizer/Compost Usage",
    "options": "Fertilizer Usage"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "associated_supplier",
+   "fieldtype": "Link",
+   "label": "Associated Supplier",
+   "options": "Supplier"
   }
  ],
  "grid_page_length": 50,
- "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [
-  {
-   "link_doctype": "Payment",
-   "link_fieldname": "paid_to"
-  },
   {
    "link_doctype": "Farms",
    "link_fieldname": "farmer"
@@ -286,9 +291,13 @@
   {
    "link_doctype": "Purchases",
    "link_fieldname": "farmer"
+  },
+  {
+   "link_doctype": "Payment",
+   "link_fieldname": "paid_to"
   }
  ],
- "modified": "2025-08-31 14:28:29.594307",
+ "modified": "2025-09-22 03:09:31.793783",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "Farmers",
@@ -306,11 +315,47 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Collector",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Finance Officer",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
   }
  ],
  "row_format": "Dynamic",
  "show_name_in_global_search": 1,
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "full_name",
+ "track_changes": 1,
+ "track_views": 1
 }

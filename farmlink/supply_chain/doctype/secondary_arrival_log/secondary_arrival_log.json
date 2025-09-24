@@ -1,0 +1,201 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-09-24 06:33:07.927745",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "dispatch_log",
+  "delivery_status",
+  "moisture_",
+  "quantity_missing_in_bags",
+  "quantity_missing_in_weightkg",
+  "comment",
+  "column_break_rszk",
+  "collected_by",
+  "arrival_time",
+  "arrival_center",
+  "source_center",
+  "amended_from",
+  "dispatch_details_section",
+  "coffee_type",
+  "dispatched_weight_in_kg",
+  "dispatched_number_of_bags",
+  "moisture_on_dispatch",
+  "column_break_dixd",
+  "vehicle_plate_number",
+  "driver"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "ARV-.MM.-"
+  },
+  {
+   "default": "__user",
+   "fieldname": "collected_by",
+   "fieldtype": "Link",
+   "label": "Collected By",
+   "options": "User"
+  },
+  {
+   "default": "Now",
+   "fieldname": "arrival_time",
+   "fieldtype": "Datetime",
+   "label": "Arrival Time"
+  },
+  {
+   "fieldname": "arrival_center",
+   "fieldtype": "Link",
+   "label": "Arrival Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "delivery_status",
+   "fieldtype": "Select",
+   "label": "Delivery Status",
+   "options": "\nFully Arrived\nPartially Arrived\nWrong Delivery"
+  },
+  {
+   "depends_on": "eval:doc.delivery_status=='Partially Arrived'",
+   "fieldname": "quantity_missing_in_bags",
+   "fieldtype": "Data",
+   "label": "Quantity Missing in Bags"
+  },
+  {
+   "fieldname": "quantity_missing_in_weightkg",
+   "fieldtype": "Data",
+   "label": "Quantity Missing in Weight(KG)"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Secondary Arrival Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "dispatch_log",
+   "fieldtype": "Link",
+   "label": "Dispatch Log",
+   "options": "Primary Dispatch"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  },
+  {
+   "fieldname": "moisture_",
+   "fieldtype": "Float",
+   "label": "Moisture (%)"
+  },
+  {
+   "fieldname": "column_break_rszk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dispatch_details_section",
+   "fieldtype": "Section Break",
+   "label": "Dispatch Details"
+  },
+  {
+   "fetch_from": "dispatch_log.coffee_type",
+   "fieldname": "coffee_type",
+   "fieldtype": "Data",
+   "label": "Coffee Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "dispatch_log.weight_in_kg",
+   "fieldname": "dispatched_weight_in_kg",
+   "fieldtype": "Data",
+   "label": "Dispatched Weight in KG",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "dispatch_log.number_of_bags",
+   "fieldname": "dispatched_number_of_bags",
+   "fieldtype": "Data",
+   "label": "Dispatched Number of Bags",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "dispatch_log.moisture_",
+   "fieldname": "moisture_on_dispatch",
+   "fieldtype": "Data",
+   "label": "Moisture on Dispatch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dixd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "dispatch_log.plate_number",
+   "fieldname": "vehicle_plate_number",
+   "fieldtype": "Data",
+   "label": "Vehicle Plate Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "dispatch_log.drivers_name",
+   "fieldname": "driver",
+   "fieldtype": "Data",
+   "label": "Driver",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "dispatch_log.dispatched_from",
+   "fieldname": "source_center",
+   "fieldtype": "Data",
+   "label": "Source Center",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Secondary Arrival Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-09-24 06:43:29.895668",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Secondary Arrival Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

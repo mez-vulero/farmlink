@@ -9,18 +9,24 @@
  "field_order": [
   "basics_section",
   "naming_series",
+  "status",
+  "purchase_type",
   "purchaser",
+  "supplier",
   "farmer",
   "column_break_iquk",
   "purchase_date",
   "collection_center",
+  "suppliers_phone",
+  "phone",
   "purchase_details_section",
-  "coffee_grade",
-  "price_rate_of_the_day",
+  "cherry_grade",
   "weight_in_kg",
   "read_scale_button",
+  "column_break_uobt",
+  "price_rate_of_the_day",
   "total_price",
-  "column_break_ylrz"
+  "outstanding_amount"
  ],
  "fields": [
   {
@@ -36,12 +42,15 @@
    "options": "PUR-.YY.-.####"
   },
   {
+   "default": "__user",
+   "depends_on": "eval:doc.purchase_type=='Direct'",
    "fieldname": "purchaser",
    "fieldtype": "Link",
    "label": "Purchaser",
    "options": "User"
   },
   {
+   "depends_on": "eval:doc.purchase_type=='Farmer Supplier'|| doc.purchase_type == 'Direct'",
    "fieldname": "farmer",
    "fieldtype": "Link",
    "label": "Farmer",
@@ -53,16 +62,17 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "Now",
+   "default": "Today",
    "fieldname": "purchase_date",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Purchase Date"
   },
   {
    "fieldname": "collection_center",
    "fieldtype": "Link",
    "label": "Collection Center",
-   "options": "Washing Station"
+   "options": "Centers"
   },
   {
    "fieldname": "purchase_details_section",
@@ -70,38 +80,83 @@
    "label": "Purchase Details"
   },
   {
-   "fieldname": "coffee_grade",
-   "fieldtype": "Select",
-   "label": "Coffee Grade",
-   "options": "\nG1\nG2\nG3\nG4\nG5"
-  },
-  {
    "fieldname": "price_rate_of_the_day",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
    "label": "Price rate of the day"
   },
   {
    "fieldname": "total_price",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Total Price"
-  },
-  {
-   "fieldname": "column_break_ylrz",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "weight_in_kg",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Weight in KG"
   },
   {
    "fieldname": "read_scale_button",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Read"
+  },
+  {
+   "fieldname": "cherry_grade",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Cherry Grade",
+   "options": "\nG1\nG2\nG3"
+  },
+  {
+   "depends_on": "eval:doc.purchase_type=='Farmer Supplier'|| doc.purchase_type == 'Direct'",
+   "fetch_from": "farmer.phone_number",
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Farmer's Phone",
+   "options": "Phone",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_type",
+   "fieldtype": "Select",
+   "label": "Purchase Type",
+   "options": "Direct\nFarmer Supplier\nBulk Supplier"
+  },
+  {
+   "depends_on": "eval:doc.purchase_type=='Farmer Supplier'|| doc.purchase_type == 'Bulk Supplier'",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fetch_from": "supplier.phone_number",
+   "fieldname": "suppliers_phone",
+   "fieldtype": "Data",
+   "label": "Supplier's Phone",
+   "options": "Phone",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_uobt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "label": "Outstanding Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Purchase Status",
+   "options": "Unpaid\nPartially Paid\nPaid"
   }
  ],
  "grid_page_length": 50,
- "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -109,7 +164,7 @@
    "link_fieldname": "purchase_invoice"
   }
  ],
- "modified": "2025-08-31 14:57:38.500540",
+ "modified": "2025-09-22 03:09:32.071805",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Purchases",
@@ -127,11 +182,59 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Collector",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Finance Officer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
   }
  ],
  "row_format": "Dynamic",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Red",
+   "title": "Unpaid"
+  },
+  {
+   "color": "Orange",
+   "title": "Partially Paid"
+  },
+  {
+   "color": "Green",
+   "title": "Paid"
+  }
+ ]
 }

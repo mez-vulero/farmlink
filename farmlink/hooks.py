@@ -25,9 +25,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/farmlink/css/farmlink.css"
-app_include_js = ["/assets/farmlink/js/read_scale.js", 
-                 "/assets/farmlink/pwa-register.js"]
+app_include_css = [ "/assets/farmlink/scss/desk_theme.css" ]
+app_include_js = ["/assets/farmlink/js/read_scale.js", "/assets/farmlink/js/farms_geo_google.js"]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/farmlink/css/farmlink.css"
@@ -35,6 +34,34 @@ app_include_js = ["/assets/farmlink/js/read_scale.js",
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "farmlink/public/scss/website"
+boot_session = "farmlink.utils.boot.boot_session"
+#doc_events = {
+#    "Farmer": {
+#        "after_insert": "farmlink.utils.farmlink_sync.on_farmer_change",
+#        "on_update": "farmlink.utils.farmlink_sync.on_farmer_change",
+#        "on_trash": "farmlink.utils.farmlink_sync.on_farmer_change"
+#    },
+#    "Payment": {
+#        "after_insert": "farmlink.utils.farmlink_sync.on_payment_change",
+#        "on_update": "farmlink.utils.farmlink_sync.on_payment_change",
+#        "on_trash": "farmlink.utils.farmlink_sync.on_payment_change"
+#    },
+#    "Purchase": {
+#        "after_insert": "farmlink.utils.farmlink_sync.on_purchase_change",
+#        "on_update": "farmlink.utils.farmlink_sync.on_purchase_change",
+#        "on_trash": "farmlink.utils.farmlink_sync.on_purchase_change"
+#    },
+#    "Territory": {
+#        "after_insert": "farmlink.utils.farmlink_sync.on_territory_change",
+#        "on_update": "farmlink.utils.farmlink_sync.on_territory_change",
+#        "on_trash": "farmlink.utils.farmlink_sync.on_territory_change"
+#    },
+#    "Washing Station": {
+#        "after_insert": "farmlink.utils.farmlink_sync.on_washing_station_change",
+#        "on_update": "farmlink.utils.farmlink_sync.on_washing_station_change",
+#        "on_trash": "farmlink.utils.farmlink_sync.on_washing_station_change"
+#    }
+#}
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -44,7 +71,9 @@ app_include_js = ["/assets/farmlink/js/read_scale.js",
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+#doctype_js = {"Farms": "/assets/farmlink/js/farms_geo_google.js"}
+
+#doctype_js = {"Farms" : "public/js/farms_geo_google.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -140,8 +169,8 @@ app_include_js = ["/assets/farmlink/js/read_scale.js",
 
 doc_events = {
 	"Payment": {
-		"on_submit": "farmlink.farmlink.doctype.payment.payment.update_purchase_status_on_payment",
-		"on_cancel": "farmlink.farmlink.doctype.payment.payment.update_purchase_status_on_payment"
+		"on_submit": "farmlink.hook_handlers.on_payment_change",
+		"on_cancel": "farmlink.hook_handlers.on_payment_change"
 	}
 }
 
