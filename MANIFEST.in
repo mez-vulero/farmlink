@@ -1,0 +1,3 @@
+graft farmlink
+graft frappe_backend
+global-exclude __pycache__ *.py[cod]
