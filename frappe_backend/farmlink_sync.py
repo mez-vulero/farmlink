@@ -108,6 +108,7 @@ def pull_changes():
     Pull changes from Frappe to WatermelonDB
     Expected to be called via POST with last_sync_timestamp
     """
+    return 123
     try:
         # Get request data
         data = json.loads(frappe.request.data) if frappe.request.data else {}

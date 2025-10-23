@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class PrimaryDispatch(Document):
+class Customers(Document):
 	pass

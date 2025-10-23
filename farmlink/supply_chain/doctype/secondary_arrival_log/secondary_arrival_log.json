@@ -2,23 +2,22 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2025-09-24 06:33:07.927745",
+ "creation": "2025-10-06 20:16:50.151621",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
   "dispatch_log",
   "delivery_status",
-  "moisture_",
   "quantity_missing_in_bags",
   "quantity_missing_in_weightkg",
   "comment",
+  "moisture_",
   "column_break_rszk",
   "collected_by",
   "arrival_time",
   "arrival_center",
   "source_center",
-  "amended_from",
   "dispatch_details_section",
   "coffee_type",
   "dispatched_weight_in_kg",
@@ -67,19 +66,10 @@
    "label": "Quantity Missing in Bags"
   },
   {
+   "depends_on": "eval:doc.delivery_status=='Partially Arrived'",
    "fieldname": "quantity_missing_in_weightkg",
    "fieldtype": "Data",
    "label": "Quantity Missing in Weight(KG)"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Secondary Arrival Log",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   },
   {
    "fieldname": "dispatch_log",
@@ -158,23 +148,12 @@
    "fieldtype": "Data",
    "label": "Source Center",
    "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Secondary Arrival Log",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2025-09-24 06:43:29.895668",
+ "modified": "2025-10-06 20:16:50.151621",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Secondary Arrival Log",

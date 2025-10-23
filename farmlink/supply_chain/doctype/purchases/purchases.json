@@ -20,7 +20,7 @@
   "suppliers_phone",
   "phone",
   "purchase_details_section",
-  "cherry_grade",
+  "maturity",
   "weight_in_kg",
   "read_scale_button",
   "column_break_uobt",
@@ -103,13 +103,6 @@
    "label": "Read"
   },
   {
-   "fieldname": "cherry_grade",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Cherry Grade",
-   "options": "\nG1\nG2\nG3"
-  },
-  {
    "depends_on": "eval:doc.purchase_type=='Farmer Supplier'|| doc.purchase_type == 'Direct'",
    "fetch_from": "farmer.phone_number",
    "fieldname": "phone",
@@ -154,6 +147,13 @@
    "fieldtype": "Select",
    "label": "Purchase Status",
    "options": "Unpaid\nPartially Paid\nPaid"
+  },
+  {
+   "fieldname": "maturity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Maturity",
+   "options": "\nFully Matured\nSemi-Matured\nImmature"
   }
  ],
  "grid_page_length": 50,
@@ -164,7 +164,7 @@
    "link_fieldname": "purchase_invoice"
   }
  ],
- "modified": "2025-09-22 03:09:32.071805",
+ "modified": "2025-10-23 12:31:32.808386",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Purchases",

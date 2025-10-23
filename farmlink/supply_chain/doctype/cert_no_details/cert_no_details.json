@@ -1,0 +1,78 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-16 09:27:47.973780",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cert_no",
+  "origin",
+  "coffee_type",
+  "coffee_grade",
+  "quantity",
+  "bag_size"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "cert_no",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Cert No"
+  },
+  {
+   "bold": 1,
+   "fieldname": "coffee_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coffee Type",
+   "options": "\nNatural\nWashed\nSpecial Process"
+  },
+  {
+   "bold": 1,
+   "fieldname": "coffee_grade",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coffee Grade",
+   "options": "\nG1\nG2\nG3\nG4\nUG"
+  },
+  {
+   "bold": 1,
+   "fieldname": "origin",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Origin",
+   "options": "Territory"
+  },
+  {
+   "bold": 1,
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Quantity"
+  },
+  {
+   "bold": 1,
+   "fieldname": "bag_size",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Bag Size",
+   "options": "\n60\n85"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-10-16 09:57:56.684543",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Cert No Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

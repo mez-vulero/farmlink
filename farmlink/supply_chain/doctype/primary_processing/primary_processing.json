@@ -16,8 +16,7 @@
   "processing_center",
   "logged_time",
   "weight_in_kg",
-  "final_mositure_pct",
-  "amended_from"
+  "final_mositure_pct"
  ],
  "fields": [
   {
@@ -74,16 +73,6 @@
    "label": "Final Mositure %"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Primary Processing",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "processing_center",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -99,9 +88,8 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2025-09-24 06:38:43.289493",
+ "modified": "2025-10-08 07:49:35.209904",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Primary Processing",

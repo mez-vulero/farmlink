@@ -11,20 +11,20 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 
 # Doctype mappings between WatermelonDB and Frappe
-DOCTYPE_MAPPINGS = {
-    'farmers': 'Farmers',
-    'payments': 'Payment', 
+DOCTYPE_MAPPINGS = { 'farmers': 'Farmers', 'payments': 'Payment', 
     'purchases': 'Purchases',
     'territories': 'Territory',
-    'washing_stations': 'Washing Station',
-    'dispatches': 'Dispatches',
-    'arrival_logs': 'Arrival Log',
-    'supplier_dispatches': 'Supplier Dispatch',
-    'supplier_purchases': 'Supplier Purchase',
+    'centers': 'Centers',
+    'dispatches': 'Primary Dispatch',
+    'suppliers': 'Supplier',
+    'secondary_arrival_logs': 'Secondary Arrival Log',
+    'primary_processing': 'Primary Processing',
+    'secondary_processing': 'Secondary Processing',
+    'arrival_logs': 'Primary Arrival Log',
 }
 
 # Processing order for dependencies (independent first)
-PROCESSING_ORDER = ['territories', 'washing_stations', 'farmers', 'purchases', 'payments', 'dispatches', 'supplier_dispatches', 'supplier_purchases', 'arrival_logs']
+PROCESSING_ORDER = ['territories', 'centers', 'farmers', 'suppliers', 'purchases', 'payments', 'dispatches', 'arrival_logs','primary_processing', 'secondary_processing','secondary_arrival_logs',]
 
 # Link field mappings for dependency resolution
 LINK_FIELD_MAPPINGS = {
@@ -62,94 +62,6 @@ LINK_FIELD_MAPPINGS = {
     }
 }
 
-# Field mappings from Frappe to WatermelonDB (snake_case to camelCase)
-FIELD_MAPPINGS = {
-    'naming_series': 'namingSeries',
-    'first_name': 'firstName',
-    'middle_name': 'middleName',
-    'last_name': 'lastName',
-    'phone_number': 'phoneNumber',
-    'secondary_phone': 'secondaryPhone',
-    'number_of_family': 'numberOfFamily',
-    'no_family_members_attend_school': 'noFamilyMembersAttendSchool',
-    'preferred_payment_method': 'preferredPaymentMethod',
-    'bank_name': 'bankName',
-    'bank_account_number': 'bankAccountNumber',
-    'telebirr_phone_number': 'telebirrPhoneNumber',
-    'total_farmland_ownership_hectares': 'totalFarmlandOwnershipHectares',
-    'number_of_coffee_fields': 'numberOfCoffeeFields',
-    'number_of_shade_trees': 'numberOfShadeTrees',
-    'coffee_collection_center': 'coffeeCollectionCenter',
-    'land_size_for_coffee_hectares': 'landSizeForCoffeeHectares',
-    'coffee_trees_on_all_plots': 'coffeeTreesOnAllPlots',
-    'number_of_temporary_workers': 'numberOfTemporaryWorkers',
-    'frequent_field_agent_buyer': 'frequentFieldAgentBuyer',
-    'farmers_photo': 'farmersPhoto',
-    'bank_book': 'bankBook',
-    'land_ownership_certificate': 'landOwnershipCertificate',
-    'harvest_data': 'harvestData',
-    'fertilizer_compost_usage': 'fertilizerCompostUsage',
-    'custom_sync_status': 'customSyncStatus',
-    'purchase_invoice': 'purchaseInvoice',
-    'purchase_amount': 'purchaseAmount',
-    'outstanding_amount': 'outstandingAmount',
-    'payment_amount': 'paymentAmount',
-    'mode_of_payment': 'modeOfPayment',
-    'transaction_number': 'transactionNumber',
-    'is_fully_paid': 'isFullyPaid',
-    'collection_center': 'collectionCenter',
-    'weight_in_kg': 'weightInKg',
-    'price_rate_of_the_day': 'priceRateOfTheDay',
-    'total_price': 'totalPrice',
-    'coffee_grade': 'coffeeGrade',
-    'purchase_date': 'purchaseDate',
-    'territory_name': 'territoryName',
-    'parent_territory': 'parentTerritory',
-    'territory_manager': 'territoryManager',
-    'station_name': 'stationName',
-    'capacity_per_day': 'capacityPerDay',
-    'contact_number': 'contactNumber',
-    'washing_station': 'washingStation',
-    'dispatch_date': 'dispatchDate',
-    'total_weight': 'totalWeight',
-    'number_of_bags': 'numberOfBags',
-    'destination': 'destination',
-    'driver_name': 'driverName',
-    'vehicle_plate_number': 'vehiclePlateNumber',
-    'dispatch_status': 'dispatchStatus',
-    'dispatched_by': 'dispatchedBy',
-    'dispatched_from': 'dispatchedFrom',
-    'dispatched_on': 'dispatchedOn',
-    'plate_number': 'plateNumber',
-    'drivers_name': 'driversName',
-    'moisture_': 'moisture',
-    'dispatch_log': 'dispatchLog',
-    'delivery_status': 'deliveryStatus',
-    'quantity_missing_in_bags': 'quantityMissingInBags',
-    'quantity_missing_in_weightkg': 'quantityMissingInWeightkg',
-    'collected_by': 'collectedBy',
-    'arrival_time': 'arrivalTime',
-    'arrival_center': 'arrivalCenter',
-    'coffee_type': 'coffeeType',
-    'unit_price': 'unitPrice',
-    'purchased_by': 'purchasedBy',
-}
-
-def convert_frappe_to_watermelon(doc_dict: Dict[str, Any]) -> Dict[str, Any]:
-    """Convert Frappe document fields to WatermelonDB format"""
-    converted = {}
-    
-    for frappe_field, value in doc_dict.items():
-        # Convert field name using mapping or keep as is
-        watermelon_field = FIELD_MAPPINGS.get(frappe_field, frappe_field)
-        
-        # Handle datetime conversion
-        if isinstance(value, datetime):
-            converted[watermelon_field] = int(value.timestamp() * 1000)  # Convert to milliseconds
-        elif value is not None:
-            converted[watermelon_field] = value
-    
-    return converted
 
 def convert_watermelon_to_frappe(data: Dict[str, Any]) -> Dict[str, Any]:
     """Convert WatermelonDB fields to Frappe format"""
@@ -228,11 +140,13 @@ def pull_changes():
             'payments': {'created': [], 'updated': [], 'deleted': []},
             'purchases': {'created': [], 'updated': [], 'deleted': []},
             'territories': {'created': [], 'updated': [], 'deleted': []},
-            'washing_stations': {'created': [], 'updated': [], 'deleted': []},
+            'centers': {'created': [], 'updated': [], 'deleted': []},
             'dispatches': {'created': [], 'updated': [], 'deleted': []},
+            'suppliers': {'created': [], 'updated': [], 'deleted': []},
             'arrival_logs': {'created': [], 'updated': [], 'deleted': []},
-            'supplier_dispatches': {'created': [], 'updated': [], 'deleted': []},
-            'supplier_purchases': {'created': [], 'updated': [], 'deleted': []},
+            'primary_processing': {'created': [], 'updated': [], 'deleted': []},
+            'secondary_processing': {'created': [], 'updated': [], 'deleted': []},
+            'secondary_arrival_logs': {'created': [], 'updated': [], 'deleted': []},
         }
         
         # Pull changes for each doctype
@@ -271,7 +185,6 @@ def pull_changes():
             
             # Note: Frappe doesn't have soft deletes by default, so we skip deleted records
             # You might want to implement a custom deletion tracking mechanism
-        
         # Current timestamp for next sync
         current_timestamp = int(datetime.now().timestamp() * 1000)
         
@@ -334,7 +247,7 @@ def push_changes():
                         continue
 
                     # Convert WatermelonDB data to Frappe format
-                    frappe_data = convert_watermelon_to_frappe(created_record)
+                    frappe_data = created_record
 
                     # Resolve linked field references using ID mappings
                     frappe_data = resolve_link_references(frappe_data, watermelon_table, id_mappings)
@@ -344,13 +257,12 @@ def push_changes():
                     frappe_data.pop('frappe_id', None)
 
                     frappe.logger().info(f"📝 Creating {frappe_doctype} with resolved data")
-
                     # Create new document
                     doc = frappe.get_doc({
                         'doctype': frappe_doctype,
                         **frappe_data
                     })
-
+                   
                     # Set the name if provided (for consistent IDs)
                     if 'id' in created_record:
                         doc.name = created_record['id']
@@ -390,29 +302,80 @@ def push_changes():
                     # Check if document exists
                     if not frappe.db.exists(frappe_doctype, record_id):
                         frappe.log_error(f"Document {frappe_doctype} {record_id} not found for update", "FarmLink Sync")
-                        processed[watermelon_table]['failed'].append({
-                            'id': record_id,
-                            'operation': 'update',
-                            'error': 'Document not found'
-                        })
-                        continue
+                        try:
+                            # Convert WatermelonDB data to Frappe format
+                            frappe_data = updated_record
+
+                            # Resolve linked field references using ID mappings
+                            frappe_data = resolve_link_references(frappe_data, watermelon_table, id_mappings)
+
+                            # Remove sync status field as it's not needed in Frappe
+                            frappe_data.pop('custom_sync_status', None)
+
+                            frappe.logger().info(f"📝 Creating {frappe_doctype} with resolved data")
+                            # Create new document
+                            doc = frappe.get_doc({
+                                'doctype': frappe_doctype,
+                                **frappe_data
+                            })
+                            # Set the name if provided (for consistent IDs)
+                            if 'frappe_id' in updated_record:
+                                doc.name = updated_record['frappe_id']
+                            
+
+
+                            doc.insert(ignore_permissions=True)
+                            frappe.db.commit()
+                            # Store ID mapping for future references
+                            watermelon_id = updated_record.get('frappe_id') or updated_record.get('name')
+                            if watermelon_id:
+                                id_mappings[watermelon_table][watermelon_id] = doc.name
+                                frappe.logger().info(f"✅ Created {frappe_doctype}: {watermelon_id} → {doc.name}")
+
+                            # Track successful creation
+                            processed[watermelon_table]['updated'].append({
+                                "watermelon_id": watermelon_id,
+                                "frappe_name": doc.name
+                            })
+
+                        except Exception as e:
+                            frappe.log_error(f"Error creating {frappe_doctype}: {str(e)}", "FarmLink Sync")
+                            processed[watermelon_table]['failed'].append({
+                                'id': updated_record.get('frappe_id', 'unknown'),
+                                'operation': 'create',
+                                'error': str(e)
+                            })
+                            frappe.logger().error(f"❌ Failed to create {frappe_doctype}: {str(e)}")
+                            continue
 
                     # Get existing document
                     doc = frappe.get_doc(frappe_doctype, record_id)
 
                     # Convert and resolve linked fields
-                    frappe_data = convert_watermelon_to_frappe(updated_record)
+                    frappe_data = updated_record
                     frappe_data = resolve_link_references(frappe_data, watermelon_table, id_mappings)
+
 
                     # Remove sync status and other metadata fields
                     frappe_data.pop('custom_sync_status', None)
                     frappe_data.pop('creation', None)
                     frappe_data.pop('modified', None)
                     frappe_data.pop('frappe_id', None)
-
+                    
                     for field, value in frappe_data.items():
                         if field not in ['name', 'doctype'] and hasattr(doc, field):
-                            setattr(doc, field, value)
+                            # skip None for list/table fields
+                            if value is None and isinstance(getattr(doc, field, None), list):
+                                continue
+                            try:
+                                setattr(doc, field, value)
+                            except TypeError as e:
+                                return {
+                                    "error": str(e),
+                                    "field": field,
+                                    "value": value,
+                                    "type": str(type(value))
+                                }
 
                     doc.save(ignore_permissions=True)
                     frappe.db.commit()

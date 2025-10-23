@@ -10,12 +10,12 @@
   "naming_series",
   "center",
   "collected_from",
-  "cherry_grade",
+  "maturity",
   "column_break_axix",
   "log_time",
   "collected_from_name",
   "collected_weight",
-  "amended_from"
+  "amount_in_birr"
  ],
  "fields": [
   {
@@ -30,13 +30,6 @@
    "fieldtype": "Select",
    "label": "Collected From",
    "options": "\nPersonnel\nSupplier"
-  },
-  {
-   "fieldname": "cherry_grade",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Cherry Grade",
-   "options": "\nG1\nG2\nG3"
   },
   {
    "fieldname": "column_break_axix",
@@ -62,16 +55,6 @@
    "label": "Collected Weight"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Primary Arrival Log",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "log_details_section",
    "fieldtype": "Section Break",
    "label": "Log Details"
@@ -82,13 +65,25 @@
    "in_list_view": 1,
    "label": "Center",
    "options": "Centers"
+  },
+  {
+   "fieldname": "maturity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Maturity",
+   "options": "\nFully Matured\nSemi-Matured\nImmature"
+  },
+  {
+   "depends_on": "eval:doc.collected_from==\"Supplier\"",
+   "fieldname": "amount_in_birr",
+   "fieldtype": "Float",
+   "label": "Amount in Birr"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2025-09-22 07:02:23.831788",
+ "modified": "2025-10-23 11:42:02.797892",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Primary Arrival Log",

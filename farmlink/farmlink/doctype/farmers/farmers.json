@@ -33,6 +33,14 @@
   "bank_account_number",
   "telebirr_phone_number",
   "family_details_tab",
+  "certifications_section",
+  "rainforest_alliance",
+  "organic_nop",
+  "fairtrade_usa",
+  "column_break_lquf",
+  "organic_eu",
+  "organic_jas",
+  "cafe_practices",
   "farm_details_section",
   "total_farmland_ownership_in_hectares",
   "number_of_coffee_fields",
@@ -279,6 +287,51 @@
    "fieldtype": "Link",
    "label": "Associated Supplier",
    "options": "Supplier"
+  },
+  {
+   "fieldname": "certifications_section",
+   "fieldtype": "Section Break",
+   "label": "Certifications"
+  },
+  {
+   "default": "0",
+   "fieldname": "rainforest_alliance",
+   "fieldtype": "Check",
+   "label": "Rainforest Alliance"
+  },
+  {
+   "default": "0",
+   "fieldname": "organic_nop",
+   "fieldtype": "Check",
+   "label": "Organic NOP"
+  },
+  {
+   "default": "0",
+   "fieldname": "fairtrade_usa",
+   "fieldtype": "Check",
+   "label": "FairTrade USA"
+  },
+  {
+   "fieldname": "column_break_lquf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "organic_eu",
+   "fieldtype": "Check",
+   "label": "Organic EU"
+  },
+  {
+   "default": "0",
+   "fieldname": "organic_jas",
+   "fieldtype": "Check",
+   "label": "Organic JAS"
+  },
+  {
+   "default": "0",
+   "fieldname": "cafe_practices",
+   "fieldtype": "Check",
+   "label": "C.A.F.E Practices"
   }
  ],
  "grid_page_length": 50,
@@ -297,7 +350,7 @@
    "link_fieldname": "paid_to"
   }
  ],
- "modified": "2025-09-22 03:09:31.793783",
+ "modified": "2025-10-10 09:00:50.850857",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "Farmers",

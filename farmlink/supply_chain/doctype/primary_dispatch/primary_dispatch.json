@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2025-09-24 06:34:00.410980",
+ "creation": "2025-09-28 12:55:05.182586",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -18,12 +18,12 @@
   "section_break_pjav",
   "plate_number",
   "coffee_type",
+  "coffee_grade",
   "weight_in_kg",
   "column_break_gagz",
   "drivers_name",
   "moisture_",
-  "number_of_bags",
-  "amended_from"
+  "number_of_bags"
  ],
  "fields": [
   {
@@ -34,7 +34,6 @@
    "options": "PPD-.YY.-.####"
   },
   {
-   "default": "__user",
    "fieldname": "dispatched_by",
    "fieldtype": "Link",
    "label": "Dispatched By",
@@ -46,6 +45,13 @@
    "in_list_view": 1,
    "label": "Dispatched From",
    "options": "Centers"
+  },
+  {
+   "fetch_from": "dispatched_from.territory",
+   "fieldname": "territory",
+   "fieldtype": "Data",
+   "label": "Dispatched Territory",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_woss",
@@ -63,58 +69,6 @@
    "label": "Dispatched On"
   },
   {
-   "fieldname": "section_break_pjav",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "plate_number",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Plate Number"
-  },
-  {
-   "fieldname": "weight_in_kg",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Weight in KG"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Primary Dispatch",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fetch_from": "dispatched_from.territory",
-   "fieldname": "territory",
-   "fieldtype": "Data",
-   "label": "Dispatched Territory",
-   "read_only": 1
-  },
-  {
-   "fieldname": "number_of_bags",
-   "fieldtype": "Int",
-   "label": "Number of Bags"
-  },
-  {
-   "fieldname": "drivers_name",
-   "fieldtype": "Data",
-   "label": "Driver's Name"
-  },
-  {
-   "fieldname": "column_break_gagz",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "moisture_",
-   "fieldtype": "Float",
-   "label": "Moisture (%)"
-  },
-  {
    "fieldname": "destination",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -130,6 +84,16 @@
    "read_only": 1
   },
   {
+   "fieldname": "section_break_pjav",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "plate_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plate Number"
+  },
+  {
    "fieldname": "coffee_type",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -137,26 +101,46 @@
    "options": "\nParchment\nDried Cherry\nGreen Bean"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Primary Dispatch",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "fieldname": "weight_in_kg",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight in KG"
+  },
+  {
+   "fieldname": "column_break_gagz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "drivers_name",
+   "fieldtype": "Data",
+   "label": "Driver's Name"
+  },
+  {
+   "fieldname": "moisture_",
+   "fieldtype": "Float",
+   "label": "Moisture (%)"
+  },
+  {
+   "fieldname": "number_of_bags",
+   "fieldtype": "Int",
+   "label": "Number of Bags"
+  },
+  {
+   "fieldname": "coffee_grade",
+   "fieldtype": "Select",
+   "label": "Coffee Grade",
+   "options": "\nG1\nG2\nG3\nG4\nUG"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [
   {
    "link_doctype": "Secondary Arrival Log",
    "link_fieldname": "dispatch_log"
   }
  ],
- "modified": "2025-09-24 06:41:25.487275",
+ "modified": "2025-10-23 15:05:17.853033",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Primary Dispatch",

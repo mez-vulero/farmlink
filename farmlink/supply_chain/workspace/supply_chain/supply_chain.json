@@ -5,7 +5,7 @@
    "label": "Purchase Volume by Cherry Grade"
   }
  ],
- "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"giXqX5-N3A\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"Y184U_nq02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"lGiyGi3DeK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"88dvtFuOcl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":12}},{\"id\":\"cGCFQO09s-\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"GBd6BF6ghl\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"1NN6mkGpuW\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
+ "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"giXqX5-N3A\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"Y184U_nq02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"lGiyGi3DeK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"QT3-0apmHa\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases Made(KG)\",\"col\":4}},{\"id\":\"88dvtFuOcl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":12}},{\"id\":\"cGCFQO09s-\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"GBd6BF6ghl\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"1NN6mkGpuW\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
  "creation": "2025-08-29 23:36:30.518606",
  "custom_blocks": [],
  "docstatus": 0,
@@ -18,84 +18,6 @@
  "is_hidden": 0,
  "label": "Supply Chain",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Master",
-   "link_count": 4,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Farmers",
-   "link_count": 0,
-   "link_to": "Farmers",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Supplier",
-   "link_count": 0,
-   "link_to": "Supplier",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Washing Station",
-   "link_count": 0,
-   "link_to": "Centers",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Territory",
-   "link_count": 0,
-   "link_to": "Territory",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Transactions",
-   "link_count": 2,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Purchases",
-   "link_count": 0,
-   "link_to": "Purchases",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payment",
-   "link_count": 0,
-   "link_to": "Payment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -164,9 +86,107 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transactions",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchases",
+   "link_count": 0,
+   "link_to": "Purchases",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment",
+   "link_count": 0,
+   "link_to": "Payment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trades",
+   "link_count": 0,
+   "link_to": "Trades",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Master",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Farmers",
+   "link_count": 0,
+   "link_to": "Farmers",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier",
+   "link_count": 0,
+   "link_to": "Supplier",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Washing Station",
+   "link_count": 0,
+   "link_to": "Centers",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Territory",
+   "link_count": 0,
+   "link_to": "Territory",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customers",
+   "link_count": 0,
+   "link_to": "Customers",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-09-22 11:14:28.015426",
+ "modified": "2025-10-10 14:45:34.476538",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Supply Chain",
@@ -174,6 +194,10 @@
   {
    "label": "Average Price Rate (7 Days)",
    "number_card_name": "Average Price Rate (7 Days)"
+  },
+  {
+   "label": "Purchases Made(KG)",
+   "number_card_name": "Purchases Made(KG)"
   },
   {
    "label": "Purchases (ETB)",
