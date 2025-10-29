@@ -1,0 +1,23 @@
+{
+ "creation": "2025-10-24 03:50:26.954658",
+ "currency": "",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Farmers",
+ "filters_json": "[[\"Farmers\", \"gender\", \"=\", \"Female\"]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Female Farmers",
+ "modified": "2025-10-24 03:52:15.822387",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Female Farmers",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_full_number": 0,
+ "show_percentage_stats": 0,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

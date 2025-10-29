@@ -1,23 +1,16 @@
 {
+ "app": "farmlink",
  "charts": [
   {
-   "chart_name": "Daily Purchase",
-   "label": "Daily Purchase in Volume"
-  },
-  {
-   "chart_name": "Famers by Gender",
-   "label": "Farmers by Gender"
-  },
-  {
-   "chart_name": "Purchase Volume by Cherry Grade",
-   "label": "Purchase Volume by Cherry Grade"
+   "chart_name": "Purchase Volume by Site",
+   "label": "Purchase Volume by Site"
   },
   {
    "chart_name": "Farmer by Territory",
    "label": "Farmer by Territory"
   }
  ],
- "content": "[{\"id\":\"pw1uWFdmMi\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Master Data Summary</span>\",\"col\":12}},{\"id\":\"jvJWSj0sKk\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farmers\",\"col\":3}},{\"id\":\"dI1huH2JPm\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farms\",\"col\":3}},{\"id\":\"UdmET3K89U\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farm Area in Ha\",\"col\":3}},{\"id\":\"G7hAHvhldB\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Collection Centers\",\"col\":3}},{\"id\":\"WlyZZgu1Ok\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmer by Territory\",\"col\":6}},{\"id\":\"lon7MrUC__\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmers by Gender\",\"col\":6}},{\"id\":\"5jLUsYMMvj\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zOcb-XuF-0\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transaction Summary</b></span>\",\"col\":12}},{\"id\":\"ZQB7Y8uaA4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (KG)\",\"col\":3}},{\"id\":\"Qm8QnSL4k2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"KANUAEu1FY\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"o9RAzycASI\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"SQ1qSH5TIY\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Daily Purchase in Volume\",\"col\":6}},{\"id\":\"7Fv0h7iyuI\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":6}},{\"id\":\"ADVuAVFu6G\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"A2k7J-6kmy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Centers\",\"col\":3}},{\"id\":\"z73MRbYwF4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Territory\",\"col\":3}},{\"id\":\"tfscFSdqln\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Suppliers\",\"col\":3}},{\"id\":\"-wHSC2FUfN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Personnel\",\"col\":3}}]",
+ "content": "[{\"id\":\"pw1uWFdmMi\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Master Data Summary</span>\",\"col\":12}},{\"id\":\"jvJWSj0sKk\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farmers\",\"col\":3}},{\"id\":\"dI1huH2JPm\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farms\",\"col\":3}},{\"id\":\"UdmET3K89U\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farm Area in Ha\",\"col\":3}},{\"id\":\"G7hAHvhldB\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Collection Centers\",\"col\":3}},{\"id\":\"WlyZZgu1Ok\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmer by Territory\",\"col\":6}},{\"id\":\"5jLUsYMMvj\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zOcb-XuF-0\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transaction Summary</b></span>\",\"col\":12}},{\"id\":\"Qm8QnSL4k2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"KANUAEu1FY\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"o9RAzycASI\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"7Fv0h7iyuI\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Site\",\"col\":6}},{\"id\":\"ADVuAVFu6G\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"A2k7J-6kmy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Centers\",\"col\":3}},{\"id\":\"z73MRbYwF4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Territory\",\"col\":3}},{\"id\":\"tfscFSdqln\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Suppliers\",\"col\":3}},{\"id\":\"-wHSC2FUfN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Personnel\",\"col\":3}}]",
  "creation": "2025-08-06 15:55:40.760912",
  "custom_blocks": [],
  "docstatus": 0,
@@ -30,7 +23,7 @@
  "is_hidden": 0,
  "label": "FarmLink",
  "links": [],
- "modified": "2025-09-22 06:28:18.359229",
+ "modified": "2025-10-24 07:08:47.465555",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "FarmLink",
@@ -44,10 +37,6 @@
    "number_card_name": "Active Collection Centers"
   },
   {
-   "label": "Purchases (KG)",
-   "number_card_name": "Purchases Last 30 Days"
-  },
-  {
    "label": "Purchases (ETB)",
    "number_card_name": "Purchases (ETB)"
   },
@@ -57,7 +46,7 @@
   },
   {
    "label": "Total Farmers",
-   "number_card_name": "Total Farmer"
+   "number_card_name": "Total Farmers"
   },
   {
    "label": "Total Farms",
@@ -116,5 +105,6 @@
    "type": "DocType"
   }
  ],
- "title": "FarmLink"
+ "title": "FarmLink",
+ "type": "Workspace"
 }

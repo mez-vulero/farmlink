@@ -10,10 +10,11 @@
   "coffee_type",
   "processing_center",
   "processed_warehouse",
-  "final_output_weight_kg",
   "column_break_bzzn",
   "log_time",
-  "weight_in_kg"
+  "weight_in_kg",
+  "output_section",
+  "processed_output"
  ],
  "fields": [
   {
@@ -38,12 +39,6 @@
    "label": "Weight in KG"
   },
   {
-   "depends_on": "eval:doc.status=='Completed'",
-   "fieldname": "final_output_weight_kg",
-   "fieldtype": "Float",
-   "label": "Final Output Weight KG"
-  },
-  {
    "fieldname": "column_break_bzzn",
    "fieldtype": "Column Break"
   },
@@ -63,12 +58,24 @@
    "fieldtype": "Select",
    "label": "Coffee Type",
    "options": "Parchment\nDried Cherry"
+  },
+  {
+   "depends_on": "eval:doc.status=='Completed'",
+   "fieldname": "output_section",
+   "fieldtype": "Section Break",
+   "label": "Output"
+  },
+  {
+   "fieldname": "processed_output",
+   "fieldtype": "Table",
+   "label": "Processed Output",
+   "options": "Processed Output"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-28 12:59:58.832101",
+ "modified": "2025-10-24 07:28:30.086625",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Secondary Processing",

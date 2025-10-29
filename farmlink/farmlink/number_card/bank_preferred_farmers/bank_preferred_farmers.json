@@ -1,0 +1,23 @@
+{
+ "creation": "2025-10-24 03:50:26.965021",
+ "currency": "",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Farmers",
+ "filters_json": "[[\"Farmers\", \"preferred_payment_method\", \"=\", \"Bank\"]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Bank Preferred Farmers",
+ "modified": "2025-10-24 03:52:15.830988",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Bank Preferred Farmers",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_full_number": 0,
+ "show_percentage_stats": 0,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

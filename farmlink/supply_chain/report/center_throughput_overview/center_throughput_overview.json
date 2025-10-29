@@ -1,0 +1,32 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2025-10-24 03:50:56.568002",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\": [{\"fieldname\": \"center\", \"fieldtype\": \"Link\", \"label\": \"Center\", \"options\": \"Centers\"}, {\"fieldname\": \"from_date\", \"fieldtype\": \"Date\", \"label\": \"From Date\"}, {\"fieldname\": \"to_date\", \"fieldtype\": \"Date\", \"label\": \"To Date\"}]}",
+ "letterhead": null,
+ "modified": "2025-10-24 03:52:15.939555",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Center Throughput Overview",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Centers",
+ "report_name": "Center Throughput Overview",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Farmlink Manager"
+  }
+ ],
+ "timeout": 0
+}

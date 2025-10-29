@@ -1,11 +1,12 @@
 {
+ "app": "farmlink",
  "charts": [
   {
-   "chart_name": "Purchase Volume by Cherry Grade",
-   "label": "Purchase Volume by Cherry Grade"
+   "chart_name": "Purchase Volume by Site",
+   "label": "Purchase Volume by Site"
   }
  ],
- "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"giXqX5-N3A\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"Y184U_nq02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"lGiyGi3DeK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"QT3-0apmHa\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases Made(KG)\",\"col\":4}},{\"id\":\"88dvtFuOcl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":12}},{\"id\":\"cGCFQO09s-\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"GBd6BF6ghl\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"1NN6mkGpuW\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
+ "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"giXqX5-N3A\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"Y184U_nq02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"lGiyGi3DeK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"QT3-0apmHa\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases Made(KG)\",\"col\":3}},{\"id\":\"88dvtFuOcl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Site\",\"col\":12}},{\"id\":\"cGCFQO09s-\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"GBd6BF6ghl\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"1NN6mkGpuW\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
  "creation": "2025-08-29 23:36:30.518606",
  "custom_blocks": [],
  "docstatus": 0,
@@ -186,7 +187,7 @@
    "type": "Link"
   }
  ],
- "modified": "2025-10-10 14:45:34.476538",
+ "modified": "2025-10-24 07:09:19.623309",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Supply Chain",
@@ -215,5 +216,6 @@
  "roles": [],
  "sequence_id": 23.0,
  "shortcuts": [],
- "title": "Supply Chain"
+ "title": "Supply Chain",
+ "type": "Workspace"
 }
