@@ -21,7 +21,6 @@ DOCTYPE_MAPPINGS = { 'farmers': 'Farmers', 'payments': 'Payment',
     'primary_processing': 'Primary Processing',
     'secondary_processing': 'Secondary Processing',
     'arrival_logs': 'Primary Arrival Log',
-    'personnel': 'Personnel',
 }
 
 # Processing order for dependencies (independent first)
@@ -148,7 +147,6 @@ def pull_changes():
             'primary_processing': {'created': [], 'updated': [], 'deleted': []},
             'secondary_processing': {'created': [], 'updated': [], 'deleted': []},
             'secondary_arrival_logs': {'created': [], 'updated': [], 'deleted': []},
-            'personnel': {'created': [], 'updated': [], 'deleted': []},
         }
         
         # Pull changes for each doctype
@@ -217,7 +215,7 @@ def push_changes():
         # Track ID mappings: WatermelonDB ID -> Frappe ID for each table
         id_mappings = {table: {} for table in PROCESSING_ORDER}
 
-        frappe.logger().info(" Starting push sync with dependency resolution")
+        frappe.logger().info("🚀 Starting push sync with dependency resolution")
 
         # Process changes in dependency order
         for watermelon_table in PROCESSING_ORDER:
@@ -245,7 +243,7 @@ def push_changes():
                 try:
                     # Skip if already has frappe_id (shouldn't be in created)
                     if created_record.get('frappe_id'):
-                        frappe.logger().info(f" Skipping record with existing frappe_id: {created_record.get('frappe_id')}")
+                        frappe.logger().info(f"⏭️ Skipping record with existing frappe_id: {created_record.get('frappe_id')}")
                         continue
 
                     # Convert WatermelonDB data to Frappe format
@@ -253,22 +251,6 @@ def push_changes():
 
                     # Resolve linked field references using ID mappings
                     frappe_data = resolve_link_references(frappe_data, watermelon_table, id_mappings)
-
-                    # Handle child tables for primary or secondary processing
-                    if watermelon_table in ["primary_processing", "secondary_processing"]:
-                        child_field = "processing_output" if watermelon_table == "primary_processing" else "processed_output"
-                        if created_record.get(child_field):
-                            try:
-                                outputs = json.loads(created_record[child_field]) if isinstance(created_record[child_field], str) else created_record[child_field]
-                                frappe_data[child_field] = []
-                                for item in outputs:
-                                    frappe_data[child_field].append({
-                                        "grade": item.get("grade"),
-                                        "weightkg": item.get("weight"),
-                                        "moisture": item.get("moisture")
-                                    })
-                            except Exception as e:
-                                frappe.logger().error(f"Failed to parse {child_field}: {str(e)}")
 
                     # Remove sync status field as it's not needed in Frappe
                     frappe_data.pop('custom_sync_status', None)
@@ -292,7 +274,7 @@ def push_changes():
                     watermelon_id = created_record.get('id') or created_record.get('name')
                     if watermelon_id:
                         id_mappings[watermelon_table][watermelon_id] = doc.name
-                        frappe.logger().info(f" Created {frappe_doctype}: {watermelon_id} → {doc.name}")
+                        frappe.logger().info(f"✅ Created {frappe_doctype}: {watermelon_id} → {doc.name}")
 
                     # Track successful creation
                     processed[watermelon_table]['created'].append({
@@ -307,7 +289,7 @@ def push_changes():
                         'operation': 'create',
                         'error': str(e)
                     })
-                    frappe.logger().error(f" Failed to create {frappe_doctype}: {str(e)}")
+                    frappe.logger().error(f"❌ Failed to create {frappe_doctype}: {str(e)}")
                     continue
 
             # Process updated records (after all creations to ensure dependencies exist)
@@ -322,31 +304,15 @@ def push_changes():
                         frappe.log_error(f"Document {frappe_doctype} {record_id} not found for update", "FarmLink Sync")
                         try:
                             # Convert WatermelonDB data to Frappe format
-                            frappe_data = dict(updated_record)
+                            frappe_data = updated_record
 
                             # Resolve linked field references using ID mappings
                             frappe_data = resolve_link_references(frappe_data, watermelon_table, id_mappings)
 
                             # Remove sync status field as it's not needed in Frappe
                             frappe_data.pop('custom_sync_status', None)
-              
-                            if watermelon_table in ["primary_processing", "secondary_processing"]:
-                                child_field = "processing_output" if watermelon_table == "primary_processing" else "processed_output"
-                                if updated_record.get(child_field):
-                                    try:
-                                        outputs = json.loads(updated_record[child_field]) if isinstance(updated_record[child_field], str) else updated_record[child_field]
-                                        frappe_data[child_field] = []
-                                        for item in outputs:
-                                            frappe_data[child_field].append({
-                                                "grade": item.get("grade"),
-                                                "weightkg": item.get("weight"),
-                                                "moisture": item.get("moisture")
-                                            })
-                                    except Exception as e:
-                                        frappe.logger().error(f"Failed to parse {child_field}: {str(e)}")
 
-
-                            frappe.logger().info(f" Creating {frappe_doctype} with resolved data")
+                            frappe.logger().info(f"📝 Creating {frappe_doctype} with resolved data")
                             # Create new document
                             doc = frappe.get_doc({
                                 'doctype': frappe_doctype,
@@ -355,6 +321,8 @@ def push_changes():
                             # Set the name if provided (for consistent IDs)
                             if 'frappe_id' in updated_record:
                                 doc.name = updated_record['frappe_id']
+                            
+
 
                             doc.insert(ignore_permissions=True)
                             frappe.db.commit()
@@ -362,7 +330,7 @@ def push_changes():
                             watermelon_id = updated_record.get('frappe_id') or updated_record.get('name')
                             if watermelon_id:
                                 id_mappings[watermelon_table][watermelon_id] = doc.name
-                                frappe.logger().info(f" Created {frappe_doctype}: {watermelon_id} → {doc.name}")
+                                frappe.logger().info(f"✅ Created {frappe_doctype}: {watermelon_id} → {doc.name}")
 
                             # Track successful creation
                             processed[watermelon_table]['updated'].append({
@@ -377,7 +345,7 @@ def push_changes():
                                 'operation': 'create',
                                 'error': str(e)
                             })
-                            frappe.logger().error(f" Failed to create {frappe_doctype}: {str(e)}")
+                            frappe.logger().error(f"❌ Failed to create {frappe_doctype}: {str(e)}")
                             continue
 
                     # Get existing document
@@ -386,6 +354,7 @@ def push_changes():
                     # Convert and resolve linked fields
                     frappe_data = updated_record
                     frappe_data = resolve_link_references(frappe_data, watermelon_table, id_mappings)
+
 
                     # Remove sync status and other metadata fields
                     frappe_data.pop('custom_sync_status', None)
@@ -408,26 +377,10 @@ def push_changes():
                                     "type": str(type(value))
                                 }
 
-                    # Handle updates to child tables for primary or secondary processing
-                    if watermelon_table in ["primary_processing", "secondary_processing"]:
-                        child_field = "processing_output" if watermelon_table == "primary_processing" else "processed_output"
-                        if updated_record.get(child_field):
-                            try:
-                                outputs = json.loads(updated_record[child_field]) if isinstance(updated_record[child_field], str) else updated_record[child_field]
-                                doc.set(child_field, [])
-                                for item in outputs:
-                                    doc.append(child_field, {
-                                        "grade": item.get("grade"),
-                                        "weightkg": item.get("weight"),
-                                        "moisture": item.get("moisture")
-                                    })
-                            except Exception as e:
-                                frappe.logger().error(f"Failed to update {child_field}: {str(e)}")
-
                     doc.save(ignore_permissions=True)
                     frappe.db.commit()
 
-                    frappe.logger().info(f" Updated {frappe_doctype}: {record_id}")
+                    frappe.logger().info(f"✅ Updated {frappe_doctype}: {record_id}")
                     # Track successful update
                     processed[watermelon_table]['updated'].append(record_id)
 
@@ -443,7 +396,8 @@ def push_changes():
             # Process deleted records
             for deleted_record in table_changes.get('deleted', []):
                 try:
-                    record_id = deleted_record
+                    #record_id = deleted_record.get('id')
+                    record_id = deleted_record;
                     if not record_id:
                         continue
 
@@ -451,7 +405,10 @@ def push_changes():
                     if frappe.db.exists(frappe_doctype, record_id):
                         frappe.delete_doc(frappe_doctype, record_id, ignore_permissions=True)
                         frappe.db.commit()
-                        frappe.logger().info(f" Deleted {frappe_doctype}: {record_id}")
+                        frappe.logger().info(f"🗑️ Deleted {frappe_doctype}: {record_id}")
+
+                        # Track successful deletion
+                        #processed[watermelon_table]['deleted'].append(record_id)
 
                 except Exception as e:
                     frappe.log_error(f"Error deleting {frappe_doctype} {record_id}: {str(e)}", "FarmLink Sync")
@@ -462,7 +419,7 @@ def push_changes():
                     })
                     continue
 
-        frappe.logger().info(" Push sync completed with dependency resolution")
+        frappe.logger().info("🎉 Push sync completed with dependency resolution")
 
         # Return detailed response with processing information
         return {

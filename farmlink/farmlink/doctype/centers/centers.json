@@ -56,13 +56,13 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "Collection Center\nWashing Station\nTemporary Warehouse\nMain Warehouse"
+   "options": "Collection Center\nProcessing Site\nTemporary Warehouse\nMain Warehouse"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-22 03:11:21.348267",
+ "modified": "2025-10-29 04:18:06.989019",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "Centers",

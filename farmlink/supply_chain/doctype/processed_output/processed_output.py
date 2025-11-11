@@ -1,9 +1,9 @@
 # Copyright (c) 2025, vulerotech and contributors
 # For license information, please see license.txt
 
-# secondary_processing.py
-import frappe
+# import frappe
 from frappe.model.document import Document
 
-class SecondaryProcessing(Document):
+
+class ProcessedOutput(Document):
 	pass

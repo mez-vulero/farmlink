@@ -1,19 +1,22 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "naming_series:",
  "creation": "2025-09-22 11:00:59.315140",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_9hzj",
+  "naming_series",
   "status",
   "coffee_type",
   "processing_center",
-  "processed_warehouse",
-  "final_output_weight_kg",
+  "processed_center",
   "column_break_bzzn",
   "log_time",
-  "weight_in_kg"
+  "weight_in_kg",
+  "output_section",
+  "processed_output"
  ],
  "fields": [
   {
@@ -38,12 +41,6 @@
    "label": "Weight in KG"
   },
   {
-   "depends_on": "eval:doc.status=='Completed'",
-   "fieldname": "final_output_weight_kg",
-   "fieldtype": "Float",
-   "label": "Final Output Weight KG"
-  },
-  {
    "fieldname": "column_break_bzzn",
    "fieldtype": "Column Break"
   },
@@ -53,25 +50,45 @@
    "label": "Log Time"
   },
   {
-   "fieldname": "processed_warehouse",
-   "fieldtype": "Link",
-   "label": "Processed Warehouse",
-   "options": "Centers"
-  },
-  {
    "fieldname": "coffee_type",
    "fieldtype": "Select",
    "label": "Coffee Type",
    "options": "Parchment\nDried Cherry"
+  },
+  {
+   "depends_on": "eval:doc.status=='Completed'",
+   "fieldname": "output_section",
+   "fieldtype": "Section Break",
+   "label": "Output"
+  },
+  {
+   "fieldname": "processed_output",
+   "fieldtype": "Table",
+   "label": "Processed Output",
+   "options": "Processed Output"
+  },
+  {
+   "fieldname": "processed_center",
+   "fieldtype": "Link",
+   "label": "Processed Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "SP-.MM.-.DD.-.##"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-28 12:59:58.832101",
+ "modified": "2025-10-29 04:19:52.041451",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Secondary Processing",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
