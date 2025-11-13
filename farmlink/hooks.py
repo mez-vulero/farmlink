@@ -4,6 +4,16 @@ app_publisher = "vulerotech"
 app_description = "Digital coffee management platform"
 app_email = "mezmure.dawit@vulero.et"
 app_license = "mit"
+app_logo_url = "/assets/farmlink/images/farmlink_icon.png"
+
+add_to_apps_screen = [
+	{
+		"name": "farmlink",
+		"logo": "/assets/farmlink/images/farmlink_icon.png",
+		"title": "FarmLink",
+		"route": "/app",
+	}
+]
 
 # Apps
 # ------------------
@@ -281,4 +291,3 @@ doc_events = {
 # 	"farmlink.utils.refresh_all_purchase_payment_statuses",
 # 	"farmlink.utils.force_update_purchase_payment_status"
 # ]
-

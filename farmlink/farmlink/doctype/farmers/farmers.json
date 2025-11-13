@@ -347,7 +347,7 @@
   },
   {
    "link_doctype": "Payment",
-   "link_fieldname": "paid_to"
+   "link_fieldname": "farmer"
   }
  ],
  "modified": "2025-10-10 09:00:50.850857",
