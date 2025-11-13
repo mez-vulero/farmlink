@@ -25,7 +25,7 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = [ "/assets/farmlink/scss/desk_theme.css" ]
+#app_include_css = [ "/assets/farmlink/scss/desk_theme.css" ]
 app_include_js = ["/assets/farmlink/js/read_scale.js", "/assets/farmlink/js/farms_geo_google.js"]
 
 # include js, css files in header of web template
