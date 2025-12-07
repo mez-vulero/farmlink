@@ -35,7 +35,7 @@ add_to_apps_screen = [
 # ------------------
 
 # include js, css files in header of desk.html
-#app_include_css = [ "/assets/farmlink/scss/desk_theme.css" ]
+app_include_css = ["/assets/farmlink/css/sidebar_theme.css"]
 app_include_js = [
 	"/assets/farmlink/js/read_scale.js",
 	"/assets/farmlink/js/farms_geo_google.js",

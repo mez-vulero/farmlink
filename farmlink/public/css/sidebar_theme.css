@@ -1,0 +1,123 @@
+/* Sidebar gradient theme injected via app_include_css */
+:root {
+  --farmlink-sidebar-gradient-start: #81b757;
+  --farmlink-sidebar-gradient-end: #1182c6;
+  --farmlink-sidebar-text: #e5e7eb;
+  --farmlink-sidebar-hover: rgba(255, 255, 255, 0.06);
+  --farmlink-sidebar-active: rgba(17, 130, 198, 0.18);
+  --farmlink-sidebar-border: #0f5e91;
+}
+
+/* New desk (v15+) left rail */
+body .body-sidebar {
+	--sidebar-hover-color: var(--farmlink-sidebar-hover);
+	--sidebar-active-color: var(--farmlink-sidebar-active);
+	--sidebar-border-color: var(--farmlink-sidebar-border);
+
+	/* Hard override to ensure gradient shows even if core styles change */
+	background: linear-gradient(135deg, rgba(129, 183, 87, 0.9) 0%, rgba(129, 183, 87, 0.9) 35%, rgba(17, 130, 198, 0.9) 100%) !important;
+	backdrop-filter: blur(12px) saturate(140%) !important;
+	-webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+	color: var(--farmlink-sidebar-text) !important;
+	border-right: 1px solid var(--farmlink-sidebar-border);
+}
+
+body .body-sidebar .sidebar-item-icon,
+body .body-sidebar .sidebar-item-label,
+body .body-sidebar .standard-sidebar-label,
+body .body-sidebar .collapse-sidebar-link,
+body .body-sidebar a {
+  color: var(--farmlink-sidebar-text) !important;
+}
+
+body .body-sidebar .sidebar-item-icon svg {
+  color: inherit;
+  stroke: currentColor;
+}
+
+/* Hover/active states come from vars above; keep a hard override as a safety net */
+body .body-sidebar .standard-sidebar-item:hover:not(.active-sidebar),
+body .body-sidebar .standard-sidebar-item.hover:not(.active-sidebar) {
+  background: var(--farmlink-sidebar-hover) !important;
+}
+
+body .body-sidebar .standard-sidebar-item.active-sidebar,
+body .body-sidebar .standard-sidebar-item.selected {
+	background: var(--farmlink-sidebar-active) !important;
+	color: #ffffff !important;
+}
+
+/* App switcher dropdown readability */
+body .app-switcher-menu {
+	color: #1f2937 !important;
+}
+
+body .app-switcher-menu .app-item a {
+	color: #1f2937 !important;
+}
+
+body .app-switcher-menu .app-item .app-item-title {
+	color: #1f2937 !important;
+}
+
+body .app-switcher-menu .app-item .sidebar-item-icon svg {
+	color: #1f2937;
+	stroke: currentColor;
+}
+
+body .app-switcher-menu .app-item:hover,
+body .app-switcher-menu .app-item:focus-within {
+	background-color: rgba(17, 130, 198, 0.08) !important;
+}
+
+/* Navbar search: apply gradient only to the input */
+body .navbar .search-bar {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+body .navbar .search-bar input,
+body .navbar .search-bar .awesomplete > input,
+body .navbar .search-bar .awesomplete input {
+	background: linear-gradient(135deg, #81b757 0%, #1182c6 100%) !important;
+	color: #ffffff !important;
+	border: 1px solid rgba(0, 0, 0, 0.08) !important;
+	box-shadow: none !important;
+}
+
+body .navbar .search-bar input::placeholder {
+	color: rgba(255, 255, 255, 0.75) !important;
+}
+
+body .navbar .search-bar svg {
+	stroke: #ffffff !important;
+}
+
+/* Legacy/inner sidebars (list, form) */
+body .standard-sidebar {
+	background: linear-gradient(135deg, rgba(129, 183, 87, 0.9) 0%, rgba(129, 183, 87, 0.9) 35%, rgba(17, 130, 198, 0.9) 100%) !important;
+	backdrop-filter: blur(12px) saturate(140%) !important;
+	-webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+	color: var(--farmlink-sidebar-text) !important;
+	border-right: 1px solid var(--farmlink-sidebar-border);
+}
+
+body .standard-sidebar .standard-sidebar-label,
+body .standard-sidebar .standard-sidebar-item a {
+  color: var(--farmlink-sidebar-text) !important;
+}
+
+body .standard-sidebar .standard-sidebar-item a:hover,
+body .standard-sidebar .standard-sidebar-item a:focus {
+  background: var(--farmlink-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+body .standard-sidebar .standard-sidebar-item.active a,
+body .standard-sidebar .standard-sidebar-item.selected a {
+  background: var(--farmlink-sidebar-active) !important;
+  color: #ffffff !important;
+}
