@@ -1,0 +1,20 @@
+{
+ "aggregate_function_based_on": "payment_amount",
+ "color": "#10b981",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Payment",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Payment\",\"docstatus\",\"=\",\"1\"],[\"Payment\",\"payment_date\",\"Timespan\",\"last 30 days\"]]",
+ "function": "Sum",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Payments (30d)",
+ "module": "Supply Chain",
+ "name": "Payments (30d)",
+ "show_full_number": 0,
+ "show_percentage_stats": 0,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

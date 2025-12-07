@@ -1,15 +1,36 @@
 {
  "charts": [
   {
-   "chart_name": "Purchase Volume by Cherry Grade",
-   "label": "Purchase Volume by Cherry Grade"
+   "chart_name": "Daily Purchase Volume",
+   "label": "Daily Purchase Volume"
+  },
+  {
+   "chart_name": "Daily Purchase Value",
+   "label": "Daily Purchase Value"
+  },
+  {
+   "chart_name": "Payments Timeline",
+   "label": "Payments Timeline"
+  },
+  {
+   "chart_name": "Purchase Volume by Maturity",
+   "label": "Purchase Volume by Maturity"
+  },
+  {
+   "chart_name": "Purchase Status Mix",
+   "label": "Purchase Status Mix"
+  },
+  {
+   "chart_name": "Purchases by Center",
+   "label": "Purchases by Center"
   }
  ],
- "content": "[{\"id\":\"QdVu7TxNCU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"giXqX5-N3A\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Average Price Rate (7 Days)\",\"col\":3}},{\"id\":\"Y184U_nq02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (ETB)\",\"col\":3}},{\"id\":\"lGiyGi3DeK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Payments Made\",\"col\":3}},{\"id\":\"QT3-0apmHa\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases Made(KG)\",\"col\":4}},{\"id\":\"88dvtFuOcl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Cherry Grade\",\"col\":12}},{\"id\":\"cGCFQO09s-\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"GBd6BF6ghl\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"1NN6mkGpuW\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
+ "content": "[{\"id\":\"hdr_supply\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Supply Chain</span>\",\"col\":12}},{\"id\":\"card_purchase_count\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchases (30d)\",\"col\":3}},{\"id\":\"card_purchase_vol\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchase Volume (30d)\",\"col\":3}},{\"id\":\"card_purchase_val\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchase Value (30d)\",\"col\":3}},{\"id\":\"card_avg_price\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Avg Price Rate (7d)\",\"col\":3}},{\"id\":\"card_payments\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Payments (30d)\",\"col\":3}},{\"id\":\"card_outstanding\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Outstanding Purchases\",\"col\":3}},{\"id\":\"spacer_supply\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"hdr_trends\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h5\\\"><b>Trends</b></span>\",\"col\":12}},{\"id\":\"chart_daily_vol\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Daily Purchase Volume\",\"col\":6}},{\"id\":\"chart_daily_val\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Daily Purchase Value\",\"col\":6}},{\"id\":\"chart_payments\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Payments Timeline\",\"col\":6}},{\"id\":\"chart_maturity\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Volume by Maturity\",\"col\":6}},{\"id\":\"chart_status\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Status Mix\",\"col\":6}},{\"id\":\"chart_center\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchases by Center\",\"col\":6}},{\"id\":\"spacer_cards\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"card_master\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"card_transactions\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"card_logs\",\"type\":\"card\",\"data\":{\"card_name\":\"Logs\",\"col\":4}}]",
  "creation": "2025-08-29 23:36:30.518606",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
+ "app": "farmlink",
  "for_user": "",
  "hide_custom": 0,
  "icon": "change",
@@ -192,20 +213,28 @@
  "name": "Supply Chain",
  "number_cards": [
   {
-   "label": "Average Price Rate (7 Days)",
-   "number_card_name": "Average Price Rate (7 Days)"
+   "label": "Purchases (30d)",
+   "number_card_name": "Purchases (30d)"
   },
   {
-   "label": "Purchases Made(KG)",
-   "number_card_name": "Purchases Made(KG)"
+   "label": "Purchase Volume (30d)",
+   "number_card_name": "Purchase Volume (30d)"
   },
   {
-   "label": "Purchases (ETB)",
-   "number_card_name": "Purchases (ETB)"
+   "label": "Purchase Value (30d)",
+   "number_card_name": "Purchase Value (30d)"
   },
   {
-   "label": "Total Payments Made",
-   "number_card_name": "Total Payments Made"
+   "label": "Avg Price Rate (7d)",
+   "number_card_name": "Avg Price Rate (7d)"
+  },
+  {
+   "label": "Payments (30d)",
+   "number_card_name": "Payments (30d)"
+  },
+  {
+   "label": "Outstanding Purchases",
+   "number_card_name": "Outstanding Purchases"
   }
  ],
  "owner": "Administrator",

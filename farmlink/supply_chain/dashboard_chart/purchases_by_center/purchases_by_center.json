@@ -1,0 +1,30 @@
+{
+ "chart_name": "Purchases by Center",
+ "chart_type": "Group By",
+ "custom_options": "{\"type\": \"bar\"}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "dynamic_filters_json": "{}",
+ "filters_json": "[[\"Purchases\",\"docstatus\",\"=\",\"1\"]]",
+ "group_by_based_on": "collection_center",
+ "group_by_type": "Sum",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "module": "Supply Chain",
+ "name": "Purchases by Center",
+ "number_of_groups": 10,
+ "timespan": "Last 12 months",
+ "time_interval": "Monthly",
+ "timeseries": 0,
+ "type": "Bar",
+ "use_report_chart": 0,
+ "y_axis": [
+  {
+   "aggregate_function_based_on": "weight_in_kg",
+   "color": "#34d399",
+   "label": "KG"
+  }
+ ],
+ "document_type": "Purchases"
+}

@@ -1,4 +1,5 @@
 {
+ "app": "farmlink",
  "charts": [],
  "content": "[{\"id\":\"aI_aNesm8n\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sustainability Assessment</span>\",\"col\":12}},{\"id\":\"qWaOMh3W9Y\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"5Wpvo-_LR0\",\"type\":\"card\",\"data\":{\"card_name\":\"Executions\",\"col\":4}}]",
  "creation": "2025-08-29 23:38:09.456801",
@@ -7,11 +8,11 @@
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "insert-above",
+ "icon": "mark-as-read",
  "idx": 0,
  "indicator_color": "green",
  "is_hidden": 0,
- "label": "Sustainability Assessment",
+ "label": "Sustainability Assmt",
  "links": [
   {
    "hidden": 0,
@@ -72,10 +73,10 @@
    "type": "Link"
   }
  ],
- "modified": "2025-09-09 11:00:40.533314",
+ "modified": "2025-12-07 10:39:01.996233",
  "modified_by": "Administrator",
  "module": "Sustainability Assessment",
- "name": "Sustainability Assessment",
+ "name": "Sustainability Assmt",
  "number_cards": [],
  "owner": "Administrator",
  "parent_page": "FarmLink",
@@ -84,5 +85,6 @@
  "roles": [],
  "sequence_id": 24.0,
  "shortcuts": [],
- "title": "Sustainability Assessment"
+ "title": "Sustainability Assmt",
+ "type": "Workspace"
 }

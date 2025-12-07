@@ -1,0 +1,20 @@
+{
+ "aggregate_function_based_on": "price_rate_of_the_day",
+ "color": "#22d3ee",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Purchases",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Purchases\",\"docstatus\",\"=\",\"1\"],[\"Purchases\",\"purchase_date\",\"Timespan\",\"last 7 days\"]]",
+ "function": "Average",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Avg Price Rate (7d)",
+ "module": "Supply Chain",
+ "name": "Avg Price Rate (7d)",
+ "show_full_number": 0,
+ "show_percentage_stats": 0,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

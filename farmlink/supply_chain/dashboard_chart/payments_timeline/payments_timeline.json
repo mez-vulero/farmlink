@@ -1,0 +1,29 @@
+{
+ "chart_name": "Payments Timeline",
+ "chart_type": "Sum",
+ "custom_options": "{\"type\": \"line\"}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "dynamic_filters_json": "{}",
+ "filters_json": "[[\"Payment\",\"docstatus\",\"=\",\"1\"],[\"Payment\",\"payment_date\",\"Timespan\",\"last 30 days\"]]",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "module": "Supply Chain",
+ "name": "Payments Timeline",
+ "number_of_groups": 0,
+ "timespan": "Last 30 days",
+ "time_interval": "Daily",
+ "timeseries": 1,
+ "type": "Line",
+ "use_report_chart": 0,
+ "y_axis": [
+  {
+   "aggregate_function_based_on": "payment_amount",
+   "color": "#10b981",
+   "label": "ETB"
+  }
+ ],
+ "based_on": "payment_date",
+ "document_type": "Payment"
+}

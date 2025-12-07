@@ -1,4 +1,5 @@
 # apps/farmlink/farmlink/api.py
+import json
 import frappe
 @frappe.whitelist()
 def _sum_submitted_payments(purchase_name: str) -> float:
@@ -50,3 +51,28 @@ def _write_purchase_summary(purchase_name: str):
         updates["status"] = summary["status"]
     if updates:
         frappe.db.set_value("Purchases", purchase_name, updates)
+
+
+@frappe.whitelist()
+def get_farm_center_points():
+    """Return list of geo points for farm_center_point (lat/lng)."""
+    points = []
+    rows = frappe.db.get_all(
+        "Farms",
+        fields=["name", "farm_center_point"],
+        filters={"farm_center_point": ["is", "set"]},
+    )
+    for row in rows:
+        val = row.farm_center_point
+        if not val:
+            continue
+        try:
+            obj = val if isinstance(val, dict) else json.loads(val)
+            lat = obj.get("lat") or obj.get("latitude")
+            lng = obj.get("lng") or obj.get("longitude")
+            if lat is not None and lng is not None:
+                points.append({"name": row.name, "lat": float(lat), "lng": float(lng)})
+        except Exception:
+            # ignore malformed values
+            continue
+    return points

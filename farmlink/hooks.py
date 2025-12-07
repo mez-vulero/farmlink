@@ -36,7 +36,11 @@ add_to_apps_screen = [
 
 # include js, css files in header of desk.html
 #app_include_css = [ "/assets/farmlink/scss/desk_theme.css" ]
-app_include_js = ["/assets/farmlink/js/read_scale.js", "/assets/farmlink/js/farms_geo_google.js"]
+app_include_js = [
+	"/assets/farmlink/js/read_scale.js",
+	"/assets/farmlink/js/farms_geo_google.js",
+	"/assets/farmlink/js/farm_map_widget.js",
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/farmlink/css/farmlink.css"
@@ -181,7 +185,27 @@ doc_events = {
 	"Payment": {
 		"on_submit": "farmlink.hook_handlers.on_payment_change",
 		"on_cancel": "farmlink.hook_handlers.on_payment_change"
-	}
+	},
+	"Primary Arrival Log": {
+		"on_update": "farmlink.supply_chain.stock_ledger.primary_arrival_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.primary_arrival_on_trash",
+	},
+	"Primary Processing": {
+		"on_update": "farmlink.supply_chain.stock_ledger.primary_processing_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.primary_processing_on_trash",
+	},
+	"Primary Dispatch": {
+		"on_update": "farmlink.supply_chain.stock_ledger.primary_dispatch_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.primary_dispatch_on_trash",
+	},
+	"Secondary Arrival Log": {
+		"on_update": "farmlink.supply_chain.stock_ledger.secondary_arrival_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.secondary_arrival_on_trash",
+	},
+	"Secondary Processing": {
+		"on_update": "farmlink.supply_chain.stock_ledger.secondary_processing_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.secondary_processing_on_trash",
+	},
 }
 
 # Scheduled Tasks

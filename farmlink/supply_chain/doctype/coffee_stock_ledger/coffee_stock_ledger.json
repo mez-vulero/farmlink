@@ -2,19 +2,24 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2025-09-16 11:24:17.694557",
+  "creation": "2025-09-16 11:24:17.694557",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
   "posting_time",
+  "entry_type",
   "center",
+  "from_center",
+  "to_center",
   "batch_ref",
   "status",
   "coffee_form",
+  "coffee_grade",
   "qty_kg",
   "reference_doctype",
   "reference_name",
+  "entry_ref",
   "remarks",
   "is_cancelled"
  ],
@@ -32,10 +37,16 @@
    "label": "Posting Time"
   },
   {
+   "fieldname": "entry_type",
+   "fieldtype": "Select",
+   "label": "Entry Type",
+   "options": "IN\nOUT"
+  },
+  {
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Primary Arrival\nIn Processing\nDispatched to Main\nDispatched to Secondary\nSecondary Arrival\nMain Arrival"
+   "options": "Primary Arrival\nIn Processing\nDispatched\nSecondary Arrival\nMain Arrival"
   },
   {
    "fieldname": "coffee_form",
@@ -78,10 +89,33 @@
    "options": "Centers"
   },
   {
+   "fieldname": "from_center",
+   "fieldtype": "Link",
+   "label": "From Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "to_center",
+   "fieldtype": "Link",
+   "label": "To Center",
+   "options": "Centers"
+  },
+  {
    "fieldname": "batch_ref",
    "fieldtype": "Link",
    "label": "PP Batch ID",
    "options": "Primary Processing"
+  },
+  {
+   "fieldname": "coffee_grade",
+   "fieldtype": "Select",
+   "label": "Coffee Grade",
+   "options": "\nG1\nG2\nG3\nG4\nUG"
+  },
+  {
+   "fieldname": "entry_ref",
+   "fieldtype": "Data",
+   "label": "Entry Ref"
   }
  ],
  "grid_page_length": 50,
