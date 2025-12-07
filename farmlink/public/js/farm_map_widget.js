@@ -28,7 +28,7 @@
 	}
 
 	async function render() {
-		const el = document.getElementById(MAP_CONTAINER_ID);
+		const el = getOrCreateContainer();
 		if (!el || el.dataset.rendered) return;
 		try {
 			await loadGoogleMaps();
@@ -71,6 +71,44 @@
 		} catch (e) {
 			console.error("Farm map render failed", e);
 		}
+	}
+
+	function getOrCreateContainer() {
+		// Try existing container first
+		let el = document.getElementById(MAP_CONTAINER_ID);
+		if (el) return el;
+
+		// Find a sensible workspace content area to append to
+		const main =
+			document.querySelector(".workspace .layout-main-section") ||
+			document.querySelector(".page-content .layout-main-section") ||
+			document.querySelector(".page-content");
+		if (!main) return null;
+
+		// Build a simple card wrapper for the map
+		const card = document.createElement("div");
+		card.className = "frappe-card";
+		card.style.marginTop = "var(--margin-md)";
+		card.style.padding = "0";
+
+		const header = document.createElement("div");
+		header.className = "frappe-card-header";
+		header.style.display = "flex";
+		header.style.alignItems = "center";
+		header.style.justifyContent = "space-between";
+		header.style.padding = "var(--padding-md)";
+		header.innerHTML = `<div class="h6" style="margin:0">Farm Centers Map</div>`;
+		card.appendChild(header);
+
+		el = document.createElement("div");
+		el.id = MAP_CONTAINER_ID;
+		el.style.height = "420px";
+		el.style.borderRadius = "0 0 var(--border-radius) var(--border-radius)";
+		el.style.overflow = "hidden";
+		card.appendChild(el);
+
+		main.prepend(card);
+		return el;
 	}
 
 	function watch() {
