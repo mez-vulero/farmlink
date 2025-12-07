@@ -34,6 +34,16 @@
 			await loadGoogleMaps();
 			const points = await fetchPoints();
 
+			const centerMarkerIcon = () => ({
+				path: google.maps.SymbolPath.CIRCLE,
+				fillColor: "#1182c6",
+				fillOpacity: 0.92,
+				strokeColor: "#0f5e91",
+				strokeOpacity: 0.9,
+				strokeWeight: 2,
+				scale: 8,
+			});
+
 			const map = new google.maps.Map(el, {
 				center: DEFAULT_CENTER,
 				zoom: points.length ? 6 : 12,
@@ -46,7 +56,13 @@
 				const bounds = new google.maps.LatLngBounds();
 				points.forEach((p) => {
 					const pos = new google.maps.LatLng(p.lat, p.lng);
-					new google.maps.Marker({ position: pos, map, title: p.name });
+					new google.maps.Marker({
+						position: pos,
+						map,
+						title: p.name,
+						icon: centerMarkerIcon(),
+						optimized: true,
+					});
 					bounds.extend(pos);
 				});
 				map.fitBounds(bounds);

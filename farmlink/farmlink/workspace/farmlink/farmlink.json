@@ -1,4 +1,5 @@
 {
+ "app": "farmlink",
  "charts": [
   {
    "chart_name": "Farmers by Gender",
@@ -9,12 +10,11 @@
    "label": "Farmers by Territory"
   }
  ],
- "content": "[{\"id\":\"hdr_master\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Master Data</span>\",\"col\":12}},{\"id\":\"card_farmers\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farmers\",\"col\":3}},{\"id\":\"card_farms\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farms\",\"col\":3}},{\"id\":\"card_centers\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Collection Centers\",\"col\":3}},{\"id\":\"card_suppliers\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Suppliers\",\"col\":3}},{\"id\":\"card_personnel\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Personnel Count\",\"col\":3}},{\"id\":\"card_territories\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Territories\",\"col\":3}},{\"id\":\"spacer_master\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"hdr_charts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h5\\\"><b>Population Insights</b></span>\",\"col\":12}},{\"id\":\"chart_gender\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmers by Gender\",\"col\":4}},{\"id\":\"chart_territory\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmers by Territory\",\"col\":4}},{\"id\":\"map_block\",\"type\":\"paragraph\",\"data\":{\"text\":\"<div id='farmlink-farm-map' style='height:400px; border-radius:8px;'></div>\",\"col\":4}},{\"id\":\"spacer_shortcuts\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcut_centers\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Centers\",\"col\":3}},{\"id\":\"shortcut_territory\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Territory\",\"col\":3}},{\"id\":\"shortcut_suppliers\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Suppliers\",\"col\":3}},{\"id\":\"shortcut_personnel\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Personnel\",\"col\":3}}]",
+ "content": "[{\"id\":\"hdr_master\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Master Data</span>\",\"col\":12}},{\"id\":\"card_farmers\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farmers\",\"col\":3}},{\"id\":\"card_farms\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Farms\",\"col\":3}},{\"id\":\"card_centers\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Collection Centers\",\"col\":3}},{\"id\":\"card_suppliers\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Suppliers\",\"col\":3}},{\"id\":\"card_personnel\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Personnel Count\",\"col\":3}},{\"id\":\"card_territories\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Territories\",\"col\":3}},{\"id\":\"spacer_master\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"hdr_charts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h5\\\"><b>Population Insights</b></span>\",\"col\":12}},{\"id\":\"chart_gender\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmers by Gender\",\"col\":6}},{\"id\":\"chart_territory\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Farmers by Territory\",\"col\":6}},{\"id\":\"spacer_shortcuts\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcut_centers\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Centers\",\"col\":3}},{\"id\":\"shortcut_territory\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Territory\",\"col\":3}},{\"id\":\"shortcut_suppliers\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Suppliers\",\"col\":3}},{\"id\":\"shortcut_personnel\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Personnel\",\"col\":3}}]",
  "creation": "2025-08-06 15:55:40.760912",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
- "app": "farmlink",
  "for_user": "",
  "hide_custom": 0,
  "icon": "branch",
@@ -23,7 +23,7 @@
  "is_hidden": 0,
  "label": "FarmLink",
  "links": [],
- "modified": "2025-09-22 06:28:18.359229",
+ "modified": "2025-12-07 14:13:55.624991",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "FarmLink",
@@ -113,5 +113,6 @@
    "type": "DocType"
   }
  ],
- "title": "FarmLink"
+ "title": "FarmLink",
+ "type": "Workspace"
 }
