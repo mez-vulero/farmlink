@@ -2,21 +2,20 @@
 // DocType: "farms"
 // Fields: farm_center_point (marker), farm_polygon (polygon via DrawingManager)
 
-// --- Stop Leaflet for just these fields anywhere (safe with global app_include_js)
-console.log("farms_geo_google.js LOADED");
+// Ensure Google Maps replaces the default geolocation control for Farms
 (function () {
   const TARGET_FIELDS = new Set(["farm_center_point", "farm_polygon"]);
   const Base = frappe.ui.form.ControlGeolocation;
-  if (Base && !Base.__geo_patched) {
-    const orig_make_map = Base.prototype.make_map;
+  if (Base && !Base.__farmlink_patched) {
+    Base.__farmlink_orig_make_map = Base.prototype.make_map;
     Base.prototype.make_map = function () {
-      if (TARGET_FIELDS.has(this.df.fieldname)) {
+      if (cur_frm?.doctype === "Farms" && TARGET_FIELDS.has(this.df.fieldname)) {
         try { (this.$input_wrapper || this.$wrapper)?.find?.(".leaflet-container")?.remove?.(); } catch (e) {}
-        return; // we'll render Google Maps in our form refresh handler
+        return; // custom renderer will handle it
       }
-      return orig_make_map.call(this);
+      return Base.__farmlink_orig_make_map.call(this);
     };
-    Base.__geo_patched = true;
+    Base.__farmlink_patched = true;
   }
 })();
 
@@ -27,10 +26,12 @@ console.log("farms_geo_google.js LOADED");
   const DEFAULT_CENTER = { lat: 9.010793, lng: 38.761252 }; // Addis Ababa
   const MAP_HEIGHT = "300px";
   const LIBS = "drawing,geometry"; // add geometry for helpers (no Places)
+  const HAS_KEY = !!frappe.boot?.google_maps_api_key;
 
   // ---------- Google Maps loader ----------
   let _gmapsLoader = null;
   function loadGoogleMaps() {
+    if (!HAS_KEY) return Promise.reject(new Error("Google Maps API key not found"));
     if (window.google && window.google.maps) return Promise.resolve();
     if (_gmapsLoader) return _gmapsLoader;
 
@@ -107,6 +108,13 @@ console.log("farms_geo_google.js LOADED");
     const mount = wrapper.querySelector(".control-input-wrapper") || wrapper;
     mount.innerHTML = `<div id="${id}" style="height:${MAP_HEIGHT}; border-radius:8px;"></div>`;
     return document.getElementById(id);
+  }
+
+  function showFieldMessage(df, text) {
+    const wrapper = df?.$wrapper?.get(0);
+    if (!wrapper) return;
+    const mount = wrapper.querySelector(".control-input-wrapper") || wrapper;
+    mount.innerHTML = `<div class="text-muted" style="padding:6px 0;">${text}</div>`;
   }
 
   function addControl(map, label, onClick, position = google.maps.ControlPosition.TOP_LEFT) {
@@ -373,7 +381,14 @@ console.log("farms_geo_google.js LOADED");
   // IMPORTANT: use the exact DocType name. If your doctype is lowercase "farms", keep it here.
   frappe.ui.form.on("Farms", {
     async refresh(frm) {
-      try { await loadGoogleMaps(); } catch (e) { console.error(e); return; }
+      try {
+        await loadGoogleMaps();
+      } catch (e) {
+        console.warn("[farmlink] Maps unavailable for Farms geolocation.", e?.message || e);
+        showFieldMessage(frm.fields_dict[CENTER_FIELD], e?.message || "Google Maps API key not found");
+        showFieldMessage(frm.fields_dict[POLY_FIELD], e?.message || "Google Maps API key not found");
+        return;
+      }
       renderCenterPoint(frm);
       renderPolygon(frm);
     },

@@ -6,6 +6,13 @@
 
 	let loader = null;
 	let retryTimer = null;
+
+	function isWorkspacePage() {
+		const route = frappe.get_route();
+		// Workspace routes look like ["Workspaces", "<workspace-name>"] (case-insensitive)
+		return route && route[0] && route[0].toLowerCase() === "workspaces";
+	}
+
 	function loadGoogleMaps() {
 		if (window.google && window.google.maps) return Promise.resolve();
 		if (loader) return loader;
@@ -29,12 +36,18 @@
 	}
 
 	async function render() {
+		if (!isWorkspacePage()) {
+			removeContainer();
+			return;
+		}
+
 		const el = getOrCreateContainer();
 		if (!el) {
 			scheduleRetry();
 			return;
 		}
-		if (el.dataset.rendered) return;
+		if (el.dataset.rendering === "1" || el.dataset.rendered === "1") return;
+		el.dataset.rendering = "1";
 
 		showMessage(el, "Loading map...");
 		try {
@@ -80,6 +93,9 @@
 		} catch (e) {
 			console.error("Farm map render failed", e);
 			showMessage(el, e?.message || "Failed to load map");
+			el.dataset.rendered = "1";
+		} finally {
+			delete el.dataset.rendering;
 		}
 	}
 
@@ -139,6 +155,15 @@
 		observer.observe(document.body, { childList: true, subtree: true });
 		// also re-render on route change
 		frappe.router.on("change", () => render());
+	}
+
+	function removeContainer() {
+		const el = document.getElementById(MAP_CONTAINER_ID);
+		if (el) {
+			const card = el.closest(".frappe-card");
+			if (card) card.remove();
+			else el.remove();
+		}
 	}
 
 	$(document).ready(watch);
