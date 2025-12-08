@@ -26,7 +26,7 @@ def get_purchase_payment_summary(purchase_name):
 	total_paid = frappe.db.sql("""
 		SELECT COALESCE(SUM(payment_amount), 0)
 		FROM `tabPayment`
-		WHERE purchase_invoice = %s AND docstatus = 1
+		WHERE purchase_invoice = %s AND docstatus != 2
 	""", purchase_name)
 	
 	total_paid = total_paid[0][0] if total_paid else 0.0
@@ -180,7 +180,7 @@ def force_update_purchase_payment_status(purchase_name):
 		total_paid = frappe.db.sql("""
 			SELECT COALESCE(SUM(payment_amount), 0)
 			FROM `tabPayment`
-			WHERE purchase_invoice = %s AND docstatus = 1
+			WHERE purchase_invoice = %s AND docstatus != 2
 		""", purchase_name)
 		
 		total_paid = total_paid[0][0] if total_paid else 0.0

@@ -1,11 +1,13 @@
 # apps/farmlink/farmlink/api.py
 import json
 import frappe
-@frappe.whitelist()
-def _sum_submitted_payments(purchase_name: str) -> float:
+
+
+def _sum_active_payments(purchase_name: str) -> float:
+    """Sum payments linked to a purchase (draft or submitted, ignore cancelled)."""
     rows = frappe.db.get_all(
         "Payment",
-        filters={"purchase_invoice": purchase_name, "docstatus": 1},
+        filters={"purchase_invoice": purchase_name, "docstatus": ["!=", 2]},
         fields=["payment_amount"],
     )
     return sum((r.payment_amount or 0) for r in rows)
@@ -15,7 +17,7 @@ def get_payment_summary(purchase_name: str) -> dict:
     """Return totals used by the Purchases form."""
     pur = frappe.get_doc("Purchases", purchase_name)
     total = float(pur.get("total_price") or 0.0)
-    paid = _sum_submitted_payments(purchase_name)
+    paid = _sum_active_payments(purchase_name)
     outstanding = max(total - paid, 0.0)
 
     if paid <= 0:

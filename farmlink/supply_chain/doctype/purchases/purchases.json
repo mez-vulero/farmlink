@@ -6,6 +6,7 @@
  "creation": "2025-08-31 13:12:24.858843",
  "doctype": "DocType",
  "engine": "InnoDB",
+ "is_submittable": 0,
  "field_order": [
   "basics_section",
   "naming_series",

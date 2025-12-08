@@ -183,8 +183,9 @@ boot_session = "farmlink.utils.boot.boot_session"
 
 doc_events = {
 	"Payment": {
-		"on_submit": "farmlink.hook_handlers.on_payment_change",
-		"on_cancel": "farmlink.hook_handlers.on_payment_change"
+		"after_insert": "farmlink.hook_handlers.on_payment_change",
+		"on_update": "farmlink.hook_handlers.on_payment_change",
+		"on_trash": "farmlink.hook_handlers.on_payment_change",
 	},
 	"Primary Arrival Log": {
 		"on_update": "farmlink.supply_chain.stock_ledger.primary_arrival_on_save",

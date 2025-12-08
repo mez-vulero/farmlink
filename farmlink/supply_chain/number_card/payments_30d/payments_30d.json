@@ -5,7 +5,7 @@
  "doctype": "Number Card",
  "document_type": "Payment",
  "dynamic_filters_json": "[]",
- "filters_json": "[[\"Payment\",\"docstatus\",\"=\",\"1\"],[\"Payment\",\"payment_date\",\"Timespan\",\"last 30 days\"]]",
+ "filters_json": "[[\"Payment\",\"docstatus\",\"!=\",\"2\"],[\"Payment\",\"payment_date\",\"Timespan\",\"last 30 days\"]]",
  "function": "Sum",
  "idx": 0,
  "is_public": 0,

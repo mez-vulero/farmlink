@@ -9,8 +9,14 @@
 
 	function isWorkspacePage() {
 		const route = frappe.get_route();
-		// Workspace routes look like ["Workspaces", "<workspace-name>"] (case-insensitive)
-		return route && route[0] && route[0].toLowerCase() === "workspaces";
+		// Only render on FarmLink workspace (route: ["Workspaces", "FarmLink"])
+		return (
+			route &&
+			route[0] &&
+			route[0].toLowerCase() === "workspaces" &&
+			route[1] &&
+			route[1].toLowerCase() === "farmlink"
+		);
 	}
 
 	function loadGoogleMaps() {

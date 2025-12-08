@@ -5,7 +5,7 @@
  "docstatus": 0,
  "doctype": "Dashboard Chart",
  "dynamic_filters_json": "{}",
- "filters_json": "[[\"Purchases\",\"docstatus\",\"=\",\"1\"],[\"Purchases\",\"purchase_date\",\"Timespan\",\"last 30 days\"]]",
+ "filters_json": "[[\"Purchases\",\"docstatus\",\"!=\",\"2\"],[\"Purchases\",\"purchase_date\",\"Timespan\",\"last 30 days\"]]",
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
