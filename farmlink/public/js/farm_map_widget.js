@@ -5,6 +5,7 @@
 	const LIBS = "drawing";
 
 	let loader = null;
+	let retryTimer = null;
 	function loadGoogleMaps() {
 		if (window.google && window.google.maps) return Promise.resolve();
 		if (loader) return loader;
@@ -29,7 +30,13 @@
 
 	async function render() {
 		const el = getOrCreateContainer();
-		if (!el || el.dataset.rendered) return;
+		if (!el) {
+			scheduleRetry();
+			return;
+		}
+		if (el.dataset.rendered) return;
+
+		showMessage(el, "Loading map...");
 		try {
 			await loadGoogleMaps();
 			const points = await fetchPoints();
@@ -66,10 +73,13 @@
 					bounds.extend(pos);
 				});
 				map.fitBounds(bounds);
+			} else {
+				showMessage(el, "No farm centers found.");
 			}
 			el.dataset.rendered = "1";
 		} catch (e) {
 			console.error("Farm map render failed", e);
+			showMessage(el, e?.message || "Failed to load map");
 		}
 	}
 
@@ -109,6 +119,18 @@
 
 		main.prepend(card);
 		return el;
+	}
+
+	function showMessage(el, text) {
+		el.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:var(--text-md);">${text}</div>`;
+	}
+
+	function scheduleRetry() {
+		if (retryTimer) return;
+		retryTimer = setTimeout(() => {
+			retryTimer = null;
+			render();
+		}, 300);
 	}
 
 	function watch() {
