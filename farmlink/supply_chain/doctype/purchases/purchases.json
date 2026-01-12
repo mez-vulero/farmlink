@@ -6,7 +6,6 @@
  "creation": "2025-08-31 13:12:24.858843",
  "doctype": "DocType",
  "engine": "InnoDB",
- "is_submittable": 0,
  "field_order": [
   "basics_section",
   "naming_series",
@@ -165,7 +164,7 @@
    "link_fieldname": "purchase_invoice"
   }
  ],
- "modified": "2025-10-23 12:31:32.808386",
+ "modified": "2025-12-27 14:57:43.099874",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Purchases",
@@ -218,6 +217,15 @@
    "role": "Farmlink Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1
   }
  ],
  "row_format": "Dynamic",
@@ -237,5 +245,7 @@
    "color": "Green",
    "title": "Paid"
   }
- ]
+ ],
+ "track_changes": 1,
+ "track_views": 1
 }

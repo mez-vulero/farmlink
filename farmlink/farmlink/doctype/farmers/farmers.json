@@ -22,6 +22,7 @@
   "secondary_phone",
   "territory",
   "kebele",
+  "site_name",
   "family_details_section",
   "number_of_family",
   "column_break_hyia",
@@ -70,7 +71,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
-   "options": "FRMR-.YY.-.####\nSNDN-CRO-\nSNDN-CR-\nSNDN-CO-"
+   "options": "FRMR-.####\nSNCH.####\nSNGR.####\nSNDN.####\nSNHL.####\nSNGT.####\nSNHB.####"
   },
   {
    "fieldname": "first_name",
@@ -206,7 +207,7 @@
   },
   {
    "fieldname": "specific_name_of_coffee_collection_center",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Specific name of coffee collection center",
    "options": "Centers"
   },
@@ -284,7 +285,7 @@
   },
   {
    "fieldname": "associated_supplier",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Associated Supplier",
    "options": "Supplier"
   },
@@ -332,6 +333,12 @@
    "fieldname": "cafe_practices",
    "fieldtype": "Check",
    "label": "C.A.F.E Practices"
+  },
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Link",
+   "label": "Site Name",
+   "options": "Centers"
   }
  ],
  "grid_page_length": 50,
@@ -350,7 +357,7 @@
    "link_fieldname": "farmer"
   }
  ],
- "modified": "2025-10-10 09:00:50.850857",
+ "modified": "2026-01-05 13:54:21.633975",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "Farmers",
