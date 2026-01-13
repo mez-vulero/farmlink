@@ -1,11 +1,11 @@
-// Workspace map widget for farm_center_point markers
+// Workspace map widget for farm_center_point markers (Leaflet + OSM)
 (() => {
 	const MAP_CONTAINER_ID = "farmlink-farm-map";
 	const DEFAULT_CENTER = { lat: 9.010793, lng: 38.761252 }; // Addis Ababa
-	const LIBS = "drawing";
 
 	let loader = null;
 	let retryTimer = null;
+	let activeMap = null;
 
 	function isWorkspacePage() {
 		const route = frappe.get_route();
@@ -19,21 +19,55 @@
 		);
 	}
 
-	function loadGoogleMaps() {
-		if (window.google && window.google.maps) return Promise.resolve();
+	function loadLeaflet() {
+		if (window.L && window.L.map) return Promise.resolve();
 		if (loader) return loader;
-		const key = frappe.boot?.google_maps_api_key;
-		if (!key) return Promise.reject(new Error("Missing Google Maps API key"));
 
 		loader = new Promise((resolve, reject) => {
+			const cssId = "farmlink-leaflet-css";
+			const jsId = "farmlink-leaflet-js";
+
+			if (!document.getElementById(cssId)) {
+				const link = document.createElement("link");
+				link.id = cssId;
+				link.rel = "stylesheet";
+				link.href = "/assets/frappe/js/lib/leaflet/leaflet.css";
+				document.head.appendChild(link);
+			}
+
+			if (document.getElementById(jsId)) {
+				let tries = 0;
+				const timer = setInterval(() => {
+					if (window.L && window.L.map) {
+						clearInterval(timer);
+						resolve();
+						return;
+					}
+					tries += 1;
+					if (tries > 60) {
+						clearInterval(timer);
+						reject(new Error("Leaflet failed to load"));
+					}
+				}, 50);
+				return;
+			}
+
 			const s = document.createElement("script");
-			s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&libraries=${LIBS}`;
+			s.id = jsId;
+			s.src = "/assets/frappe/js/lib/leaflet/leaflet.js";
 			s.async = true;
 			s.onload = () => resolve();
-			s.onerror = () => reject(new Error("Failed to load Google Maps"));
+			s.onerror = () => reject(new Error("Failed to load Leaflet"));
 			document.head.appendChild(s);
 		});
 		return loader;
+	}
+
+	function addBaseLayer(map) {
+		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+			maxZoom: 19,
+			attribution: "© OpenStreetMap contributors",
+		}).addTo(map);
 	}
 
 	async function fetchPoints() {
@@ -41,9 +75,19 @@
 		return message || [];
 	}
 
+	function destroyMap() {
+		if (activeMap) {
+			activeMap.remove();
+			activeMap = null;
+		}
+		const el = document.getElementById(MAP_CONTAINER_ID);
+		if (el && el._leaflet_id) delete el._leaflet_id;
+	}
+
 	async function render() {
 		if (!isWorkspacePage()) {
 			removeContainer();
+			destroyMap();
 			return;
 		}
 
@@ -57,44 +101,44 @@
 
 		showMessage(el, "Loading map...");
 		try {
-			await loadGoogleMaps();
+			await loadLeaflet();
 			const points = await fetchPoints();
 
-			const centerMarkerIcon = () => ({
-				path: google.maps.SymbolPath.CIRCLE,
-				fillColor: "#1182c6",
-				fillOpacity: 0.92,
-				strokeColor: "#0f5e91",
-				strokeOpacity: 0.9,
-				strokeWeight: 2,
-				scale: 8,
-			});
-
-			const map = new google.maps.Map(el, {
-				center: DEFAULT_CENTER,
-				zoom: points.length ? 6 : 12,
-				mapTypeControl: false,
-				streetViewControl: false,
-				fullscreenControl: true,
-			});
-
-			if (points.length) {
-				const bounds = new google.maps.LatLngBounds();
-				points.forEach((p) => {
-					const pos = new google.maps.LatLng(p.lat, p.lng);
-					new google.maps.Marker({
-						position: pos,
-						map,
-						title: p.name,
-						icon: centerMarkerIcon(),
-						optimized: true,
-					});
-					bounds.extend(pos);
-				});
-				map.fitBounds(bounds);
-			} else {
+			if (!points.length) {
 				showMessage(el, "No farm centers found.");
+				el.dataset.rendered = "1";
+				return;
 			}
+
+			destroyMap();
+			el.innerHTML = "";
+
+			const map = L.map(el, {
+				zoomControl: true,
+				attributionControl: true,
+			});
+			addBaseLayer(map);
+
+			const bounds = L.latLngBounds();
+			points.forEach((p) => {
+				const pos = L.latLng(p.lat, p.lng);
+				L.circleMarker(pos, {
+					radius: 6,
+					color: "#0f5e91",
+					weight: 2,
+					fillColor: "#1182c6",
+					fillOpacity: 0.9,
+				}).addTo(map).bindTooltip(p.name || "", { direction: "top" });
+				bounds.extend(pos);
+			});
+
+			if (bounds.isValid()) {
+				map.fitBounds(bounds, { padding: [16, 16] });
+			} else {
+				map.setView(DEFAULT_CENTER, 12);
+			}
+
+			activeMap = map;
 			el.dataset.rendered = "1";
 		} catch (e) {
 			console.error("Farm map render failed", e);

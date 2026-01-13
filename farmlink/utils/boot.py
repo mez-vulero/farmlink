@@ -10,10 +10,6 @@ FARMLINK_ROLES = {
 
 
 def boot_session(bootinfo):
-	key = frappe.db.get_single_value("Google Settings", "api_key")
-	if key:
-		bootinfo["google_maps_api_key"] = key
-
 	roles = set(frappe.get_roles())
 	has_farmlink_role = bool(roles & FARMLINK_ROLES)
 	is_sys_manager = "System Manager" in roles
