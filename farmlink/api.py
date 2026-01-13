@@ -1,5 +1,6 @@
 # apps/farmlink/farmlink/api.py
 import json
+import re
 import frappe
 
 
@@ -59,6 +60,7 @@ def _write_purchase_summary(purchase_name: str):
 def get_farm_center_points():
     """Return list of geo points for farm_center_point (lat/lng)."""
     points = []
+    lat_lng_re = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$")
     rows = frappe.db.get_all(
         "Farms",
         fields=["name", "farm_center_point"],
@@ -69,9 +71,25 @@ def get_farm_center_points():
         if not val:
             continue
         try:
-            obj = val if isinstance(val, dict) else json.loads(val)
-            lat = obj.get("lat") or obj.get("latitude")
-            lng = obj.get("lng") or obj.get("longitude")
+            if isinstance(val, dict):
+                obj = val
+            else:
+                try:
+                    obj = json.loads(val)
+                except Exception:
+                    obj = None
+
+            lat = None
+            lng = None
+            if obj:
+                lat = obj.get("lat") or obj.get("latitude")
+                lng = obj.get("lng") or obj.get("longitude")
+            elif isinstance(val, str):
+                match = lat_lng_re.match(val)
+                if match:
+                    lat = match.group(1)
+                    lng = match.group(2)
+
             if lat is not None and lng is not None:
                 points.append({"name": row.name, "lat": float(lat), "lng": float(lng)})
         except Exception:

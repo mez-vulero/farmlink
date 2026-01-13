@@ -8,6 +8,7 @@
   const Base = frappe.ui.form.ControlGeolocation;
   if (Base && !Base.__farmlink_patched) {
     Base.__farmlink_orig_make_map = Base.prototype.make_map;
+    Base.__farmlink_orig_bind_leaflet_data = Base.prototype.bind_leaflet_data;
     Base.prototype.make_map = function () {
       if (cur_frm?.doctype === "Farms" && TARGET_FIELDS.has(this.df.fieldname)) {
         try {
@@ -16,6 +17,12 @@
         return; // custom renderer will handle it
       }
       return Base.__farmlink_orig_make_map.call(this);
+    };
+    Base.prototype.bind_leaflet_data = function (value) {
+      if (cur_frm?.doctype === "Farms" && TARGET_FIELDS.has(this.df.fieldname)) {
+        return;
+      }
+      return Base.__farmlink_orig_bind_leaflet_data.call(this, value);
     };
     Base.__farmlink_patched = true;
   }
@@ -92,6 +99,12 @@
         return { lat: o.lat ?? o.latitude, lng: o.lng ?? o.longitude };
       }
     } catch {}
+    if (typeof val === "string") {
+      const m = val.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+      if (m) {
+        return { lat: parseFloat(m[1]), lng: parseFloat(m[2]) };
+      }
+    }
     return null;
   }
 
