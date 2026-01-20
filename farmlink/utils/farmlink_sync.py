@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 
 # Doctype mappings between WatermelonDB and Frappe
-DOCTYPE_MAPPINGS = { 'farmers': 'Farmers', 'payments': 'Payment', 
+DOCTYPE_MAPPINGS = { 'farmers': 'Farmers', 'farms': 'Farms', 'payments': 'Payment', 
     'purchases': 'Purchases',
     'territories': 'Territory',
     'centers': 'Centers',
@@ -25,7 +25,7 @@ DOCTYPE_MAPPINGS = { 'farmers': 'Farmers', 'payments': 'Payment',
 }
 
 # Processing order for dependencies (independent first)
-PROCESSING_ORDER = ['territories', 'centers', 'farmers', 'suppliers', 'purchases', 'payments', 'dispatches', 'arrival_logs','primary_processing', 'secondary_processing','secondary_arrival_logs',]
+PROCESSING_ORDER = ['territories', 'centers', 'farmers', 'farms', 'suppliers', 'purchases', 'payments', 'dispatches', 'arrival_logs','primary_processing', 'secondary_processing','secondary_arrival_logs',]
 
 # Link field mappings for dependency resolution
 LINK_FIELD_MAPPINGS = {
@@ -138,6 +138,7 @@ def pull_changes():
         
         changes = {
             'farmers': {'created': [], 'updated': [], 'deleted': []},
+            'farms': {'created': [], 'updated': [], 'deleted': []},
             'payments': {'created': [], 'updated': [], 'deleted': []},
             'purchases': {'created': [], 'updated': [], 'deleted': []},
             'territories': {'created': [], 'updated': [], 'deleted': []},
