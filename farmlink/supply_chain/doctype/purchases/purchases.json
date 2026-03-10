@@ -21,6 +21,7 @@
   "phone",
   "purchase_details_section",
   "maturity",
+  "coffee_type",
   "weight_in_kg",
   "read_scale_button",
   "column_break_uobt",
@@ -154,6 +155,12 @@
    "in_list_view": 1,
    "label": "Maturity",
    "options": "\nFully Matured\nSemi-Matured\nImmature"
+  },
+  {
+   "fieldname": "coffee_type",
+   "fieldtype": "Select",
+   "label": "Coffee Type",
+   "options": "\nRed Fresh Cherry\nDried Cherry\nParchment Coffee\nGreen Coffee Beans"
   }
  ],
  "grid_page_length": 50,
@@ -164,7 +171,7 @@
    "link_fieldname": "purchase_invoice"
   }
  ],
- "modified": "2025-12-27 14:57:43.099874",
+ "modified": "2026-01-21 09:31:14.329495",
  "modified_by": "Administrator",
  "module": "Supply Chain",
  "name": "Purchases",
