@@ -207,6 +207,18 @@ doc_events = {
 		"on_update": "farmlink.supply_chain.stock_ledger.secondary_processing_on_save",
 		"on_trash": "farmlink.supply_chain.stock_ledger.secondary_processing_on_trash",
 	},
+	"Export Arrival Log": {
+		"on_update": "farmlink.supply_chain.stock_ledger.export_arrival_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.export_arrival_on_trash",
+	},
+	"Trades": {
+		"on_update": "farmlink.supply_chain.stock_ledger.trades_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.trades_on_trash",
+	},
+	"Export Dispatch": {
+		"on_update": "farmlink.supply_chain.stock_ledger.export_dispatch_on_save",
+		"on_trash": "farmlink.supply_chain.stock_ledger.export_dispatch_on_trash",
+	},
 }
 
 # Scheduled Tasks

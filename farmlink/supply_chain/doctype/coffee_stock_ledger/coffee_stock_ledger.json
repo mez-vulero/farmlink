@@ -46,7 +46,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Primary Arrival\nIn Processing\nDispatched\nSecondary Arrival\nMain Arrival"
+   "options": "Primary Arrival\nIn Processing\nDispatched\nSecondary Arrival\nMain Arrival\nAllocated to Trade\nExport Dispatched"
   },
   {
    "fieldname": "coffee_form",

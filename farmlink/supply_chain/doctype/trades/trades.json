@@ -6,29 +6,72 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "contract_details_section",
   "contract_number",
+  "cert_no",
   "customer",
-  "column_break_ybxi",
   "customer_name",
+  "status",
+  "column_break_trade_1",
+  "trade_date",
+  "shipping_date",
+  "incoterm",
+  "export_warehouse",
+  "cupping_order",
+  "section_break_quantities",
+  "total_quantity_kg",
+  "total_bags",
+  "column_break_pricing",
+  "currency",
+  "price_per_kg",
+  "total_value",
   "section_break_pcoa",
-  "table_ovaz"
+  "table_ovaz",
+  "section_break_shipping",
+  "shipping_line",
+  "booking_number",
+  "container_number",
+  "bill_of_lading",
+  "column_break_ship_2",
+  "vessel_name",
+  "port_of_loading",
+  "port_of_discharge",
+  "estimated_arrival",
+  "section_break_docs",
+  "ico_certificate",
+  "phytosanitary_cert",
+  "certificate_of_origin",
+  "weight_certificate",
+  "column_break_docs_2",
+  "quality_certificate",
+  "customs_declaration",
+  "section_break_remarks",
+  "remarks"
  ],
  "fields": [
   {
-   "fieldname": "column_break_ybxi",
-   "fieldtype": "Column Break"
+   "fieldname": "contract_details_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Details"
+  },
+  {
+   "fieldname": "contract_number",
+   "fieldtype": "Data",
+   "label": "Contract Number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "cert_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Certificate Number"
   },
   {
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
    "options": "Customers"
-  },
-  {
-   "fieldname": "contract_number",
-   "fieldtype": "Data",
-   "label": "Contract Number",
-   "unique": 1
   },
   {
    "fetch_from": "customer.customer_name",
@@ -38,13 +81,196 @@
    "read_only": 1
   },
   {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nConfirmed\nAllocated\nReady to Ship\nShipped\nDelivered\nCancelled"
+  },
+  {
+   "fieldname": "column_break_trade_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "trade_date",
+   "fieldtype": "Date",
+   "label": "Trade Date"
+  },
+  {
+   "fieldname": "shipping_date",
+   "fieldtype": "Date",
+   "label": "Shipping Date"
+  },
+  {
+   "fieldname": "incoterm",
+   "fieldtype": "Select",
+   "label": "Incoterm",
+   "options": "\nFOB\nCIF\nEXW\nFCA"
+  },
+  {
+   "fieldname": "export_warehouse",
+   "fieldtype": "Link",
+   "label": "Export Warehouse",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "cupping_order",
+   "fieldtype": "Link",
+   "label": "Cupping Order",
+   "options": "Cupping Order"
+  },
+  {
+   "fieldname": "section_break_quantities",
+   "fieldtype": "Section Break",
+   "label": "Quantities & Pricing"
+  },
+  {
+   "fieldname": "total_quantity_kg",
+   "fieldtype": "Float",
+   "label": "Total Quantity (kg)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_bags",
+   "fieldtype": "Int",
+   "label": "Total Bags",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "USD",
+   "fieldname": "currency",
+   "fieldtype": "Select",
+   "label": "Currency",
+   "options": "USD\nEUR\nGBP\nETB"
+  },
+  {
+   "fieldname": "price_per_kg",
+   "fieldtype": "Float",
+   "label": "Price per kg"
+  },
+  {
+   "fieldname": "total_value",
+   "fieldtype": "Float",
+   "label": "Total Value",
+   "read_only": 1
+  },
+  {
    "fieldname": "section_break_pcoa",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Certificate Details"
   },
   {
    "fieldname": "table_ovaz",
    "fieldtype": "Table",
+   "label": "Cert No Details",
    "options": "Cert No Details"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_shipping",
+   "fieldtype": "Section Break",
+   "label": "Shipping Details"
+  },
+  {
+   "fieldname": "shipping_line",
+   "fieldtype": "Data",
+   "label": "Shipping Line"
+  },
+  {
+   "fieldname": "booking_number",
+   "fieldtype": "Data",
+   "label": "Booking Number"
+  },
+  {
+   "fieldname": "container_number",
+   "fieldtype": "Data",
+   "label": "Container Number"
+  },
+  {
+   "fieldname": "bill_of_lading",
+   "fieldtype": "Data",
+   "label": "Bill of Lading"
+  },
+  {
+   "fieldname": "column_break_ship_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vessel_name",
+   "fieldtype": "Data",
+   "label": "Vessel Name"
+  },
+  {
+   "default": "Djibouti",
+   "fieldname": "port_of_loading",
+   "fieldtype": "Data",
+   "label": "Port of Loading"
+  },
+  {
+   "fieldname": "port_of_discharge",
+   "fieldtype": "Data",
+   "label": "Port of Discharge"
+  },
+  {
+   "fieldname": "estimated_arrival",
+   "fieldtype": "Date",
+   "label": "Estimated Arrival"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_docs",
+   "fieldtype": "Section Break",
+   "label": "Export Documents"
+  },
+  {
+   "fieldname": "ico_certificate",
+   "fieldtype": "Attach",
+   "label": "ICO Certificate"
+  },
+  {
+   "fieldname": "phytosanitary_cert",
+   "fieldtype": "Attach",
+   "label": "Phytosanitary Certificate"
+  },
+  {
+   "fieldname": "certificate_of_origin",
+   "fieldtype": "Attach",
+   "label": "Certificate of Origin"
+  },
+  {
+   "fieldname": "weight_certificate",
+   "fieldtype": "Attach",
+   "label": "Weight Certificate"
+  },
+  {
+   "fieldname": "column_break_docs_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quality_certificate",
+   "fieldtype": "Attach",
+   "label": "Quality Certificate"
+  },
+  {
+   "fieldname": "customs_declaration",
+   "fieldtype": "Attach",
+   "label": "Customs Declaration"
+  },
+  {
+   "fieldname": "section_break_remarks",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "grid_page_length": 50,
@@ -80,10 +306,29 @@
    "role": "Farmlink Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Export Officer",
+   "share": 1,
+   "write": 1
   }
  ],
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {"color": "Red", "title": "Draft"},
+  {"color": "Blue", "title": "Confirmed"},
+  {"color": "Yellow", "title": "Allocated"},
+  {"color": "Orange", "title": "Ready to Ship"},
+  {"color": "Purple", "title": "Shipped"},
+  {"color": "Green", "title": "Delivered"},
+  {"color": "Gray", "title": "Cancelled"}
+ ]
 }

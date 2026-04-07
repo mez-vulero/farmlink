@@ -6,21 +6,16 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "cert_no",
   "origin",
   "coffee_type",
   "coffee_grade",
   "quantity",
-  "bag_size"
+  "bag_size",
+  "weight_kg",
+  "secondary_processing_ref",
+  "moisture"
  ],
  "fields": [
-  {
-   "bold": 1,
-   "fieldname": "cert_no",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Cert No"
-  },
   {
    "bold": 1,
    "fieldname": "coffee_type",
@@ -50,15 +45,33 @@
    "fieldname": "quantity",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Quantity"
+   "label": "Quantity (Bags)"
   },
   {
    "bold": 1,
    "fieldname": "bag_size",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Bag Size",
+   "label": "Bag Size (kg)",
    "options": "\n60\n85"
+  },
+  {
+   "fieldname": "weight_kg",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight (kg)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "secondary_processing_ref",
+   "fieldtype": "Link",
+   "label": "Secondary Processing Ref",
+   "options": "Secondary Processing"
+  },
+  {
+   "fieldname": "moisture",
+   "fieldtype": "Float",
+   "label": "Moisture %"
   }
  ],
  "grid_page_length": 50,

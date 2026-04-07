@@ -234,3 +234,111 @@ def secondary_processing_on_save(doc, method=None):
 
 def secondary_processing_on_trash(doc, method=None):
     reverse_entries(doc.doctype, doc.name)
+
+
+# ── Export Arrival Log ──────────────────────────────────────────
+
+def export_arrival_on_save(doc, method=None):
+    """Green bean arrives at export warehouse. CSL IN with status 'Main Arrival'."""
+    if not doc.arrival_center:
+        reverse_entries(doc.doctype, doc.name)
+        return
+
+    delivery_status = (doc.delivery_status or "").strip()
+    weight = flt(doc.weight_in_kg)
+    missing = flt(doc.quantity_missing_kg) if delivery_status == "Partially Arrived" else 0
+    if delivery_status == "Wrong Delivery":
+        weight = 0
+    qty_in = max(weight - missing, 0)
+
+    if qty_in <= 0:
+        reverse_entries(doc.doctype, doc.name)
+        return
+
+    record_transfer(
+        center=doc.arrival_center,
+        status="Main Arrival",
+        form="Green Bean",
+        qty=qty_in,
+        ref_dt=doc.doctype,
+        ref_dn=doc.name,
+        entry_type="IN",
+        entry_ref="export_arrival_in",
+        from_center=getattr(doc, "source_center", None),
+        coffee_grade=doc.coffee_grade or None,
+        remarks="Green bean arrived at export warehouse",
+    )
+
+
+def export_arrival_on_trash(doc, method=None):
+    reverse_entries(doc.doctype, doc.name)
+
+
+# ── Trades (allocation) ────────────────────────────────────────
+
+def trades_on_save(doc, method=None):
+    """When trade is Allocated+, create CSL OUT entries to reserve green bean."""
+    status = (doc.status or "").strip()
+
+    if status not in ("Allocated", "Ready to Ship", "Shipped", "Delivered"):
+        reverse_entries(doc.doctype, doc.name)
+        return
+
+    if not doc.export_warehouse:
+        return
+
+    output_refs = []
+    for idx, row in enumerate(doc.get("table_ovaz") or [], start=1):
+        qty = flt(row.quantity) * flt(row.bag_size)
+        entry_ref = f"trade_alloc_{idx}"
+        if qty <= 0:
+            continue
+
+        record_transfer(
+            center=doc.export_warehouse,
+            status="Allocated to Trade",
+            form="Green Bean",
+            qty=qty,
+            ref_dt=doc.doctype,
+            ref_dn=doc.name,
+            entry_type="OUT",
+            entry_ref=entry_ref,
+            coffee_grade=row.coffee_grade or None,
+            remarks=f"Allocated to trade {doc.contract_number}",
+        )
+        output_refs.append(entry_ref)
+
+    _cancel_missing_entries(doc.doctype, doc.name, "OUT", output_refs)
+
+
+def trades_on_trash(doc, method=None):
+    reverse_entries(doc.doctype, doc.name)
+
+
+# ── Export Dispatch ─────────────────────────────────────────────
+
+def export_dispatch_on_save(doc, method=None):
+    """Green bean dispatched from export warehouse. CSL OUT with 'Export Dispatched'."""
+    status = (doc.status or "").strip()
+    qty = flt(doc.weight_in_kg)
+
+    if status != "Dispatched" or qty <= 0 or not doc.export_warehouse:
+        reverse_entries(doc.doctype, doc.name)
+        return
+
+    record_transfer(
+        center=doc.export_warehouse,
+        status="Export Dispatched",
+        form="Green Bean",
+        qty=qty,
+        ref_dt=doc.doctype,
+        ref_dn=doc.name,
+        entry_type="OUT",
+        entry_ref="export_dispatch_out",
+        coffee_grade=doc.coffee_grade or None,
+        remarks=f"Export dispatched for trade {doc.trade or ''}",
+    )
+
+
+def export_dispatch_on_trash(doc, method=None):
+    reverse_entries(doc.doctype, doc.name)

@@ -1,0 +1,223 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-04-07 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_details",
+  "naming_series",
+  "secondary_processing_ref",
+  "source_center",
+  "arrival_center",
+  "delivery_status",
+  "column_break_1",
+  "collected_by",
+  "arrival_time",
+  "section_break_cargo",
+  "coffee_type",
+  "coffee_grade",
+  "weight_in_kg",
+  "column_break_cargo_2",
+  "number_of_bags",
+  "bag_size",
+  "moisture",
+  "quantity_missing_kg",
+  "section_break_transport",
+  "plate_number",
+  "drivers_name",
+  "column_break_transport_2",
+  "comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Arrival Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "EAL-.YY.-.####"
+  },
+  {
+   "fieldname": "secondary_processing_ref",
+   "fieldtype": "Link",
+   "label": "Secondary Processing Ref",
+   "options": "Secondary Processing"
+  },
+  {
+   "fieldname": "source_center",
+   "fieldtype": "Link",
+   "label": "Source Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "arrival_center",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Export Warehouse",
+   "options": "Centers",
+   "reqd": 1
+  },
+  {
+   "default": "Fully Arrived",
+   "fieldname": "delivery_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Delivery Status",
+   "options": "Fully Arrived\nPartially Arrived\nWrong Delivery"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "__user",
+   "fieldname": "collected_by",
+   "fieldtype": "Link",
+   "label": "Received By",
+   "options": "User"
+  },
+  {
+   "default": "Now",
+   "fieldname": "arrival_time",
+   "fieldtype": "Datetime",
+   "label": "Arrival Time"
+  },
+  {
+   "fieldname": "section_break_cargo",
+   "fieldtype": "Section Break",
+   "label": "Cargo Details"
+  },
+  {
+   "fieldname": "coffee_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coffee Type",
+   "options": "\nNatural\nWashed\nSpecial Process"
+  },
+  {
+   "fieldname": "coffee_grade",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coffee Grade",
+   "options": "\nG1\nG2\nG3\nG4\nUG"
+  },
+  {
+   "fieldname": "weight_in_kg",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight (kg)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cargo_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_bags",
+   "fieldtype": "Int",
+   "label": "Number of Bags"
+  },
+  {
+   "fieldname": "bag_size",
+   "fieldtype": "Select",
+   "label": "Bag Size (kg)",
+   "options": "\n60\n85"
+  },
+  {
+   "fieldname": "moisture",
+   "fieldtype": "Float",
+   "label": "Moisture %"
+  },
+  {
+   "depends_on": "eval:doc.delivery_status=='Partially Arrived'",
+   "fieldname": "quantity_missing_kg",
+   "fieldtype": "Float",
+   "label": "Quantity Missing (kg)"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_transport",
+   "fieldtype": "Section Break",
+   "label": "Transport Details"
+  },
+  {
+   "fieldname": "plate_number",
+   "fieldtype": "Data",
+   "label": "Plate Number"
+  },
+  {
+   "fieldname": "drivers_name",
+   "fieldtype": "Data",
+   "label": "Driver's Name"
+  },
+  {
+   "fieldname": "column_break_transport_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-07 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Export Arrival Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Export Officer",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {"color": "Green", "title": "Fully Arrived"},
+  {"color": "Orange", "title": "Partially Arrived"},
+  {"color": "Red", "title": "Wrong Delivery"}
+ ]
+}

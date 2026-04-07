@@ -1,0 +1,293 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-04-07 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_details",
+  "naming_series",
+  "trade",
+  "cupping_date",
+  "status",
+  "export_warehouse",
+  "column_break_1",
+  "cupped_by",
+  "coffee_grade",
+  "coffee_type",
+  "secondary_processing_ref",
+  "section_break_sample",
+  "sample_weight_kg",
+  "moisture",
+  "column_break_2",
+  "number_of_bags_sampled",
+  "batch_ref",
+  "section_break_scores",
+  "fragrance_aroma",
+  "flavor",
+  "aftertaste",
+  "acidity",
+  "column_break_scores_2",
+  "body",
+  "balance",
+  "uniformity",
+  "overall",
+  "section_break_total",
+  "total_score",
+  "cup_classification",
+  "column_break_total_2",
+  "defects",
+  "final_grade",
+  "section_break_notes",
+  "cupping_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Cupping Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "CUP-.YY.-.####"
+  },
+  {
+   "fieldname": "trade",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Trade",
+   "options": "Trades",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "cupping_date",
+   "fieldtype": "Date",
+   "label": "Cupping Date",
+   "reqd": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Pending\nIn Progress\nCompleted\nRejected"
+  },
+  {
+   "fieldname": "export_warehouse",
+   "fieldtype": "Link",
+   "label": "Center",
+   "options": "Centers"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cupped_by",
+   "fieldtype": "Link",
+   "label": "Cupped By",
+   "options": "User"
+  },
+  {
+   "fieldname": "coffee_grade",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coffee Grade",
+   "options": "\nG1\nG2\nG3\nG4\nUG"
+  },
+  {
+   "fieldname": "coffee_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coffee Type",
+   "options": "\nNatural\nWashed\nSpecial Process"
+  },
+  {
+   "fieldname": "secondary_processing_ref",
+   "fieldtype": "Link",
+   "label": "Secondary Processing Ref",
+   "options": "Secondary Processing"
+  },
+  {
+   "fieldname": "section_break_sample",
+   "fieldtype": "Section Break",
+   "label": "Sample Details"
+  },
+  {
+   "fieldname": "sample_weight_kg",
+   "fieldtype": "Float",
+   "label": "Sample Weight (kg)"
+  },
+  {
+   "fieldname": "moisture",
+   "fieldtype": "Float",
+   "label": "Moisture %"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_bags_sampled",
+   "fieldtype": "Int",
+   "label": "Bags Sampled"
+  },
+  {
+   "fieldname": "batch_ref",
+   "fieldtype": "Data",
+   "label": "Batch Reference"
+  },
+  {
+   "fieldname": "section_break_scores",
+   "fieldtype": "Section Break",
+   "label": "SCA Cupping Scores (0-10)"
+  },
+  {
+   "fieldname": "fragrance_aroma",
+   "fieldtype": "Float",
+   "label": "Fragrance / Aroma"
+  },
+  {
+   "fieldname": "flavor",
+   "fieldtype": "Float",
+   "label": "Flavor"
+  },
+  {
+   "fieldname": "aftertaste",
+   "fieldtype": "Float",
+   "label": "Aftertaste"
+  },
+  {
+   "fieldname": "acidity",
+   "fieldtype": "Float",
+   "label": "Acidity"
+  },
+  {
+   "fieldname": "column_break_scores_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Float",
+   "label": "Body"
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Float",
+   "label": "Balance"
+  },
+  {
+   "fieldname": "uniformity",
+   "fieldtype": "Float",
+   "label": "Uniformity"
+  },
+  {
+   "fieldname": "overall",
+   "fieldtype": "Float",
+   "label": "Overall"
+  },
+  {
+   "fieldname": "section_break_total",
+   "fieldtype": "Section Break",
+   "label": "Results"
+  },
+  {
+   "fieldname": "total_score",
+   "fieldtype": "Float",
+   "label": "Total Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cup_classification",
+   "fieldtype": "Data",
+   "label": "Classification",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_total_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "defects",
+   "fieldtype": "Int",
+   "label": "Defects (Category 1 + 2)"
+  },
+  {
+   "fieldname": "final_grade",
+   "fieldtype": "Select",
+   "label": "Final Grade",
+   "options": "\nG1\nG2\nG3\nG4\nUG"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cupping_notes",
+   "fieldtype": "Small Text",
+   "label": "Cupping Notes"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-07 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Supply Chain",
+ "name": "Cupping Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Export Officer",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {"color": "Orange", "title": "Pending"},
+  {"color": "Blue", "title": "In Progress"},
+  {"color": "Green", "title": "Completed"},
+  {"color": "Red", "title": "Rejected"}
+ ]
+}

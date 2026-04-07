@@ -7,3 +7,4 @@ farmlink.patches.post_model_sync.refresh_farmlink_workspace
 # Patches added in this section will be executed after doctypes are migrated
 farmlink.patches.post_model_sync.update_payment_link_reference
 farmlink.patches.post_model_sync.update_farmlink_workspace_v2
+farmlink.patches.post_model_sync.setup_export_module

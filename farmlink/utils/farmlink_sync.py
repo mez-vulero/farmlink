@@ -22,10 +22,14 @@ DOCTYPE_MAPPINGS = { 'farmers': 'Farmers', 'farms': 'Farms', 'payments': 'Paymen
     'secondary_processing': 'Secondary Processing',
     'arrival_logs': 'Primary Arrival Log',
     'personnel': 'Personnel',
+    'export_arrival_logs': 'Export Arrival Log',
+    'cupping_orders': 'Cupping Order',
+    'trades': 'Trades',
+    'export_dispatches': 'Export Dispatch',
 }
 
 # Processing order for dependencies (independent first)
-PROCESSING_ORDER = ['territories', 'centers', 'farmers', 'farms', 'suppliers', 'purchases', 'payments', 'dispatches', 'arrival_logs','primary_processing', 'secondary_processing','secondary_arrival_logs',]
+PROCESSING_ORDER = ['territories', 'centers', 'farmers', 'farms', 'suppliers', 'purchases', 'payments', 'dispatches', 'arrival_logs','primary_processing', 'secondary_processing','secondary_arrival_logs', 'export_arrival_logs', 'cupping_orders', 'trades', 'export_dispatches',]
 
 # Link field mappings for dependency resolution
 LINK_FIELD_MAPPINGS = {
@@ -60,7 +64,25 @@ LINK_FIELD_MAPPINGS = {
     },
     'supplier_purchases': {
         # No linked fields - independent
-    }
+    },
+    'export_arrival_logs': {
+        'arrival_center': 'centers',
+        'source_center': 'centers',
+        'secondary_processing_ref': 'secondary_processing',
+    },
+    'cupping_orders': {
+        'export_warehouse': 'centers',
+        'secondary_processing_ref': 'secondary_processing',
+    },
+    'trades': {
+        'customer': 'customers',
+        'export_warehouse': 'centers',
+        'cupping_order': 'cupping_orders',
+    },
+    'export_dispatches': {
+        'trade': 'trades',
+        'export_warehouse': 'centers',
+    },
 }
 
 
