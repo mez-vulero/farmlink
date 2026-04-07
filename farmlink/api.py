@@ -71,6 +71,16 @@ def get_farm_center_points(site=None):
         filters=filters,
     )
 
+    # Batch-fetch farmer full names
+    farmer_ids = list({r.farmer for r in rows if r.farmer})
+    farmer_names = {}
+    if farmer_ids:
+        for f in frappe.db.get_all(
+            "Farmers", fields=["name", "full_name"],
+            filters={"name": ["in", farmer_ids]},
+        ):
+            farmer_names[f.name] = f.full_name or ""
+
     points = []
     for row in rows:
         val = row.farm_center_point
@@ -114,6 +124,7 @@ def get_farm_center_points(site=None):
                     "lng": flng,
                     "site": row.territory or "",
                     "farmer": row.farmer or "",
+                    "farmer_name": farmer_names.get(row.farmer, "") if row.farmer else "",
                 })
         except Exception:
             continue

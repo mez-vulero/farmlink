@@ -7,10 +7,10 @@
   },
   {
    "chart_name": "Farmers by Territory",
-   "label": "Farmers by Territory"
+   "label": "Farmers by Site"
   }
  ],
- "content": "[{\"id\": \"hdr_master\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\">Master Data</span>\", \"col\": 12}}, {\"id\": \"card_farmers\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Farmers\", \"col\": 3}}, {\"id\": \"card_farms\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Farms\", \"col\": 3}}, {\"id\": \"card_centers\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Collection Centers\", \"col\": 3}}, {\"id\": \"card_suppliers\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Suppliers\", \"col\": 3}}, {\"id\": \"card_personnel\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Personnel Count\", \"col\": 3}}, {\"id\": \"card_territories\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Territories\", \"col\": 3}}, {\"id\": \"spacer_master\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"hdr_charts\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\"><b>Population Insights</b></span>\", \"col\": 12}}, {\"id\": \"chart_gender\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Farmers by Gender\", \"col\": 6}}, {\"id\": \"chart_territory\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Farmers by Territory\", \"col\": 6}}, {\"id\": \"spacer_shortcuts\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"shortcut_centers\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Collection Sites\", \"col\": 3}}, {\"id\": \"shortcut_territory\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Territory\", \"col\": 3}}, {\"id\": \"shortcut_suppliers\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Suppliers\", \"col\": 3}}, {\"id\": \"shortcut_personnel\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Personnel\", \"col\": 3}}]",
+ "content": "[{\"id\": \"hdr_master\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\">Master Data</span>\", \"col\": 12}}, {\"id\": \"card_farmers\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Farmers\", \"col\": 3}}, {\"id\": \"card_farms\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Farms\", \"col\": 3}}, {\"id\": \"card_suppliers\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Suppliers\", \"col\": 3}}, {\"id\": \"card_personnel\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Personnel Count\", \"col\": 3}}, {\"id\": \"card_territories\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Territories\", \"col\": 3}}, {\"id\": \"spacer_master\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"hdr_charts\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\"><b>Population Insights</b></span>\", \"col\": 12}}, {\"id\": \"chart_gender\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Farmers by Gender\", \"col\": 6}}, {\"id\": \"chart_territory\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Farmers by Territory\", \"col\": 6}}, {\"id\": \"spacer_shortcuts\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"shortcut_centers\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Collection Sites\", \"col\": 3}}, {\"id\": \"shortcut_territory\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Territory\", \"col\": 3}}, {\"id\": \"shortcut_suppliers\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Suppliers\", \"col\": 3}}, {\"id\": \"shortcut_personnel\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Personnel\", \"col\": 3}}]",
  "creation": "2026-04-07 08:07:34.648062",
  "custom_blocks": [],
  "docstatus": 0,
@@ -24,7 +24,7 @@
  "label": "FarmLink",
  "link_type": "DocType",
  "links": [],
- "modified": "2026-04-07 08:14:14.146762",
+ "modified": "2026-04-07 09:55:38.793132",
  "modified_by": "Administrator",
  "module": "FarmLink",
  "name": "FarmLink",
@@ -36,10 +36,6 @@
   {
    "label": "Total Farms",
    "number_card_name": "Total Farms"
-  },
-  {
-   "label": "Active Collection Sites",
-   "number_card_name": "Active Collection Centers"
   },
   {
    "label": "Total Suppliers",
@@ -86,7 +82,6 @@
    "doc_view": "List",
    "label": "Collection Sites",
    "link_to": "Centers",
-   "stats_filter": "[]",
    "type": "DocType"
   },
   {
@@ -94,7 +89,6 @@
    "doc_view": "List",
    "label": "Suppliers",
    "link_to": "Supplier",
-   "stats_filter": "[]",
    "type": "DocType"
   },
   {
@@ -102,7 +96,6 @@
    "doc_view": "List",
    "label": "Territory",
    "link_to": "Territory",
-   "stats_filter": "[]",
    "type": "DocType"
   },
   {
@@ -110,7 +103,6 @@
    "doc_view": "List",
    "label": "Personnel",
    "link_to": "Personnel",
-   "stats_filter": "[]",
    "type": "DocType"
   }
  ],

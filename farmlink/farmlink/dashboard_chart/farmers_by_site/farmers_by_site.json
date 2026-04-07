@@ -1,5 +1,5 @@
 {
- "chart_name": "Farmers by Territory",
+ "chart_name": "Farmers by Site",
  "chart_type": "Group By",
  "custom_options": "{\"type\": \"bar\"}",
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_public": 0,
  "is_standard": 1,
  "module": "FarmLink",
- "name": "Farmers by Territory",
+ "name": "Farmers by Site",
  "number_of_groups": 10,
  "timespan": "Last 12 months",
  "time_interval": "Monthly",

@@ -124,7 +124,9 @@
 				radius: 6, color: "#0f5e91", weight: 2,
 				fillColor: "#1182c6", fillOpacity: 0.9,
 			}).bindTooltip(
-				`<b>${p.name || ""}</b>${p.site ? `<br>Site: ${p.site}` : ""}`,
+				`<b>${p.name || ""}</b>`
+				+ (p.farmer_name ? `<br>Farmer: ${p.farmer_name}` : "")
+				+ (p.site ? `<br>Site: ${p.site}` : ""),
 				{ direction: "top" }
 			);
 			marker._site = p.site || "";
