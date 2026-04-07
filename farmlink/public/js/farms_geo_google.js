@@ -89,11 +89,20 @@
   // ---------- value parsers ----------
   function parsePoint(val) {
     if (!val) return null;
-    if (typeof val === "object") return (val.lat != null && val.lng != null) ? val : null;
+    if (typeof val === "object" && val.lat != null && val.lng != null) return val;
     try {
-      const o = JSON.parse(val);
+      const o = typeof val === "string" ? JSON.parse(val) : val;
       if (o && (("lat" in o) || ("latitude" in o)) && (("lng" in o) || ("longitude" in o))) {
         return { lat: o.lat ?? o.latitude, lng: o.lng ?? o.longitude };
+      }
+      // Handle GeoJSON FeatureCollection with a Point geometry
+      if (o && o.type === "FeatureCollection" && Array.isArray(o.features)) {
+        for (const feat of o.features) {
+          const geom = feat && feat.geometry;
+          if (geom && geom.type === "Point" && Array.isArray(geom.coordinates) && geom.coordinates.length >= 2) {
+            return { lat: geom.coordinates[1], lng: geom.coordinates[0] };
+          }
+        }
       }
     } catch {}
     if (typeof val === "string") {

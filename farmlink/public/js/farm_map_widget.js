@@ -119,6 +119,7 @@
 		siteGroups = {};
 		allMarkersGroup = L.layerGroup().addTo(map);
 		points.forEach((p) => {
+			if (Math.abs(p.lat) > 90 || Math.abs(p.lng) > 180) return;
 			const marker = L.circleMarker(L.latLng(p.lat, p.lng), {
 				radius: 6, color: "#0f5e91", weight: 2,
 				fillColor: "#1182c6", fillOpacity: 0.9,
@@ -217,7 +218,8 @@
 			}).addTo(map);
 			buildMarkers(map, points);
 
-			const bounds = L.latLngBounds(points.map((p) => [p.lat, p.lng]));
+			const validPts = points.filter((p) => Math.abs(p.lat) <= 90 && Math.abs(p.lng) <= 180);
+			const bounds = L.latLngBounds(validPts.map((p) => [p.lat, p.lng]));
 			if (bounds.isValid()) map.fitBounds(bounds, { padding: [16, 16] });
 			else map.setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], 7);
 

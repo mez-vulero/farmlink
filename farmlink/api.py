@@ -104,10 +104,14 @@ def get_farm_center_points(site=None):
                     lat, lng = m.group(1), m.group(2)
 
             if lat is not None and lng is not None:
+                flat, flng = float(lat), float(lng)
+                # Skip records with invalid coordinates
+                if not (-90 <= flat <= 90 and -180 <= flng <= 180):
+                    continue
                 points.append({
                     "name": row.name,
-                    "lat": float(lat),
-                    "lng": float(lng),
+                    "lat": flat,
+                    "lng": flng,
                     "site": row.territory or "",
                     "farmer": row.farmer or "",
                 })
