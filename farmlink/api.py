@@ -57,42 +57,89 @@ def _write_purchase_summary(purchase_name: str):
 
 
 @frappe.whitelist()
-def get_farm_center_points():
-    """Return list of geo points for farm_center_point (lat/lng)."""
-    points = []
+def get_farm_center_points(site=None):
+    """Return farm geo points with collection site (territory), optionally filtered."""
     lat_lng_re = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$")
+
+    filters = {"farm_center_point": ["is", "set"]}
+    if site:
+        filters["territory"] = site
+
     rows = frappe.db.get_all(
         "Farms",
-        fields=["name", "farm_center_point"],
-        filters={"farm_center_point": ["is", "set"]},
+        fields=["name", "farm_center_point", "farmer", "territory"],
+        filters=filters,
     )
+
+    points = []
     for row in rows:
         val = row.farm_center_point
         if not val:
             continue
         try:
+            obj = None
             if isinstance(val, dict):
                 obj = val
             else:
                 try:
                     obj = json.loads(val)
                 except Exception:
-                    obj = None
+                    pass
 
-            lat = None
-            lng = None
+            lat = lng = None
             if obj:
                 lat = obj.get("lat") or obj.get("latitude")
                 lng = obj.get("lng") or obj.get("longitude")
+                if lat is None and obj.get("type") == "FeatureCollection":
+                    for feat in (obj.get("features") or []):
+                        geom = feat.get("geometry") or {}
+                        if geom.get("type") == "Point":
+                            coords = geom.get("coordinates") or []
+                            if len(coords) >= 2:
+                                lng, lat = coords[0], coords[1]
+                                break
             elif isinstance(val, str):
-                match = lat_lng_re.match(val)
-                if match:
-                    lat = match.group(1)
-                    lng = match.group(2)
+                m = lat_lng_re.match(val)
+                if m:
+                    lat, lng = m.group(1), m.group(2)
 
             if lat is not None and lng is not None:
-                points.append({"name": row.name, "lat": float(lat), "lng": float(lng)})
+                points.append({
+                    "name": row.name,
+                    "lat": float(lat),
+                    "lng": float(lng),
+                    "site": row.territory or "",
+                    "farmer": row.farmer or "",
+                })
         except Exception:
-            # ignore malformed values
             continue
-    return points
+
+    # Get all Territory records for the filter dropdown
+    all_territories = frappe.db.get_all("Territory", fields=["name"], order_by="name asc")
+    sites = [t.name for t in all_territories]
+    return {"points": points, "sites": sites}
+
+
+@frappe.whitelist()
+def get_farm_area_by_site(site=None):
+    """Return total coffee farm area (hectares) grouped by collection site (territory)."""
+    filters = {"territory": ["is", "set"]}
+    if site:
+        filters["territory"] = site
+
+    rows = frappe.db.get_all(
+        "Farmers",
+        fields=["territory as site", "land_size_allocated_for_coffee_in_hectares as area"],
+        filters=filters,
+    )
+
+    totals = {}
+    for r in rows:
+        totals[r.site] = totals.get(r.site, 0) + (r.area or 0)
+
+    data = [{"site": k, "area": round(v, 2)} for k, v in sorted(totals.items())]
+
+    # All available territory options for the filter
+    all_territories = frappe.db.get_all("Territory", fields=["name"], order_by="name asc")
+    sites = [t.name for t in all_territories]
+    return {"data": data, "sites": sites}

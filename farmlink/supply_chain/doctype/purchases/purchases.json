@@ -72,7 +72,7 @@
   {
    "fieldname": "collection_center",
    "fieldtype": "Link",
-   "label": "Collection Center",
+   "label": "Collection Site",
    "options": "Centers"
   },
   {

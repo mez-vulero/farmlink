@@ -208,7 +208,7 @@
   {
    "fieldname": "specific_name_of_coffee_collection_center",
    "fieldtype": "Data",
-   "label": "Specific name of coffee collection center",
+   "label": "Collection Site",
    "options": "Centers"
   },
   {
@@ -337,7 +337,7 @@
   {
    "fieldname": "site_name",
    "fieldtype": "Link",
-   "label": "Site Name",
+   "label": "Collection Site",
    "options": "Centers"
   }
  ],

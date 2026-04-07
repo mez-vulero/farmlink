@@ -11,10 +11,7 @@
     Base.__farmlink_orig_bind_leaflet_data = Base.prototype.bind_leaflet_data;
     Base.prototype.make_map = function () {
       if (cur_frm?.doctype === "Farms" && TARGET_FIELDS.has(this.df.fieldname)) {
-        try {
-          (this.$input_wrapper || this.$wrapper)?.find?.(".leaflet-container")?.remove?.();
-        } catch (e) {}
-        return; // custom renderer will handle it
+        return; // custom renderer handles these fields — don't touch the DOM
       }
       return Base.__farmlink_orig_make_map.call(this);
     };
@@ -231,12 +228,20 @@
     const df = frm.fields_dict[CENTER_FIELD];
     if (!df || df.df.fieldtype !== "Geolocation") return;
 
+    // If map already exists, just update marker position and bail out
+    if (frm.__farmlink_maps?.center?.map) {
+      const existing = frm.__farmlink_maps.center;
+      const val = parsePoint(frm.doc[CENTER_FIELD]);
+      if (val) {
+        existing.marker.setLatLng(val);
+        existing.map.panTo(val);
+      }
+      existing.map.invalidateSize();
+      return;
+    }
+
     const mount = ensureMount(df, `osm_${CENTER_FIELD}`);
     if (!mount) return;
-
-    if (frm.__farmlink_maps?.center?.map) {
-      frm.__farmlink_maps.center.map.remove();
-    }
 
     const current = parsePoint(frm.doc[CENTER_FIELD]) || DEFAULT_CENTER;
 
@@ -308,12 +313,14 @@
     const df = frm.fields_dict[POLY_FIELD];
     if (!df || df.df.fieldtype !== "Geolocation") return;
 
+    // If map already exists, just refresh size and bail out
+    if (frm.__farmlink_maps?.poly?.map) {
+      frm.__farmlink_maps.poly.map.invalidateSize();
+      return;
+    }
+
     const mount = ensureMount(df, `osm_${POLY_FIELD}`);
     if (!mount) return;
-
-    if (frm.__farmlink_maps?.poly?.map) {
-      frm.__farmlink_maps.poly.map.remove();
-    }
 
     const parsed = parsePolygon(frm.doc[POLY_FIELD]);
     const center = parsed && parsed.length ? parsed[0] : (parsePoint(frm.doc[CENTER_FIELD]) || DEFAULT_CENTER);

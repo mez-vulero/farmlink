@@ -1,15 +1,18 @@
-// Workspace map widget for farm_center_point markers (Leaflet + OSM)
+// FarmLink Workspace Widgets — Farm Map + Farm Area Chart (with site filter)
 (() => {
 	const MAP_CONTAINER_ID = "farmlink-farm-map";
+	const CHART_CONTAINER_ID = "farmlink-farm-area-chart";
 	const DEFAULT_CENTER = { lat: 9.010793, lng: 38.761252 }; // Addis Ababa
 
 	let loader = null;
-	let retryTimer = null;
 	let activeMap = null;
+	let siteGroups = {};
+	let allMarkersGroup = null;
+	let currentMapSite = "";
+	let areaChartInstance = null;
 
 	function isWorkspacePage() {
 		const route = frappe.get_route();
-		// Only render on FarmLink workspace (route: ["Workspaces", "FarmLink"])
 		return (
 			route &&
 			route[0] &&
@@ -19,41 +22,28 @@
 		);
 	}
 
+	// ── Leaflet loader ──────────────────────────────────────────────
 	function loadLeaflet() {
 		if (window.L && window.L.map) return Promise.resolve();
 		if (loader) return loader;
-
 		loader = new Promise((resolve, reject) => {
-			const cssId = "farmlink-leaflet-css";
-			const jsId = "farmlink-leaflet-js";
-
-			if (!document.getElementById(cssId)) {
+			if (!document.getElementById("farmlink-leaflet-css")) {
 				const link = document.createElement("link");
-				link.id = cssId;
+				link.id = "farmlink-leaflet-css";
 				link.rel = "stylesheet";
 				link.href = "/assets/frappe/js/lib/leaflet/leaflet.css";
 				document.head.appendChild(link);
 			}
-
-			if (document.getElementById(jsId)) {
+			if (document.getElementById("farmlink-leaflet-js")) {
 				let tries = 0;
-				const timer = setInterval(() => {
-					if (window.L && window.L.map) {
-						clearInterval(timer);
-						resolve();
-						return;
-					}
-					tries += 1;
-					if (tries > 60) {
-						clearInterval(timer);
-						reject(new Error("Leaflet failed to load"));
-					}
+				const t = setInterval(() => {
+					if (window.L && window.L.map) { clearInterval(t); resolve(); return; }
+					if (++tries > 60) { clearInterval(t); reject(new Error("Leaflet timeout")); }
 				}, 50);
 				return;
 			}
-
 			const s = document.createElement("script");
-			s.id = jsId;
+			s.id = "farmlink-leaflet-js";
 			s.src = "/assets/frappe/js/lib/leaflet/leaflet.js";
 			s.async = true;
 			s.onload = () => resolve();
@@ -63,157 +53,335 @@
 		return loader;
 	}
 
-	function addBaseLayer(map) {
-		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-			maxZoom: 19,
-			attribution: "© OpenStreetMap contributors",
-		}).addTo(map);
+	// ── Shared helpers ──────────────────────────────────────────────
+	function buildSiteSelect(id, sites, current, onChange) {
+		const sel = document.createElement("select");
+		sel.id = id;
+		sel.style.cssText =
+			"font-size:var(--text-sm);padding:4px 8px;border-radius:var(--border-radius);" +
+			"border:1px solid var(--border-color);background:var(--control-bg);" +
+			"color:var(--text-color);cursor:pointer;min-width:140px;";
+		const allOpt = document.createElement("option");
+		allOpt.value = "";
+		allOpt.textContent = "All Sites";
+		sel.appendChild(allOpt);
+		sites.forEach((s) => {
+			const opt = document.createElement("option");
+			opt.value = s;
+			opt.textContent = s;
+			sel.appendChild(opt);
+		});
+		sel.value = current || "";
+		sel.addEventListener("change", () => onChange(sel.value));
+		return sel;
 	}
 
-	async function fetchPoints() {
-		const { message } = await frappe.call({ method: "farmlink.api.get_farm_center_points" });
-		return message || [];
+	function showMessage(el, text) {
+		el.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;
+			height:100%;min-height:80px;color:var(--text-muted);font-size:var(--text-md);">${text}</div>`;
 	}
 
+	function findMainSection() {
+		return (
+			document.querySelector(".workspace .layout-main-section") ||
+			document.querySelector(".page-content .layout-main-section") ||
+			document.querySelector(".page-content")
+		);
+	}
+
+	function makeCardHeader(title) {
+		const header = document.createElement("div");
+		header.style.cssText =
+			"display:flex;align-items:center;justify-content:space-between;padding:var(--padding-md);";
+		const h = document.createElement("div");
+		h.className = "h6";
+		h.style.margin = "0";
+		h.textContent = title;
+		const right = document.createElement("div");
+		right.style.cssText = "display:flex;align-items:center;gap:6px;";
+		header.appendChild(h);
+		header.appendChild(right);
+		return { header, right };
+	}
+
+	// ═══════════════════════════════════════════════════════════════
+	//  FARM MAP WIDGET
+	// ═══════════════════════════════════════════════════════════════
 	function destroyMap() {
-		if (activeMap) {
-			activeMap.remove();
-			activeMap = null;
-		}
+		if (activeMap) { activeMap.remove(); activeMap = null; }
+		siteGroups = {};
+		allMarkersGroup = null;
 		const el = document.getElementById(MAP_CONTAINER_ID);
 		if (el && el._leaflet_id) delete el._leaflet_id;
 	}
 
-	async function render() {
-		if (!isWorkspacePage()) {
-			removeContainer();
-			destroyMap();
-			return;
-		}
+	function buildMarkers(map, points) {
+		siteGroups = {};
+		allMarkersGroup = L.layerGroup().addTo(map);
+		points.forEach((p) => {
+			const marker = L.circleMarker(L.latLng(p.lat, p.lng), {
+				radius: 6, color: "#0f5e91", weight: 2,
+				fillColor: "#1182c6", fillOpacity: 0.9,
+			}).bindTooltip(
+				`<b>${p.name || ""}</b>${p.site ? `<br>Site: ${p.site}` : ""}`,
+				{ direction: "top" }
+			);
+			marker._site = p.site || "";
+			allMarkersGroup.addLayer(marker);
+			if (p.site) {
+				if (!siteGroups[p.site]) siteGroups[p.site] = [];
+				siteGroups[p.site].push(marker);
+			}
+		});
+	}
 
-		const el = getOrCreateContainer();
-		if (!el) {
-			scheduleRetry();
-			return;
-		}
-		if (el.dataset.rendering === "1" || el.dataset.rendered === "1") return;
-		el.dataset.rendering = "1";
+	function applyMapFilter(map, site) {
+		currentMapSite = site;
+		const bounds = L.latLngBounds();
+		allMarkersGroup.eachLayer((marker) => {
+			const show = !site || marker._site === site;
+			const el = marker.getElement ? marker.getElement() : null;
+			if (el) el.style.display = show ? "" : "none";
+			if (show) bounds.extend(marker.getLatLng());
+		});
+		if (bounds.isValid()) map.fitBounds(bounds, { padding: [20, 20] });
+		else map.setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], 7);
+	}
 
-		showMessage(el, "Loading map...");
+	function getOrCreateMapCard() {
+		const existing = document.getElementById(MAP_CONTAINER_ID);
+		if (existing) {
+			const card = existing.closest(".farmlink-map-card");
+			return {
+				mapEl: existing,
+				headerRight: card ? card.querySelector(".farmlink-map-header-right") : null,
+			};
+		}
+		const main = findMainSection();
+		if (!main) return { mapEl: null, headerRight: null };
+
+		const card = document.createElement("div");
+		card.className = "frappe-card farmlink-map-card";
+		card.style.cssText = "margin-top:var(--margin-md);padding:0;";
+
+		const { header, right } = makeCardHeader("Farm Centers Map");
+		right.className = "farmlink-map-header-right";
+		card.appendChild(header);
+
+		const mapEl = document.createElement("div");
+		mapEl.id = MAP_CONTAINER_ID;
+		mapEl.style.cssText = "height:420px;border-radius:0 0 var(--border-radius) var(--border-radius);overflow:hidden;";
+		card.appendChild(mapEl);
+		main.prepend(card);
+		return { mapEl, headerRight: right };
+	}
+
+	async function renderMap() {
+		const { mapEl, headerRight } = getOrCreateMapCard();
+		if (!mapEl) return false;
+		if (mapEl.dataset.rendering === "1" || mapEl.dataset.rendered === "1") return true;
+		mapEl.dataset.rendering = "1";
+
+		showMessage(mapEl, "Loading map...");
 		try {
 			await loadLeaflet();
-			const points = await fetchPoints();
+			const data = await frappe.call({ method: "farmlink.api.get_farm_center_points" });
+			const { points = [], sites = [] } = data.message || {};
+
+			// Always build the site filter dropdown (populated from Centers)
+			if (headerRight) {
+				headerRight.innerHTML = "";
+				const lbl = document.createElement("span");
+				lbl.style.cssText = "font-size:var(--text-sm);color:var(--text-muted);";
+				lbl.textContent = "Collection Site:";
+				headerRight.appendChild(lbl);
+				headerRight.appendChild(
+					buildSiteSelect("farmlink-map-site-filter", sites, currentMapSite, (s) => {
+						if (activeMap) applyMapFilter(activeMap, s);
+					})
+				);
+			}
 
 			if (!points.length) {
-				showMessage(el, "No farm centers found.");
-				el.dataset.rendered = "1";
+				showMessage(mapEl, "No farm center points recorded yet.");
+				mapEl.dataset.rendered = "1";
+				return true;
+			}
+
+			destroyMap();
+			mapEl.innerHTML = "";
+
+			const map = L.map(mapEl, { zoomControl: true, attributionControl: true });
+			L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+				maxZoom: 19, attribution: "© OpenStreetMap contributors",
+			}).addTo(map);
+			buildMarkers(map, points);
+
+			const bounds = L.latLngBounds(points.map((p) => [p.lat, p.lng]));
+			if (bounds.isValid()) map.fitBounds(bounds, { padding: [16, 16] });
+			else map.setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], 7);
+
+			activeMap = map;
+			mapEl.dataset.rendered = "1";
+		} catch (e) {
+			console.error("Farm map render failed", e);
+			showMessage(mapEl, e?.message || "Failed to load map");
+			mapEl.dataset.rendered = "1";
+		} finally {
+			delete mapEl.dataset.rendering;
+		}
+		return true;
+	}
+
+	// ═══════════════════════════════════════════════════════════════
+	//  FARM AREA CHART WIDGET
+	// ═══════════════════════════════════════════════════════════════
+	function getOrCreateChartCard() {
+		const existing = document.getElementById(CHART_CONTAINER_ID);
+		if (existing) {
+			const card = existing.closest(".farmlink-area-card");
+			return {
+				chartEl: existing,
+				headerRight: card ? card.querySelector(".farmlink-area-header-right") : null,
+			};
+		}
+		const main = findMainSection();
+		if (!main) return { chartEl: null, headerRight: null };
+
+		// Insert after the map card (or at top if map doesn't exist)
+		const mapCard = document.querySelector(".farmlink-map-card");
+
+		const card = document.createElement("div");
+		card.className = "frappe-card farmlink-area-card";
+		card.style.cssText = "margin-top:var(--margin-md);padding:0;";
+
+		const { header, right } = makeCardHeader("Total Coffee Farm Area by Site");
+		right.className = "farmlink-area-header-right";
+		card.appendChild(header);
+
+		const chartEl = document.createElement("div");
+		chartEl.id = CHART_CONTAINER_ID;
+		chartEl.style.cssText = "padding:0 var(--padding-md) var(--padding-md);min-height:250px;";
+		card.appendChild(chartEl);
+
+		if (mapCard && mapCard.nextSibling) {
+			main.insertBefore(card, mapCard.nextSibling);
+		} else if (mapCard) {
+			main.appendChild(card);
+		} else {
+			main.prepend(card);
+		}
+		return { chartEl, headerRight: right };
+	}
+
+	async function renderAreaChart(site) {
+		const { chartEl, headerRight } = getOrCreateChartCard();
+		if (!chartEl) return;
+
+		// Build filter dropdown (only once)
+		if (headerRight && !headerRight.dataset.built) {
+			headerRight.dataset.built = "1";
+			const lbl = document.createElement("span");
+			lbl.style.cssText = "font-size:var(--text-sm);color:var(--text-muted);";
+			lbl.textContent = "Collection Site:";
+			headerRight.appendChild(lbl);
+			headerRight.appendChild(
+				buildSiteSelect("farmlink-area-site-filter", [], "", (s) => renderAreaChart(s))
+			);
+		}
+
+		showMessage(chartEl, "Loading...");
+		try {
+			const args = {};
+			if (site) args.site = site;
+			const resp = await frappe.call({ method: "farmlink.api.get_farm_area_by_site", args });
+			const { data = [], sites: allSites = [] } = resp.message || {};
+
+			// Update dropdown options if not yet populated
+			const sel = document.getElementById("farmlink-area-site-filter");
+			if (sel && sel.options.length <= 1 && allSites.length) {
+				allSites.forEach((s) => {
+					const opt = document.createElement("option");
+					opt.value = s;
+					opt.textContent = s;
+					sel.appendChild(opt);
+				});
+				if (site) sel.value = site;
+			}
+
+			if (!data.length) {
+				showMessage(chartEl, site
+					? `No farm area data for "${site}".`
+					: "No farm area data recorded yet.");
 				return;
 			}
 
-			destroyMap();
-			el.innerHTML = "";
+			chartEl.innerHTML = "";
 
-			const map = L.map(el, {
-				zoomControl: true,
-				attributionControl: true,
-			});
-			addBaseLayer(map);
+			const labels = data.map((d) => d.site);
+			const values = data.map((d) => d.area);
 
-			const bounds = L.latLngBounds();
-			points.forEach((p) => {
-				const pos = L.latLng(p.lat, p.lng);
-				L.circleMarker(pos, {
-					radius: 6,
-					color: "#0f5e91",
-					weight: 2,
-					fillColor: "#1182c6",
-					fillOpacity: 0.9,
-				}).addTo(map).bindTooltip(p.name || "", { direction: "top" });
-				bounds.extend(pos);
-			});
-
-			if (bounds.isValid()) {
-				map.fitBounds(bounds, { padding: [16, 16] });
-			} else {
-				map.setView(DEFAULT_CENTER, 12);
+			if (areaChartInstance) {
+				areaChartInstance = null;
 			}
 
-			activeMap = map;
-			el.dataset.rendered = "1";
+			areaChartInstance = new frappe.Chart(chartEl, {
+				type: "bar",
+				height: 250,
+				colors: ["#22c55e"],
+				data: {
+					labels,
+					datasets: [{ name: "Hectares", values }],
+				},
+				axisOptions: {
+					xAxisMode: "tick",
+					xIsSeries: false,
+				},
+				barOptions: { spaceRatio: 0.4 },
+				tooltipOptions: {
+					formatTooltipY: (d) => `${d} ha`,
+				},
+			});
 		} catch (e) {
-			console.error("Farm map render failed", e);
-			showMessage(el, e?.message || "Failed to load map");
-			el.dataset.rendered = "1";
-		} finally {
-			delete el.dataset.rendering;
+			console.error("Farm area chart failed", e);
+			showMessage(chartEl, e?.message || "Failed to load chart");
 		}
 	}
 
-	function getOrCreateContainer() {
-		// Try existing container first
-		let el = document.getElementById(MAP_CONTAINER_ID);
-		if (el) return el;
-
-		// Find a sensible workspace content area to append to
-		const main =
-			document.querySelector(".workspace .layout-main-section") ||
-			document.querySelector(".page-content .layout-main-section") ||
-			document.querySelector(".page-content");
-		if (!main) return null;
-
-		// Build a simple card wrapper for the map
-		const card = document.createElement("div");
-		card.className = "frappe-card";
-		card.style.marginTop = "var(--margin-md)";
-		card.style.padding = "0";
-
-		const header = document.createElement("div");
-		header.className = "frappe-card-header";
-		header.style.display = "flex";
-		header.style.alignItems = "center";
-		header.style.justifyContent = "space-between";
-		header.style.padding = "var(--padding-md)";
-		header.innerHTML = `<div class="h6" style="margin:0">Farm Centers Map</div>`;
-		card.appendChild(header);
-
-		el = document.createElement("div");
-		el.id = MAP_CONTAINER_ID;
-		el.style.height = "420px";
-		el.style.borderRadius = "0 0 var(--border-radius) var(--border-radius)";
-		el.style.overflow = "hidden";
-		card.appendChild(el);
-
-		main.prepend(card);
-		return el;
+	// ═══════════════════════════════════════════════════════════════
+	//  ORCHESTRATION
+	// ═══════════════════════════════════════════════════════════════
+	function removeWidgets() {
+		destroyMap();
+		document.querySelector(".farmlink-map-card")?.remove();
+		document.querySelector(".farmlink-area-card")?.remove();
+		areaChartInstance = null;
 	}
 
-	function showMessage(el, text) {
-		el.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:var(--text-md);">${text}</div>`;
-	}
+	async function renderAll() {
+		if (!isWorkspacePage()) {
+			removeWidgets();
+			return;
+		}
+		if (document.getElementById(MAP_CONTAINER_ID)?.dataset.rendered === "1") return;
 
-	function scheduleRetry() {
-		if (retryTimer) return;
-		retryTimer = setTimeout(() => {
-			retryTimer = null;
-			render();
-		}, 300);
+		await renderMap();
+		await renderAreaChart();
 	}
 
 	function watch() {
-		render();
-		const observer = new MutationObserver(() => render());
+		renderAll();
+		const observer = new MutationObserver(() => {
+			if (isWorkspacePage() && !document.getElementById(MAP_CONTAINER_ID)) {
+				renderAll();
+			}
+		});
 		observer.observe(document.body, { childList: true, subtree: true });
-		// also re-render on route change
-		frappe.router.on("change", () => render());
-	}
-
-	function removeContainer() {
-		const el = document.getElementById(MAP_CONTAINER_ID);
-		if (el) {
-			const card = el.closest(".frappe-card");
-			if (card) card.remove();
-			else el.remove();
-		}
+		frappe.router.on("change", () => {
+			const el = document.getElementById(MAP_CONTAINER_ID);
+			if (el) { delete el.dataset.rendered; delete el.dataset.rendering; }
+			renderAll();
+		});
 	}
 
 	$(document).ready(watch);

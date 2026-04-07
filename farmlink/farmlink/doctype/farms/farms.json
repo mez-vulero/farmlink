@@ -21,7 +21,7 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
-   "label": "Territory",
+   "label": "Collection Site",
    "options": "Territory"
   },
   {

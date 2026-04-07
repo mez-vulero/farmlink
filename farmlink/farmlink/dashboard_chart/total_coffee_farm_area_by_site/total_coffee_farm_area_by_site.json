@@ -1,0 +1,30 @@
+{
+ "chart_name": "Total Coffee Farm Area by Site",
+ "chart_type": "Group By",
+ "custom_options": "{\"type\": \"bar\"}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "dynamic_filters_json": "{}",
+ "filters_json": "[]",
+ "group_by_based_on": "site_name",
+ "group_by_type": "Sum",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "module": "FarmLink",
+ "name": "Total Coffee Farm Area by Site",
+ "number_of_groups": 20,
+ "timespan": "Last 12 months",
+ "time_interval": "Monthly",
+ "timeseries": 0,
+ "type": "Bar",
+ "use_report_chart": 0,
+ "y_axis": [
+  {
+   "aggregate_function_based_on": "land_size_allocated_for_coffee_in_hectares",
+   "color": "#22c55e",
+   "label": "Hectares"
+  }
+ ],
+ "document_type": "Farmers"
+}
