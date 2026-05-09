@@ -33,6 +33,26 @@ import frappe
 from frappe import _
 from frappe.utils import get_datetime, now_datetime
 
+# Frappe exposes rate_limit at different paths across versions:
+#   v15+ : frappe.rate_limit (top-level alias)
+#   v14- : frappe.rate_limiter.rate_limit
+#   if neither is importable (very old or stripped builds) we fall back to a
+#   no-op decorator so the module still loads and sync still works. The 60/min
+#   guardrail is hardening, not correctness — degrading gracefully is right.
+try:
+	from frappe.rate_limiter import rate_limit as _rate_limit
+except ImportError:
+	try:
+		_rate_limit = frappe.rate_limit  # type: ignore[attr-defined]
+	except AttributeError:
+		def _rate_limit(*_args, **_kwargs):  # type: ignore[no-redef]
+			def _decorator(fn):
+				return fn
+			return _decorator
+		frappe.logger("farmlink.sync").warning(
+			"frappe.rate_limit unavailable — sync endpoints run without rate-limiting"
+		)
+
 from farmlink.sync.audit import record_session, safe_extract_client_meta
 from farmlink.sync.dependency_order import (
 	DOCTYPE_MAPPINGS,
@@ -63,7 +83,7 @@ _TELEMETRY_RATE_LIMIT_PER_MIN = 20
 
 
 @frappe.whitelist(methods=["POST"])
-@frappe.rate_limit(key="user", limit=_RATE_LIMIT_PER_MIN, seconds=60)
+@_rate_limit(key="user", limit=_RATE_LIMIT_PER_MIN, seconds=60)
 def pull(since=None, cursor=None, page_size=None, doctypes=None):
 	started = now_datetime()
 	body_for_meta = _request_body() if frappe.request and not any((since, cursor, page_size, doctypes)) else {}
@@ -183,7 +203,7 @@ def _pull_impl(since=None, cursor=None, page_size=None, doctypes=None):
 
 
 @frappe.whitelist(methods=["POST"])
-@frappe.rate_limit(key="user", limit=_RATE_LIMIT_PER_MIN, seconds=60)
+@_rate_limit(key="user", limit=_RATE_LIMIT_PER_MIN, seconds=60)
 def push(changes=None):
 	started = now_datetime()
 	body_for_meta = _request_body() if frappe.request and changes is None else {}
@@ -744,7 +764,7 @@ def status():
 
 
 @frappe.whitelist(methods=["POST"])
-@frappe.rate_limit(key="user", limit=_TELEMETRY_RATE_LIMIT_PER_MIN, seconds=60)
+@_rate_limit(key="user", limit=_TELEMETRY_RATE_LIMIT_PER_MIN, seconds=60)
 def report_telemetry():
 	"""Receive a buffered batch of client-side telemetry events.
 
