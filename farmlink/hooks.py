@@ -127,7 +127,8 @@ boot_session = "farmlink.utils.boot.boot_session"
 # ------------
 
 # before_install = "farmlink.install.before_install"
-# after_install = "farmlink.install.after_install"
+after_install = "farmlink.install.after_install"
+after_migrate = ["farmlink.install.after_migrate"]
 
 # Uninstallation
 # ------------
@@ -161,13 +162,25 @@ boot_session = "farmlink.utils.boot.boot_session"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+permission_query_conditions = {
+	"Farmers": "farmlink.sync.permissions.get_for_farmers",
+	"Farms": "farmlink.sync.permissions.get_for_farms",
+	"Purchases": "farmlink.sync.permissions.get_for_purchases",
+	"Payment": "farmlink.sync.permissions.get_for_payment",
+	"Primary Arrival Log": "farmlink.sync.permissions.get_for_primary_arrival_log",
+	"Primary Dispatch": "farmlink.sync.permissions.get_for_primary_dispatch",
+	"Primary Processing": "farmlink.sync.permissions.get_for_primary_processing",
+	"Secondary Processing": "farmlink.sync.permissions.get_for_secondary_processing",
+	"Secondary Arrival Log": "farmlink.sync.permissions.get_for_secondary_arrival_log",
+	"Export Arrival Log": "farmlink.sync.permissions.get_for_export_arrival_log",
+	"Cupping Order": "farmlink.sync.permissions.get_for_cupping_order",
+	"Trades": "farmlink.sync.permissions.get_for_trades",
+	"Export Dispatch": "farmlink.sync.permissions.get_for_export_dispatch",
+	"Centers": "farmlink.sync.permissions.get_for_centers",
+	"Territory": "farmlink.sync.permissions.get_for_territory",
+	"Supplier": "farmlink.sync.permissions.get_for_supplier",
+	"Personnel": "farmlink.sync.permissions.get_for_personnel",
+}
 
 # DocType Class
 # ---------------
@@ -185,39 +198,91 @@ doc_events = {
 	"Payment": {
 		"after_insert": "farmlink.hook_handlers.on_payment_change",
 		"on_update": "farmlink.hook_handlers.on_payment_change",
-		"on_trash": "farmlink.hook_handlers.on_payment_change",
+		"on_trash": [
+			"farmlink.hook_handlers.on_payment_change",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Primary Arrival Log": {
 		"on_update": "farmlink.supply_chain.stock_ledger.primary_arrival_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.primary_arrival_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.primary_arrival_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Primary Processing": {
 		"on_update": "farmlink.supply_chain.stock_ledger.primary_processing_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.primary_processing_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.primary_processing_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Primary Dispatch": {
 		"on_update": "farmlink.supply_chain.stock_ledger.primary_dispatch_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.primary_dispatch_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.primary_dispatch_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Secondary Arrival Log": {
 		"on_update": "farmlink.supply_chain.stock_ledger.secondary_arrival_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.secondary_arrival_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.secondary_arrival_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Secondary Processing": {
 		"on_update": "farmlink.supply_chain.stock_ledger.secondary_processing_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.secondary_processing_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.secondary_processing_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Export Arrival Log": {
 		"on_update": "farmlink.supply_chain.stock_ledger.export_arrival_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.export_arrival_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.export_arrival_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Trades": {
 		"on_update": "farmlink.supply_chain.stock_ledger.trades_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.trades_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.trades_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
 	},
 	"Export Dispatch": {
 		"on_update": "farmlink.supply_chain.stock_ledger.export_dispatch_on_save",
-		"on_trash": "farmlink.supply_chain.stock_ledger.export_dispatch_on_trash",
+		"on_trash": [
+			"farmlink.supply_chain.stock_ledger.export_dispatch_on_trash",
+			"farmlink.sync.tombstones.record_tombstone",
+		],
+	},
+	"Farmers": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Farms": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Purchases": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Territory": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Centers": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Supplier": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Cupping Order": {
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
+	},
+	"Personnel": {
+		"on_update": "farmlink.hook_handlers.on_personnel_update",
+		"on_trash": "farmlink.sync.tombstones.record_tombstone",
 	},
 }
 
