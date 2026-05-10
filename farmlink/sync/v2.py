@@ -127,6 +127,14 @@ def _pull_impl(since=None, cursor=None, page_size=None, doctypes=None):
 	requested = doctypes if doctypes is not None else body.get("doctypes")
 
 	since_dt = get_datetime(since_iso) if since_iso else _epoch()
+	# Frappe stores `creation` and `modified` as offset-naive in server-local
+	# time. The mobile may send `since` as an ISO-8601 string with a `Z`
+	# suffix (e.g. "2026-05-09T21:27:40.102Z"); get_datetime parses that as
+	# offset-aware, which then explodes when we do `creation_dt > since_dt`
+	# below. Convert to system-local naive so every datetime in this call
+	# graph has the same shape.
+	if since_dt is not None and getattr(since_dt, "tzinfo", None) is not None:
+		since_dt = since_dt.astimezone().replace(tzinfo=None)
 	server_time = now_datetime()
 
 	doctype_queue = _resolve_doctype_queue(requested)
