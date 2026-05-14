@@ -16,7 +16,11 @@
   "column_break_ubwh",
   "kebele",
   "date_recorded",
-  "farm_polygon"
+  "farm_polygon",
+  "polygon_point_count",
+  "polygon_avg_accuracy_m",
+  "polygon_captured_at",
+  "polygon_area_ha"
  ],
  "fields": [
   {
@@ -54,6 +58,32 @@
    "fieldname": "farm_polygon",
    "fieldtype": "Geolocation",
    "label": "Farm Polygon"
+  },
+  {
+   "fieldname": "polygon_point_count",
+   "fieldtype": "Int",
+   "label": "Polygon Point Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "polygon_avg_accuracy_m",
+   "fieldtype": "Float",
+   "label": "Polygon Avg GPS Accuracy (m)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "polygon_captured_at",
+   "fieldtype": "Datetime",
+   "label": "Polygon Captured At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "polygon_area_ha",
+   "fieldtype": "Float",
+   "label": "Polygon Area (ha)",
+   "precision": "4",
+   "read_only": 1
   },
   {
    "fieldname": "details_section",
