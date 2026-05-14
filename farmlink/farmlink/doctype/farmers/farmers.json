@@ -247,11 +247,13 @@
    "label": "Farmer's Photo"
   },
   {
+   "allowed_file_extensions": "jpg,jpeg,png,pdf",
    "fieldname": "bank_book",
    "fieldtype": "Attach",
    "label": "Bank Book"
   },
   {
+   "allowed_file_extensions": "jpg,jpeg,png,pdf",
    "fieldname": "land_ownership_certificate",
    "fieldtype": "Attach",
    "label": "Land Ownership Certificate"
