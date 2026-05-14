@@ -39,7 +39,7 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
-   "label": "Territory",
+   "label": "Site",
    "options": "Territory"
   },
   {

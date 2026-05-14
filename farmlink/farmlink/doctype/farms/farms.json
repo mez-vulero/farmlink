@@ -12,6 +12,7 @@
   "territory",
   "farmer",
   "farm_center_point",
+  "altitude",
   "column_break_ubwh",
   "kebele",
   "date_recorded",
@@ -21,13 +22,19 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
-   "label": "Collection Site",
+   "label": "Site",
    "options": "Territory"
   },
   {
    "fieldname": "farm_center_point",
    "fieldtype": "Geolocation",
    "label": "Farm Center Point"
+  },
+  {
+   "fieldname": "altitude",
+   "fieldtype": "Float",
+   "label": "Altitude (m)",
+   "precision": "2"
   },
   {
    "fieldname": "column_break_ubwh",

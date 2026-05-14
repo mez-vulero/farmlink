@@ -41,7 +41,7 @@
    "fieldname": "territory",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Territory",
+   "label": "Site",
    "options": "Territory"
   },
   {

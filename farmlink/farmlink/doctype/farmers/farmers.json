@@ -81,7 +81,8 @@
   {
    "fieldname": "middle_name",
    "fieldtype": "Data",
-   "label": "Middle Name"
+   "label": "Middle Name",
+   "reqd": 1
   },
   {
    "fieldname": "last_name",
@@ -107,7 +108,7 @@
    "fieldname": "territory",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Territory",
+   "label": "Site",
    "options": "Territory"
   },
   {
@@ -198,7 +199,7 @@
   {
    "fieldname": "number_of_coffee_fields",
    "fieldtype": "Int",
-   "label": "Number of coffee fields"
+   "label": "Number of Coffee Plots"
   },
   {
    "fieldname": "number_of_shade_trees_on_all_coffee_farm_plot",
