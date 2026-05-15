@@ -1,0 +1,564 @@
+[
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-header_brand",
+  "target_doctype": "Purchases",
+  "string_key": "header_brand",
+  "value": "Snap Industry & Trading PLC",
+  "description": "Company / brand line at the top of the purchase receipt."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-header_title",
+  "target_doctype": "Purchases",
+  "string_key": "header_title",
+  "value": "PURCHASE RECEIPT",
+  "description": "Title printed after the brand line."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_date",
+  "target_doctype": "Purchases",
+  "string_key": "label_date",
+  "value": "Date:",
+  "description": "Label before the printed date."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_time",
+  "target_doctype": "Purchases",
+  "string_key": "label_time",
+  "value": "Time:",
+  "description": "Label before the printed time."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-section_details",
+  "target_doctype": "Purchases",
+  "string_key": "section_details",
+  "value": "PURCHASE DETAILS",
+  "description": "Section heading above the purchase fields."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_receipt_no",
+  "target_doctype": "Purchases",
+  "string_key": "label_receipt_no",
+  "value": "Receipt No:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_purchase_date",
+  "target_doctype": "Purchases",
+  "string_key": "label_purchase_date",
+  "value": "Purchase Date:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_weight",
+  "target_doctype": "Purchases",
+  "string_key": "label_weight",
+  "value": "Weight:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_price_rate",
+  "target_doctype": "Purchases",
+  "string_key": "label_price_rate",
+  "value": "Price Rate:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_total_amount",
+  "target_doctype": "Purchases",
+  "string_key": "label_total_amount",
+  "value": "Total Amount:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_maturity",
+  "target_doctype": "Purchases",
+  "string_key": "label_maturity",
+  "value": "Maturity:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-section_farmer",
+  "target_doctype": "Purchases",
+  "string_key": "section_farmer",
+  "value": "FARMER INFORMATION",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_farmer_name",
+  "target_doctype": "Purchases",
+  "string_key": "label_farmer_name",
+  "value": "Name:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_farmer_phone",
+  "target_doctype": "Purchases",
+  "string_key": "label_farmer_phone",
+  "value": "Phone:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_farmer_kebele",
+  "target_doctype": "Purchases",
+  "string_key": "label_farmer_kebele",
+  "value": "Kebele:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-section_center",
+  "target_doctype": "Purchases",
+  "string_key": "section_center",
+  "value": "COLLECTION CENTER",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_center_id",
+  "target_doctype": "Purchases",
+  "string_key": "label_center_id",
+  "value": "Center ID:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_status",
+  "target_doctype": "Purchases",
+  "string_key": "label_status",
+  "value": "Status:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-status_completed",
+  "target_doctype": "Purchases",
+  "string_key": "status_completed",
+  "value": "COMPLETED",
+  "description": "Shown when the record has been synced."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-status_pending",
+  "target_doctype": "Purchases",
+  "string_key": "status_pending",
+  "value": "PENDING",
+  "description": "Shown when the record has not yet synced."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_qr_title",
+  "target_doctype": "Purchases",
+  "string_key": "label_qr_title",
+  "value": "Purchase QR Code:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-label_qr_id",
+  "target_doctype": "Purchases",
+  "string_key": "label_qr_id",
+  "value": "Purchase ID:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-footer_thanks",
+  "target_doctype": "Purchases",
+  "string_key": "footer_thanks",
+  "value": "Thank you for your business!",
+  "description": "First footer line."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Purchases-footer_signature",
+  "target_doctype": "Purchases",
+  "string_key": "footer_signature",
+  "value": "FarmLink - Connecting Farmers",
+  "description": "Second footer line."
+ },
+
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-header_brand",
+  "target_doctype": "Payment",
+  "string_key": "header_brand",
+  "value": "Snap Industry & Trading PLC",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-header_title",
+  "target_doctype": "Payment",
+  "string_key": "header_title",
+  "value": "PAYMENT RECEIPT",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_date",
+  "target_doctype": "Payment",
+  "string_key": "label_date",
+  "value": "Date:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_time",
+  "target_doctype": "Payment",
+  "string_key": "label_time",
+  "value": "Time:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-section_details",
+  "target_doctype": "Payment",
+  "string_key": "section_details",
+  "value": "PAYMENT DETAILS",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_receipt_no",
+  "target_doctype": "Payment",
+  "string_key": "label_receipt_no",
+  "value": "Receipt No:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_payment_date",
+  "target_doctype": "Payment",
+  "string_key": "label_payment_date",
+  "value": "Payment Date:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_amount",
+  "target_doctype": "Payment",
+  "string_key": "label_amount",
+  "value": "Amount:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_payment_method",
+  "target_doctype": "Payment",
+  "string_key": "label_payment_method",
+  "value": "Payment Method:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_transaction",
+  "target_doctype": "Payment",
+  "string_key": "label_transaction",
+  "value": "Transaction:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-section_farmer",
+  "target_doctype": "Payment",
+  "string_key": "section_farmer",
+  "value": "FARMER INFORMATION",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_farmer_name",
+  "target_doctype": "Payment",
+  "string_key": "label_farmer_name",
+  "value": "Name:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_farmer_phone",
+  "target_doctype": "Payment",
+  "string_key": "label_farmer_phone",
+  "value": "Phone:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_farmer_kebele",
+  "target_doctype": "Payment",
+  "string_key": "label_farmer_kebele",
+  "value": "Kebele:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-section_purchase",
+  "target_doctype": "Payment",
+  "string_key": "section_purchase",
+  "value": "PURCHASE INFORMATION",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_purchase_weight",
+  "target_doctype": "Payment",
+  "string_key": "label_purchase_weight",
+  "value": "Weight:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_purchase_rate",
+  "target_doctype": "Payment",
+  "string_key": "label_purchase_rate",
+  "value": "Price Rate:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_purchase_total",
+  "target_doctype": "Payment",
+  "string_key": "label_purchase_total",
+  "value": "Total:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_purchase_maturity",
+  "target_doctype": "Payment",
+  "string_key": "label_purchase_maturity",
+  "value": "Maturity:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_fully_paid",
+  "target_doctype": "Payment",
+  "string_key": "label_fully_paid",
+  "value": "Fully Paid:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_outstanding",
+  "target_doctype": "Payment",
+  "string_key": "label_outstanding",
+  "value": "Outstanding:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_qr_title",
+  "target_doctype": "Payment",
+  "string_key": "label_qr_title",
+  "value": "Payment QR Code:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-label_qr_id",
+  "target_doctype": "Payment",
+  "string_key": "label_qr_id",
+  "value": "Payment ID:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-footer_thanks",
+  "target_doctype": "Payment",
+  "string_key": "footer_thanks",
+  "value": "Thank you for your business!",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Payment-footer_signature",
+  "target_doctype": "Payment",
+  "string_key": "footer_signature",
+  "value": "FarmLink - Connecting Farmers",
+  "description": ""
+ },
+
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-header_brand",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "header_brand",
+  "value": "FarmLink",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-header_title",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "header_title",
+  "value": "PRIMARY ARRIVAL LOG",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_date",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_date",
+  "value": "Date:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_time",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_time",
+  "value": "Time:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-section_details",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "section_details",
+  "value": "ARRIVAL LOG DETAILS",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_log_id",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_log_id",
+  "value": "Log ID:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_log_time",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_log_time",
+  "value": "Log Time:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_collected_from",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_collected_from",
+  "value": "Collected From:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_collected_from_name",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_collected_from_name",
+  "value": "Name:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_weight",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_weight",
+  "value": "Weight:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_maturity",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_maturity",
+  "value": "Maturity:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_amount",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_amount",
+  "value": "Amount:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-section_center",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "section_center",
+  "value": "CENTER INFORMATION",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_center_id",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_center_id",
+  "value": "Center ID:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_status",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_status",
+  "value": "Status:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-status_synced",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "status_synced",
+  "value": "SYNCED",
+  "description": "Shown when the log has been synced."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-status_pending",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "status_pending",
+  "value": "PENDING",
+  "description": "Shown when the log has not yet synced."
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_qr_title",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_qr_title",
+  "value": "Arrival Log QR Code:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-label_qr_id",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "label_qr_id",
+  "value": "Log ID:",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-footer_thanks",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "footer_thanks",
+  "value": "Thank you!",
+  "description": ""
+ },
+ {
+  "doctype": "Receipt String",
+  "name": "Primary Arrival Log-footer_signature",
+  "target_doctype": "Primary Arrival Log",
+  "string_key": "footer_signature",
+  "value": "FarmLink - Connecting Farmers",
+  "description": ""
+ }
+]

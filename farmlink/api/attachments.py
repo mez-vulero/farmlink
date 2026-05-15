@@ -24,6 +24,8 @@ This endpoint:
 
 from __future__ import annotations
 
+import hashlib
+
 import frappe
 from frappe import _
 from frappe.utils.file_manager import save_file
@@ -105,6 +107,64 @@ def upload_for_field(
 			frappe.ValidationError,
 		)
 
+	# Idempotent dedup. The mobile sometimes retries an upload that already
+	# succeeded server-side (e.g. legacy sidecars that mis-recorded the
+	# original write as 'failed'). Without this guard, every retry creates
+	# a fresh File row on Frappe even though save_file shares the underlying
+	# bytes — the user perceives that as "the document was uploaded again".
+	#
+	# Frappe's File doctype stores an MD5 content_hash; we compute the same
+	# digest here, look for an existing attachment on this (doctype, name,
+	# fieldname) triple with the same content, and short-circuit if found.
+	content_hash = hashlib.md5(content, usedforsecurity=False).hexdigest()
+	parent_current = frappe.db.get_value(doctype, name, fieldname)
+
+	# Pass 1: exact-slot match via attached_to_field. Files saved by *this*
+	# endpoint always set that column, so this is the fast path for retries.
+	matches = frappe.get_all(
+		"File",
+		filters={
+			"attached_to_doctype": doctype,
+			"attached_to_name": name,
+			"attached_to_field": fieldname,
+			"content_hash": content_hash,
+		},
+		fields=["name", "file_url"],
+		limit=1,
+	)
+
+	# Pass 2: legacy File rows from prior code paths (Desk UI, older mobile)
+	# didn't populate attached_to_field. Fall back to "this hash is attached
+	# to this parent AND its URL equals what the field currently points at".
+	# Avoids creating a duplicate File row on every retry of pre-existing data.
+	if not matches and parent_current:
+		matches = frappe.get_all(
+			"File",
+			filters={
+				"attached_to_doctype": doctype,
+				"attached_to_name": name,
+				"content_hash": content_hash,
+				"file_url": parent_current,
+			},
+			fields=["name", "file_url"],
+			limit=1,
+		)
+
+	if matches:
+		# Reuse the existing File. Only touch the parent's field if it's
+		# pointing somewhere else (or empty) — db_set always bumps `modified`
+		# so we skip it on no-op to avoid syncing a phantom update back to
+		# the mobile every time it retries.
+		if parent_current != matches[0].file_url:
+			parent = frappe.get_doc(doctype, name)
+			parent.db_set(fieldname, matches[0].file_url, update_modified=True)
+		return {
+			"file_url": matches[0].file_url,
+			"file_name": matches[0].name,
+			"fieldname": fieldname,
+			"deduped": True,
+		}
+
 	filename = file_obj.filename or "attachment"
 	# save_file handles attached_to_* linkage, dedupes by content hash, and
 	# generates a stable file_url under /files or /private/files.
@@ -113,6 +173,7 @@ def upload_for_field(
 		content=content,
 		dt=doctype,
 		dn=name,
+		df=fieldname,
 		decode=False,
 		is_private=int(is_private),
 	)
@@ -127,4 +188,5 @@ def upload_for_field(
 		"file_url": saved.file_url,
 		"file_name": saved.name,
 		"fieldname": fieldname,
+		"deduped": False,
 	}

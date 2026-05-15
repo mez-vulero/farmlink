@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 0,
+ "autoname": "format:{target_doctype}-{string_key}",
+ "creation": "2026-05-15 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "target_doctype",
+  "string_key",
+  "value",
+  "column_break_1",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "target_doctype",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Target Receipt",
+   "options": "Purchases\nPayment\nPrimary Arrival Log",
+   "reqd": 1,
+   "description": "Which printed receipt this string belongs to."
+  },
+  {
+   "fieldname": "string_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "String Key",
+   "reqd": 1,
+   "description": "Stable identifier the mobile app looks up (e.g. header_brand, label_weight). Do not change once printers are in the field."
+  },
+  {
+   "fieldname": "value",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Printed Text",
+   "reqd": 1,
+   "description": "The exact text that will appear on the thermal printer in place of the hardcoded default."
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Notes",
+   "description": "Optional: where this string appears in the receipt. For admins only — not printed."
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-15 00:00:00",
+ "modified_by": "Administrator",
+ "module": "FarmLink",
+ "name": "Receipt String",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farmlink Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Collector"
+  },
+  {
+   "read": 1,
+   "role": "Arrival Clerk"
+  },
+  {
+   "read": 1,
+   "role": "Finance Officer"
+  },
+  {
+   "read": 1,
+   "role": "Dispatch Clerk"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

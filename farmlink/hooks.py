@@ -15,6 +15,19 @@ add_to_apps_screen = [
 	}
 ]
 
+# Fixtures
+# --------
+# Ship default Receipt String rows on install/migrate so fresh deployments
+# print receipts identical to the previous hardcoded layout out of the box.
+# Existing rows are NOT overwritten on subsequent migrates — admins keep their
+# edits. To restore a default, delete the row and re-run `bench migrate`.
+fixtures = [
+	{
+		"dt": "Receipt String",
+		"filters": [["target_doctype", "in", ["Purchases", "Payment", "Primary Arrival Log"]]],
+	},
+]
+
 # Apps
 # ------------------
 
@@ -180,6 +193,7 @@ permission_query_conditions = {
 	"Territory": "farmlink.sync.permissions.get_for_territory",
 	"Supplier": "farmlink.sync.permissions.get_for_supplier",
 	"Personnel": "farmlink.sync.permissions.get_for_personnel",
+	"Receipt String": "farmlink.sync.permissions.get_for_receipt_string",
 }
 
 # DocType Class

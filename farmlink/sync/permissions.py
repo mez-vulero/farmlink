@@ -192,3 +192,16 @@ def get_for_personnel(user):
 	if _has_bypass_role(user):
 		return ""
 	return f"`tabPersonnel`.`user_id` = {frappe.db.escape(user)}"
+
+
+def get_for_receipt_string(user):
+	"""Global config — every signed-in user with read permission sees every row.
+
+	Receipt strings are not territory- or center-scoped: a label printed in
+	one center's purchase receipt should be the same one printed in another's.
+	Guests are still denied; the standard role check on the DocType decides
+	who can read.
+	"""
+	if not user or user == "Guest":
+		return "1=0"
+	return ""

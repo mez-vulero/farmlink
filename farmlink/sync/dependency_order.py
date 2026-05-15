@@ -39,6 +39,9 @@ DOCTYPE_MAPPINGS: dict[str, str] = {
 	"cupping_orders": "Cupping Order",
 	"trades": "Trades",
 	"export_dispatches": "Export Dispatch",
+	# Pull-only config: text labels printed on the thermal receipts. Edited in
+	# Desk; the mobile reads them at print time, never writes back.
+	"receipt_strings": "Receipt String",
 }
 
 # Reverse: Frappe DocType -> mobile table
@@ -65,6 +68,9 @@ PROCESSING_ORDER: tuple[str, ...] = (
 	"cupping_orders",
 	"trades",
 	"export_dispatches",
+	# No FK relations — position is irrelevant. Placed last to make it
+	# obvious this is config rather than transactional data.
+	"receipt_strings",
 )
 
 # Cross-table foreign keys among synced tables only.
